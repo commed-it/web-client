@@ -1,0 +1,17 @@
+.customNavBar{
+    background-color: #007A6E !important;
+}
+
+.title{
+    color: white;
+    font-size: 15px !important;
+}
+
+
+.center{
+    
+    display: flex;
+    align-items:center;
+    justify-content: center;
+   
+}

@@ -1,5 +1,9 @@
-.App {
-  text-align: center;
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+.App{
+  padding: 0 !important;
 }
 
 .App-logo {
