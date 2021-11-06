@@ -1,8 +1,8 @@
 ---
 name: Development Issue Template
 about: Describe this issue template's purpose here.
-title: 'Implementation of'
-labels: 'sprint 2'
+title: Implementation of
+labels: ''
 assignees: ''
 
 ---
@@ -16,4 +16,3 @@ The screen is specified in the state diagram image below.
 ![State Diagram](https://raw.githubusercontent.com/commed-it/docs/main/17-nov/img/stateapp.png)
 
 ## What needs to be tested
-
