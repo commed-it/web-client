@@ -1,17 +1,53 @@
-.customNavBar{
-    background-color: #007A6E !important;
+.customNavBar {
+  background-color: #007a6e !important;
+  display: flex;
+  justify-content: center;
 }
 
-.title{
-    color: white;
-    font-size: 15px !important;
+.title {
+  color: white;
+  font-size: 15px !important;
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.center{
-    
-    display: flex;
-    align-items:center;
-    justify-content: center;
-   
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 65%;
+  padding: 0;
+  margin: auto;
+  margin-left: -1.9%;
+}
+
+.button {
+  margin: 1%;
+  width: 30%;
+}
+
+.icon {
+  padding: 1%;
+  margin: 2%;
+  vertical-align: bottom;
+}
+
+.inputField {
+  position: relative;
+  flex: 1;
+  text-indent: 20px;
+  color: #40414f;
+  margin: 0;
+}
+
+.searchIcon {
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  transform: translate(-50%);
+  left: 15px;
 }
