@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
+import Session from "react-session-api";
 
 function Login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmail= (event) => {
+    setEmail(event.target.value);
+  }
+  
+  const handlePassword= (event) => {
+    setPassword(event.target.value);
+  }
+
+  const handleLogin = () => {
+    console.log(email);
+    console.log(password);
+  }
+
   return (
-    <div>
+    <form onSubmit={handleLogin}>
       <div role="document" borderRadius="0.8rem">
         <div className="window ">
           <div className="modal-header text-center">
@@ -29,9 +47,11 @@ function Login() {
               </svg>
               <input
                 type="email"
-                id="defaultForm-email"
+                id="email"
                 className="inputs form-control validate"
                 placeholder="Email"
+                value={email}
+                onChange={handleEmail}
               />
               <label
                 data-error="wrong"
@@ -53,9 +73,11 @@ function Login() {
               </svg>
               <input
                 type="password"
-                id="defaultForm-pass"
+                id="password"
                 className="inputs form-control validate"
                 placeholder="Password"
+                value={password}
+                onChange={handlePassword}
               />
               <label
                 data-error="wrong"
@@ -65,11 +87,11 @@ function Login() {
             </div>
           </div>
           <div className="modal-footer d-flex justify-content-center">
-            <button className="loginButton btn btn-default">Login</button>
+            <button className="loginButton btn btn-default" type="submit">Login</button>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 
