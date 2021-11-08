@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Login.css";
-import Session from "react-session-api";
+import configData from "../../config.json";
+import { sessionService } from 'redux-react-session';
+
 
 function Login() {
 
@@ -15,9 +17,23 @@ function Login() {
     setPassword(event.target.value);
   }
 
-  const handleLogin = () => {
-    console.log(email);
-    console.log(password);
+  const handleLogin = async () => {
+    var data={
+      'email' : email,
+      'username' : 'quimpm99',
+      'password' : password
+    };
+    const result = await fetch(configData.SERVER_URL+"/auth/login/",
+    {
+        method : 'POST',
+        body : JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+    });
+    const result_json = await result.json();
+    sessionService.saveSession(result_json);
   }
 
   return (

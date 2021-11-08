@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomeProducts.css';
 import configData from "../../../config.json";
+import { sessionService } from 'redux-react-session'
 
 
 function HomeProducts(props) {
@@ -13,13 +14,14 @@ function HomeProducts(props) {
         method : 'GET',
     });
     const result_json = await result.json();
-    console.log(result_json);
     setProducts(result_json);
-  }
+  };
 
+  
   React.useEffect(() => {
-      getProducts();
-    }, []);
+    getProducts();
+  }, []);
+
 
     return (
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row d-flex productsDiv">
