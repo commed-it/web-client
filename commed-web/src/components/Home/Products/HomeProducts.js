@@ -22,9 +22,9 @@ function HomeProducts(props) {
     }, []);
 
     return (
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row d-flex productsDiv">
             {products && products.map((product) => { return(
-                    <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 productCard">
                       <img class="card-img-top" src={product.image} alt="Product Card Image"></img>
                       <div class="card-body">
                         <h5 class="card-title">{product.title}</h5>
