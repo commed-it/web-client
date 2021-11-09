@@ -4,9 +4,11 @@ import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import Product from "./components/Product/Product";
 import Profile from "./components/Profile/Profile";
-import { BrowserRouter, Routes, Route  } from "react-router-dom";
+import Chat from "./components/Chat/Chat.js";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { combineReducers, createStore } from 'redux';
 import { sessionReducer, sessionService } from 'redux-react-session';
+import  sessionExist  from './utils';
 
 function App() {
 
@@ -36,6 +38,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/product" element={<Product />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/chat" element={ sessionExist() ? <Chat /> : <Navigate to='/'/>} />
           </Routes>
         </BrowserRouter>
       </div>
