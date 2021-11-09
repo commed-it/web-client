@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import { Modal } from "react-bootstrap";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import { sessionService } from 'redux-react-session';
 
 function Header(props) {
   const [show, setShow] = useState(false);
@@ -30,6 +31,10 @@ function Header(props) {
     setShowRegister(true);
     console.log(show);
   };
+  const handleLogOut = () => {
+    sessionService.deleteSession();
+    window.location.reload();
+  }
 
   return (
     <div className="row d-flex flex-row customNavBar ">
