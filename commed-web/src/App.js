@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { combineReducers, createStore } from 'redux';
 import { sessionReducer, sessionService } from 'redux-react-session';
 import  sessionExist  from './utils';
+import ProductEdit from "./components/Product/ProductEdit/ProductEdit";
 
 function App() {
 
@@ -36,7 +37,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/product" element={<Product />} />
+            <Route path="/product/:productId" element={<Product />} />
+            <Route path="/product/:productId/edit" element={<ProductEdit />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/chat" element={ sessionExist() ? <Chat /> : <Navigate to='/'/>} />
           </Routes>

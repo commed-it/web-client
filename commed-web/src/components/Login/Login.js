@@ -32,10 +32,12 @@ function Login(props) {
           'Content-Type': 'application/json'
         }
     });
-    const result_json = await result.json();
-    console.log(result_json);
-    sessionService.saveSession(result_json);
-    props.close();
+    if (result.ok){
+      const result_json = await result.json();
+      sessionService.saveSession(result_json);
+      props.close();
+    }
+    
   }
 
   return (

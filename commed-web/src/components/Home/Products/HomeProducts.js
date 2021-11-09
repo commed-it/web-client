@@ -2,9 +2,12 @@ import React from 'react';
 import './HomeProducts.css';
 import configData from "../../../config.json";
 import { sessionService } from 'redux-react-session'
+import { useNavigate } from 'react-router-dom';
 
 
 function HomeProducts(props) {
+
+  const navigate = useNavigate();
 
   const [products, setProducts] = React.useState([]);
 
@@ -23,6 +26,10 @@ function HomeProducts(props) {
   }, []);
 
 
+  const handleVisitProduct = (product) => {
+    navigate({ pathname: '/product/'+product });
+  }
+
     return (
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row d-flex productsDiv">
             {products && products.map((product) => { return(
@@ -31,7 +38,7 @@ function HomeProducts(props) {
                       <div class="card-body">
                         <h5 class="card-title">{product.title}</h5>
                         <p class="card-text">{product.description}</p>
-                        <a href="#" class="btn btn-primary">Go to product</a>
+                        <button class="btn btn-primary" onClick={() => handleVisitProduct(product.id)}>Go to product</button>
                       </div>
                     </div>
                     );
