@@ -1,8 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
+import configData from '../../config.json';
 
 function Register(props) {
+
+  const [formResult, setFormResult] = useState(0);
+
+  const getComponent = () => {
+    if (formResult == 0 ){
+      return (<div></div>);
+    }else if(formResult == 1){
+      return (
+        <div class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
+          You have registered successfully!! Go back to Login into the application! :)
+        </div>
+      );
+    }else{
+      return (
+        <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
+          Invalid registration.
+        </div>
+      );
+    }
+  }
+
+  const [username, setUsername] = useState('');
+
+  const handleUsername= (event) => {
+    setUsername(event.target.value);
+  }
+
+  const [phoneNumber, setPhoneNumber] = useState('');
+  
+  const handlePhone= (event) => {
+    setPhoneNumber(event.target.value);
+  }
+
+  const [email, setEmail] = useState('');
+
+  const handleEmail= (event) => {
+    setEmail(event.target.value);
+  }
+
+  const [password, setPassword] = useState('');
+
+  const handlePassword= (event) => {
+    setPassword(event.target.value);
+  }
+
+  const [repeatPassword, setRepeatPassword] = useState('');
+
+  const handleRepeatPassword= (event) => {
+    setRepeatPassword(event.target.value);
+  }
+
+  const handleRegister = async () => {
+    var data={
+      'username' : username,
+      'email' : email,
+      'password1' : password,
+      'password2' : repeatPassword
+    };
+    const result = await fetch(configData.SERVER_URL+"/auth/registration/",
+    {
+        method : 'POST',
+        body : JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+    });
+    if (result.ok){
+      setFormResult(1);
+    }else{
+      setFormResult(-1);
+    }
+    props.close();
+  }
+
   return (
+    <div>
     <div role="document" borderRadius="0.8rem">
       <div className="window ">
         <div className="modal-header text-center">
@@ -10,7 +87,7 @@ function Register(props) {
             Welcome!
           </h4>
         </div>
-
+        {getComponent()}
         <div className="modal-body mx-3 border-0">
           <div class="md-form mb-5">
             <svg
@@ -25,9 +102,11 @@ function Register(props) {
             </svg>
             <input
               type="text"
-              id="defaultForm-name"
+              id="defaultForm-username"
               class="inputs form-control validate"
-              placeholder="Name"
+              placeholder="Username"
+              onChange={handleUsername}
+              value = {username}
             ></input>
           </div>
           <div class="md-form mb-5">
@@ -49,6 +128,8 @@ function Register(props) {
               id="defaultForm-number"
               class="inputs form-control validate"
               placeholder="Phone number"
+              onChange={handlePhone}
+              value = {phoneNumber}
             ></input>
           </div>
           <div className="md-form mb-5">
@@ -70,6 +151,8 @@ function Register(props) {
               id="defaultForm-email"
               className="inputs form-control validate"
               placeholder="Email"
+              onChange={handleEmail}
+              value = {email}
             />
           </div>
 
@@ -89,6 +172,8 @@ function Register(props) {
               id="defaultForm-pass"
               className="inputs form-control validate"
               placeholder="Password"
+              onChange={handlePassword}
+              value = {password}
             />
             <label
               data-error="wrong"
@@ -112,6 +197,8 @@ function Register(props) {
               id="defaultForm-pass"
               className="inputs form-control validate"
               placeholder="Confirm password"
+              onChange={handleRepeatPassword}
+              value = {repeatPassword}
             />
             <label
               data-error="wrong"
@@ -121,9 +208,10 @@ function Register(props) {
           </div>
         </div>
         <div className="modal-footer d-flex justify-content-center">
-          <button className="registerButton btn btn-default">Sign up</button>
+          <button className="registerButton btn btn-default" type="submit" onClick={handleRegister}>Sign up</button>
         </div>
       </div>
+    </div>
     </div>
   );
 }
