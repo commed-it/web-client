@@ -33,6 +33,7 @@ function Login() {
         }
     });
     const result_json = await result.json();
+    console.log(result_json);
     sessionService.saveSession(result_json);
   }
 
