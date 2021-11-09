@@ -4,7 +4,7 @@ import configData from "../../config.json";
 import { sessionService } from 'redux-react-session';
 
 
-function Login() {
+function Login(props) {
 
   const [username, setUsername] = useState('');
 
@@ -35,10 +35,11 @@ function Login() {
     const result_json = await result.json();
     console.log(result_json);
     sessionService.saveSession(result_json);
+    props.close();
   }
 
   return (
-    <form onSubmit={handleLogin}>
+    <div>
       <div role="document" borderRadius="0.8rem">
         <div className="window ">
           <div className="modal-header text-center">
@@ -100,11 +101,11 @@ function Login() {
             </div>
           </div>
           <div className="modal-footer d-flex justify-content-center">
-            <button className="loginButton btn btn-default" type="submit">Login</button>
+            <button className="loginButton btn btn-default" onClick={handleLogin}>Login</button>
           </div>
         </div>
       </div>
-    </form>
+  </div>
   );
 }
 

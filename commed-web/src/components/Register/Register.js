@@ -75,6 +75,7 @@ function Register(props) {
     }else{
       setFormResult(-1);
     }
+    props.close();
   }
 
   return (
