@@ -8,7 +8,7 @@ import Chat from "./components/Chat/Chat.js";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { combineReducers, createStore } from 'redux';
 import { sessionReducer, sessionService } from 'redux-react-session';
-import  sessionExist  from './utils';
+import  { sessionExist }  from './utils';
 
 function App() {
 

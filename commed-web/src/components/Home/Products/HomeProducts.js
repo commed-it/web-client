@@ -3,6 +3,8 @@ import './HomeProducts.css';
 import configData from "../../../config.json";
 import { sessionService } from 'redux-react-session'
 import { useNavigate } from 'react-router-dom';
+import { get } from '../../../utils.js';
+
 
 
 function HomeProducts(props) {
@@ -12,10 +14,7 @@ function HomeProducts(props) {
   const [products, setProducts] = React.useState([]);
 
   const getProducts = async () => {
-    const result = await fetch(configData.SERVER_URL+"/product/",
-    {
-        method : 'GET',
-    });
+    const result = await get('/product/', false);
     const result_json = await result.json();
     setProducts(result_json);
   };
