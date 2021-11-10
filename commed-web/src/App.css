@@ -1,9 +1,13 @@
 .selector-for-some-widget {
   box-sizing: content-box;
 }
-
+.Body {
+  height: 100%;
+  width: 100%;
+}
 .App {
   width: 100% !important;
+  height: 100% !important;
   margin: 0 !important;
   padding: 0;
 }
@@ -17,8 +21,20 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+  .Body {
+    height: 100%;
+  }
+  .App {
+    height: 100%;
+  }
 }
-
+.fill-window {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
