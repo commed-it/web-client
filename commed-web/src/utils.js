@@ -26,7 +26,7 @@ export function sessionExist(){
 
 export async function get(endpoint, auth){
     if (auth){
-        headers['Authentication'] = 'Bearer ' + getTokenFromSession();
+        headers['Authorization'] = 'Bearer ' + getTokenFromSession();
     }
     return await fetch(configData.SERVER_URL+endpoint,
     {
@@ -37,7 +37,7 @@ export async function get(endpoint, auth){
 
 export async function post(endpoint, data, auth){
     if (auth){
-        headers['Authentication'] = 'Bearer ' + getTokenFromSession();
+        headers['Authorization'] = 'Bearer ' + getTokenFromSession();
     }
     return await fetch(configData.SERVER_URL+endpoint,
     {
@@ -48,7 +48,7 @@ export async function post(endpoint, data, auth){
 }
 
 export async function put(endpoint, data){
-    headers['Authentication'] = 'Bearer ' + getTokenFromSession();
+    headers['Authorization'] = 'Bearer ' + getTokenFromSession();
     return await fetch(configData.SERVER_URL+endpoint,
         {
             method : 'PUT',
@@ -58,7 +58,7 @@ export async function put(endpoint, data){
 }
 
 export async function patch(endpoint, data){
-    headers['Authentication'] = 'Bearer ' + getTokenFromSession();
+    headers['Authorization'] = 'Bearer ' + getTokenFromSession();
     return await fetch(configData.SERVER_URL+endpoint,
         {
             method : 'PATCH',
@@ -68,7 +68,7 @@ export async function patch(endpoint, data){
 }
 
 export async function remove(endpoint){
-    headers['Authentication'] = 'Bearer ' + getTokenFromSession();
+    headers['Authorization'] = 'Bearer ' + getTokenFromSession();
     return await fetch(configData.SERVER_URL+endpoint,
         {
             method : 'DELETE',
