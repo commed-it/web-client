@@ -2,6 +2,9 @@
   background-color: #007a6e !important;
   display: flex;
   justify-content: center;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
 }
 
 .title {
