@@ -1,11 +1,37 @@
-.homeTopDir{
-    padding-top: 5%;
+.category-slide {
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
-.category-slide{
-    padding-top: 4%;
+.home-subtitle {
+  padding-bottom: 1%;
+  padding-top: 1%;
+  font-size: 40px;
+  background-color: #3738436b;
+  color: #ffffff;
+  width: 100%;
+}
+.iconsHome:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
 }
 
-.home-subtitle{
-    border-bottom: 1px solid grey;
+.iconRound:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+
+.iconRound {
+  height: 55px;
+  line-height: 80px;
+  width: 55px;
+  border-radius: 50%;
+  background-color: #373843;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+  cursor: pointer;
 }
