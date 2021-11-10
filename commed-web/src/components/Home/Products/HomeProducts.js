@@ -23,7 +23,7 @@ function HomeProducts(props) {
       {products &&
         products.map((product) => {
           return (
-            <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 productCard">
+            <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 productCard ">
               <img
                 class="card-img-top"
                 src={product.images[0].image}

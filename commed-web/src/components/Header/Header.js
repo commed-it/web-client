@@ -38,7 +38,7 @@ function Header(props) {
   };
 
   return (
-    <div className="row d-flex flex-row customNavBar ">
+    <div className="row d-flex flex-row customNavBar sticky-top ">
       <div height="50" className="center col-xs-12 col-sm-12 col-md-2 col-lg-1">
         <img
           src="logo_white.png"
