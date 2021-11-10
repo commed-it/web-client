@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Register.css";
 import configData from '../../config.json';
+import { post } from '../../utils.js';
+
 
 function Register(props) {
 
@@ -61,15 +63,7 @@ function Register(props) {
       'password1' : password,
       'password2' : repeatPassword
     };
-    const result = await fetch(configData.SERVER_URL+"/auth/registration/",
-    {
-        method : 'POST',
-        body : JSON.stringify(data),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-    });
+    const result = await post("/auth/registration/", data, false);
     if (result.ok){
       setFormResult(1);
     }else{

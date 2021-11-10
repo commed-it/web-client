@@ -5,8 +5,8 @@ import ReactDOM from "react-dom";
 import { Modal } from "react-bootstrap";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import { sessionService } from "redux-react-session";
-import sessionExist from "../../utils.js";
+import { sessionService } from 'redux-react-session';
+import  { sessionExist }  from '../../utils.js';
 
 function Header(props) {
   const [show, setShow] = useState(false);
