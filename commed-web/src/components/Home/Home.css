@@ -1,8 +1,11 @@
 .topDiv {
+  box-sizing: border-box;
   background-color: #e6e6e6;
   margin: 0;
   height: 100%;
   width: 100%;
+  overflow: scroll;
+  overflow-y: scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
