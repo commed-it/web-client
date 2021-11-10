@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import configData from "../../config.json";
 import { sessionService } from 'redux-react-session';
+import { post } from '../../utils.js';
 
 
 function Login(props) {
@@ -23,19 +24,13 @@ function Login(props) {
       'username' : username,
       'password' : password
     };
-    const result = await fetch(configData.SERVER_URL+"/auth/login/",
-    {
-        method : 'POST',
-        body : JSON.stringify(data),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-    });
-    const result_json = await result.json();
-    console.log(result_json);
-    sessionService.saveSession(result_json);
-    props.close();
+    const result = await post('/auth/login/', data, false);
+    if (result.ok){
+      const result_json = await result.json();
+      sessionService.saveSession(result_json);
+      props.close();
+    }
+    
   }
 
   return (
