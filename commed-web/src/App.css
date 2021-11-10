@@ -2,8 +2,10 @@
   box-sizing: content-box;
 }
 
-.App{
+.App {
   width: 100% !important;
+  margin: 0 !important;
+  padding: 0;
 }
 
 .App-logo {
