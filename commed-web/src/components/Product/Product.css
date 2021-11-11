@@ -1,0 +1,129 @@
+.parent2 {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.151) !important;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  overflow: scroll;
+}
+.buy {
+  display: flex;
+  justify-content: space-between !important;
+  position: absolute;
+  bottom: 20%;
+}
+
+.container2 {
+  height: 90%;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.829);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 5%;
+  border-radius: 0.9rem;
+}
+
+.row2 {
+  display: flex;
+  height: 100%;
+  justify-content: space-evenly;
+  vertical-align: middle;
+}
+
+.cardDescription {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.iconsHome:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+
+.iconsHome {
+  float: left;
+  margin-top: 20%;
+}
+
+.enterprise {
+  display: flex;
+  justify-content: left;
+  align-self: center;
+  align-content: center;
+  padding: 5px;
+}
+
+.card-img2 {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  border: 1px solid black;
+  width: 500px !important;
+  height: 500px !important;
+
+  margin: auto;
+  float: left;
+}
+.card-body2 {
+  width: 40%;
+  text-align: center;
+  align-content: center;
+  flex-direction: column;
+  float: left;
+  margin-left: 5%;
+}
+
+.buttonProduct2 {
+  width: 100px;
+  background-color: #009688;
+  outline: none;
+  border: none;
+  margin-top: auto;
+  border-radius: 0.8rem;
+  margin-left: 190% !important;
+}
+.buttonProduct2:hover {
+  background-color: #009687d2;
+}
+
+.withPicture {
+  padding: 15px;
+}
+
+.card-text {
+  text-align: justify;
+  height: 30%;
+  margin-top: 10%;
+  color: #373843;
+}
+
+.card-title {
+  padding: 10px;
+}
+.card-title2 {
+  color: #373843;
+}
+
+.badge {
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 0.8rem;
+  font-weight: normal;
+  border: 1px solid #373843;
+  color: #373843;
+  margin-right: 5px;
+  width: 13%;
+  justify-content: space-between;
+  float: left !important;
+}
