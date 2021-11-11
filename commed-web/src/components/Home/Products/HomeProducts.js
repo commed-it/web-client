@@ -25,7 +25,7 @@ function HomeProducts(props) {
   };
 
   return (
-    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row d-flex productsDiv">
+    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row d-flex align-self-end productsDiv">
       {products &&
         products.map((product) => {
           return (

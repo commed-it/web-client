@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="fill-window App container-fluid">
-      <div className="Header">
+      <div>
         <Header></Header>
       </div>
       <div className="Body">

@@ -1,7 +1,6 @@
 .productsDiv {
   margin: auto;
   justify-content: space-evenly;
-  background-color: #3738436b;
   display: flex;
   position: absolute;
   height: fit-content;
