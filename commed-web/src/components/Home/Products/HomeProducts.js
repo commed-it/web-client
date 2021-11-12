@@ -14,6 +14,7 @@ function HomeProducts(props) {
     const result = await get("/product/", false);
     const result_json = await result.json();
     setProducts(result_json);
+    console.log(result_json);
   };
 
   React.useEffect(() => {
@@ -33,7 +34,7 @@ function HomeProducts(props) {
               {product.images && (
                 <img
                   class="card-img-top"
-                  src={() => product.images[0].image}
+                  src={product.images[0].image}
                   alt="Product Card Image"
                 ></img>
               )}

@@ -4,16 +4,22 @@
   flex-direction: column;
   justify-content: center;
   align-self: center;
-  padding:3%;
+  padding: 3%;
 }
 
 .container2 {
-  background-color: rgba(255, 255, 255, 0.829);
+  background-color: rgba(255, 255, 255, 0.548);
   display: flex;
   justify-content: center;
   align-self: center;
   margin-bottom: 5%;
   border-radius: 0.9rem;
+  width: 90%;
+}
+.iconsHome2 {
+  padding-left: 0.5%;
+  margin: auto;
+  align-content: center;
 }
 
 .row2 {
@@ -28,22 +34,32 @@
   justify-content: space-evenly;
   padding: 3%;
 }
-.iconsHome:hover {
+
+.card-subtitle2 {
+  text-align: center;
+}
+.iconsHome2:hover {
   transform: scale(1.1);
 
   filter: drop-shadow(6px 3px 1px #3738436c);
 }
 
-.iconsHome {
-  float: left;
-  margin-top: 20%;
+.centerIcon {
+  margin-left: 5%;
+}
+
+.centerIcon:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
 }
 
 .enterprise {
   display: flex;
   justify-content: left;
-  align-self: center;
-  align-content: center;
+  align-self: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
   padding: 5px;
 }
 
@@ -54,6 +70,7 @@
   border: 1px solid black;
   margin: auto;
   float: left;
+  position: relative;
 }
 .card-body2 {
   text-align: center;
@@ -65,7 +82,7 @@
 
 .buttonProduct2 {
   width: 100px;
-  background-color: #009688;
+  background-color: #373843;
   outline: none;
   border: none;
   margin-top: auto;
@@ -77,6 +94,10 @@
 
 .withPicture {
   padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
 }
 
 .card-text {
@@ -100,11 +121,15 @@
   border: 1px solid #373843;
   color: #373843;
   margin-right: 5px;
-  width: 13%;
+  width: 11%;
   justify-content: space-between;
   float: left !important;
 }
 
-.linkRow{
+.linkRow {
   padding-top: 5%;
+}
+
+h6 {
+  text-align: left;
 }
