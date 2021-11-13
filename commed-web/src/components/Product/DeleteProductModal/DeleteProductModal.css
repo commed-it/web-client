@@ -1,0 +1,70 @@
+.registerButton {
+    background-color: #007a6e !important;
+    color: white;
+    border-radius: 0.8rem !important;
+    width: 70% !important;
+    outline: none;
+    font-size: medium;
+  }
+  
+  button:hover {
+    color: white !important;
+    outline: #007a6e56;
+  }
+  
+  .window {
+    border-radius: 0.7rem !important;
+    width: 100% !important;
+    margin: auto !important;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+  
+  .inputs {
+    outline: #007a6e56;
+    border: none;
+    border-bottom: 1px solid #ced4da !important;
+    text-indent: 12px;
+  }
+  .inputs:hover {
+    outline: none !important;
+  }
+  
+  input:hover {
+    outline: none;
+  }
+  input:active {
+    outline: none;
+  }
+  input:focus {
+    background-color: #007a6e56;
+  }
+  
+  .modal-content {
+    width: 70%;
+    border-radius: 0.9rem;
+    margin: auto;
+    border: 1px solid #007a6e;
+    height: 50%;
+  }
+  
+  .modal-title {
+    padding: 20px;
+  }
+  .modal-header {
+    border: none;
+  }
+  .modal-body {
+    border: none;
+  }
+  .modal-footer {
+    border: none;
+  }
+  .icons {
+    position: absolute;
+    margin-bottom: -7%;
+    margin-left: 1%;
+    margin-top: 3%;
+  }
+  

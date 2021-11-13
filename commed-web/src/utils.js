@@ -1,10 +1,6 @@
 import Cookies from 'universal-cookie';
 import configData from './config.json';
 
-var headers ={
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-}
 
 export function getTokenFromSession(){
     const cookies = new Cookies()
@@ -25,8 +21,12 @@ export function sessionExist(){
 }
 
 export async function get(endpoint, auth){
+    var headers ={
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
     if (auth){
-        headers['Authorization'] = 'Bearer ' + getTokenFromSession();
+        headers['Authorization'] = 'Token ' + getTokenFromSession();
     }
     return await fetch(configData.SERVER_URL+endpoint,
     {
@@ -36,8 +36,12 @@ export async function get(endpoint, auth){
 }
 
 export async function post(endpoint, data, auth){
+    var headers ={
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
     if (auth){
-        headers['Authorization'] = 'Bearer ' + getTokenFromSession();
+        headers['Authorization'] = 'Token ' + getTokenFromSession();
     }
     return await fetch(configData.SERVER_URL+endpoint,
     {
@@ -48,7 +52,11 @@ export async function post(endpoint, data, auth){
 }
 
 export async function put(endpoint, data){
-    headers['Authorization'] = 'Bearer ' + getTokenFromSession();
+    var headers ={
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+    headers['Authorization'] = 'Token ' + getTokenFromSession();
     return await fetch(configData.SERVER_URL+endpoint,
         {
             method : 'PUT',
@@ -58,7 +66,11 @@ export async function put(endpoint, data){
 }
 
 export async function patch(endpoint, data){
-    headers['Authorization'] = 'Bearer ' + getTokenFromSession();
+    var headers ={
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+    headers['Authorization'] = 'Token ' + getTokenFromSession();
     return await fetch(configData.SERVER_URL+endpoint,
         {
             method : 'PATCH',
@@ -68,7 +80,11 @@ export async function patch(endpoint, data){
 }
 
 export async function remove(endpoint){
-    headers['Authorization'] = 'Bearer ' + getTokenFromSession();
+    var headers ={
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+    headers['Authorization'] = 'Token ' + getTokenFromSession();
     return await fetch(configData.SERVER_URL+endpoint,
         {
             method : 'DELETE',

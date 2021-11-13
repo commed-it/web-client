@@ -13,24 +13,16 @@ function Header(props) {
   const [showRegister, setShowRegister] = useState(false);
 
   const handleCloseLogin = () => {
-    console.log(show);
     setShow(false);
-    console.log(show);
   };
   const handleShowLogin = () => {
-    console.log(show);
     setShow(true);
-    console.log(show);
   };
   const handleCloseRegister = () => {
-    console.log(show);
     setShowRegister(false);
-    console.log(show);
   };
   const handleShowRegister = () => {
-    console.log(show);
     setShowRegister(true);
-    console.log(show);
   };
   const handleLogOut = () => {
     sessionService.deleteSession();
