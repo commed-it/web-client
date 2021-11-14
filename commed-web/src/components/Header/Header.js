@@ -7,11 +7,25 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import { sessionService } from 'redux-react-session';
 import  { sessionExist }  from '../../utils.js';
+import CreateProductModal from "../Product/CreateProductModal/CreateProductModal";
 
 function Header(props) {
   
   const [show, setShow] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [showCreateProduct, setShowCreateProduct] = useState(false);
+
+  const handleCloseCreateProduct = () => {
+    setShowCreateProduct(false);
+  }
+
+  const handleShowCreateProduct = () => {
+    if(sessionExist()){
+      setShowCreateProduct(true);
+    }else{
+      setShow(true);
+    }
+  }
 
   const handleCloseLogin = () => {
     setShow(false);
@@ -142,7 +156,7 @@ function Header(props) {
             </svg>
             <a style={{ color: "white", textDecoration: "none" }}>Chat</a>
           </button>
-          <button className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
+          <button onClick={handleShowCreateProduct} className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -205,6 +219,16 @@ function Header(props) {
         width="50%"
       >
         <Login close={handleCloseLogin}></Login>
+      </Modal>
+      <Modal
+        show={showCreateProduct}
+        onHide={handleCloseCreateProduct}
+        id="modalLoginForm"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        width="50%"
+      >
+        <CreateProductModal close={handleCloseCreateProduct}></CreateProductModal>
       </Modal>
     </div>
   );

@@ -1,11 +1,41 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
-import './EditProductModal.css';
-import { get, put } from '../../../utils';
+import './CreateProductModal.css'
+import { get, post } from '../../../utils';
 
-function EditProductModal(props) {
+function CreateProductModal(props) {
+
+    const [formResult, setFormResult] = React.useState(0);
+
+  const getComponent = () => {
+    console.log(formResult);
+    if (formResult == 0 ){
+      return (<div></div>);
+    }else if(formResult == 1){
+      return (
+        <div class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
+          Product Succesfully created! :)
+        </div>
+      );
+    }else{
+      return (
+        <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
+          Error Creating Product. Check the data is correct.
+        </div>
+      );
+    }
+  }
 
     const [owner, setOwner] = React.useState("")
+
+    React.useEffect(async () => {
+        getUserDetails();
+      }, []);
+
+    const getUserDetails = async () => {
+        const result = await get("/auth/user/", true);
+        const result_json = await result.json();
+        setOwner(result_json.pk);
+      };
 
     const handleOwner = (event) => {
         setOwner(event.target.value);
@@ -21,18 +51,6 @@ function EditProductModal(props) {
 
     const handleDescription = (event) => {
         setDescription(event.target.value);
-    }
-
-    const [images, setImages] = React.useState([]);
-
-    const handleDeleteImage = () => {
-        var newImages = []
-        for(var i = 0; i<images.length; i++){
-            if (i!=index){
-                newImages.push(images[i]);
-            }
-        }
-        setImages(newImages);
     }
 
     const [newImage, setNewImage] = React.useState("");
@@ -51,31 +69,25 @@ function EditProductModal(props) {
         setNewImages(uploadedImages);
     }
 
-    const [index, setIndex] = React.useState(0);
-
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
-    };
-
     const [tags, setTags] = React.useState("")
 
     const handleTags = (event) => {
         setTags(event.target.value);
     }   
 
-    const [latitude, setLatitude] = React.useState(0)
+    const [latitude, setLatitude] = React.useState("")
 
     const handleLatitude = (event) => {
         setLatitude(event.target.value)
     }
 
-    const [longitude, setLongitude] = React.useState(0)
+    const [longitude, setLongitude] = React.useState("")
 
     const handleLongitude = (event) => {
         setLongitude(event.target.value)
     }
 
-    const handleEdit = async () => {
+    const handleCreate = async () => {
         var formTags = tags.split(" ");
         var requestTags = []
         for (var i = 0; i<formTags.length; i++){
@@ -84,34 +96,19 @@ function EditProductModal(props) {
         var data = {
             owner : owner,
             title : title,
-            images : images,
+            images : newImages,
             description : description,
             longitude : longitude,
             latitude : latitude,
             tag: requestTags
         };
-        var result = await put('/product/'+props.productId+'/', data);
+        var result = await post('/product/', data);
+        if(result.ok){
+            setFormResult(1);
+        }else{
+            setFormResult(-1);
+        }
     }
-
-    const getProductDetails = async () => {
-        const result = await get("/product/" + props.productId + "/", true);
-        const result_json = await result.json();
-        return result_json
-    };
-
-    React.useEffect(async () => {
-        var result = await getProductDetails();
-        setOwner(result.owner);
-        setTitle(result.title);
-        setDescription(result.description);
-        setImages(result.images);
-        var tags_string = "";
-        if (result.tag)
-            result.tag.map((tag) => { tags_string += (tag.name+" ") })
-        setTags(tags_string);
-        setLatitude(result.latitude);
-        setLongitude(result.longitude);
-      }, []);
 
     return (
         <div>
@@ -119,9 +116,10 @@ function EditProductModal(props) {
       <div className="window ">
         <div className="modal-header text-center">
           <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-            Edit Product
+            Create Product
           </h4>
         </div>
+        {getComponent()}
         <div className="modal-body mx-3 border-0">
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
@@ -132,6 +130,7 @@ function EditProductModal(props) {
               class="inputs form-control validate"
               onChange={handleTitle}
               value = {title}
+              placeholder="Title"
             ></input>
           </div>
           <div class="md-form mb-5">
@@ -152,25 +151,12 @@ function EditProductModal(props) {
               class="inputs form-control validate"
               onChange={handleDescription}
               value = {description}
+              placeholder="Description"
             ></textarea>
           </div>
           <div className="md-form mb-5">
-            <Carousel activeIndex={index} onSelect={handleSelect}>
-                { images && 
-                    images.map((image) => {
-                        return (
-                            <Carousel.Item>
-                                <img
-                                className="d-block w-100"
-                                src={image.image}
-                                />
-                            </Carousel.Item>
-                        )
-                    })
-                }
-            </Carousel>
-            <div className="d-flex justify-content-center imageProperties">
-                <button className="registerButton btn btn-default" type="submit" onClick={handleDeleteImage}>Delete</button>
+            <div className="imageProperties">
+                Upload Images
             </div>
             <div className="d-flex justify-content-center imageProperties">
                 <input
@@ -212,6 +198,7 @@ function EditProductModal(props) {
               className="inputs form-control validate"
               onChange={handleTags}
               value = {tags}
+              placeholder="Tags"
             />
             <label
               data-error="wrong"
@@ -229,6 +216,7 @@ function EditProductModal(props) {
               class="inputs form-control validate"
               onChange={handleLatitude}
               value = {latitude}
+              placeholder="Latitude"
             ></input>
           </div>
           <div class="md-form mb-5">
@@ -241,16 +229,18 @@ function EditProductModal(props) {
               class="inputs form-control validate"
               onChange={handleLongitude}
               value = {longitude}
+              placeholder = "Longitude"
             ></input>
           </div>
         </div>
         <div className="modal-footer d-flex justify-content-center">
-          <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>Update</button>
+          <button className="registerButton btn btn-default" type="submit" onClick={handleCreate}>Create</button>
         </div>
       </div>
     </div>
     </div>
     );
+    
 }
 
-export default EditProductModal;
+export default CreateProductModal;

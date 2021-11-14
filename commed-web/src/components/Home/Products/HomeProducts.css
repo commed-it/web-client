@@ -4,11 +4,16 @@
   display: flex;
   position: absolute;
   height: fit-content;
+  overflow: scroll;
+  overflow-y: scroll;
+}
+
+.outCard{
+  padding: 12px;
 }
 
 .productCard {
   padding: 12px;
-  max-width: 20%;
   margin-top: 2%;
   margin-bottom: 2%;
   background-color: #ffffffcc;
