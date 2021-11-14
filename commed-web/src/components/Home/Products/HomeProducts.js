@@ -3,7 +3,7 @@ import "./HomeProducts.css";
 import configData from "../../../config.json";
 import { sessionService } from "redux-react-session";
 import { useNavigate } from "react-router-dom";
-import { get } from "../../../utils.js";
+import { get, untilTherteeChars } from "../../../utils.js";
 
 function HomeProducts(props) {
   const navigate = useNavigate();
@@ -26,11 +26,12 @@ function HomeProducts(props) {
   };
 
   return (
-    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row d-flex align-self-end productsDiv">
+    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row productsDiv">
       {products &&
         products.map((product) => {
           return (
-            <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 productCard">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 outCard">
+            <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12 productCard">
               {product.images && (
                 <img
                   class="card-img-top"
@@ -40,7 +41,7 @@ function HomeProducts(props) {
               )}
               <div class="d-flex flex-column card-body">
                 <h5 class="card-title">{product.title}</h5>
-                <p class="card-text">{product.description}</p>
+                <p class="card-text">{product.description.length > 30 ? product.description.substring(0, 30) : untilTherteeChars(product.description)}</p>
                 <button
                   class="buttonProduct mt-auto btn btn-primary"
                   onClick={() => handleVisitProduct(product.id)}
@@ -48,6 +49,7 @@ function HomeProducts(props) {
                   Go to product
                 </button>
               </div>
+            </div>
             </div>
           );
         })}

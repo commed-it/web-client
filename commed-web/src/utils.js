@@ -92,3 +92,9 @@ export async function remove(endpoint){
         });
 }
 
+export function untilTherteeChars(description){
+    while(description.length <= 30){
+        description += " ";
+    }
+    return description;
+}
