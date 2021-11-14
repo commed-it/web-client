@@ -5,27 +5,26 @@ import ReactDOM from "react-dom";
 import { Modal } from "react-bootstrap";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import { sessionService } from 'redux-react-session';
-import  { sessionExist }  from '../../utils.js';
+import { sessionService } from "redux-react-session";
+import { sessionExist } from "../../utils.js";
 import CreateProductModal from "../Product/CreateProductModal/CreateProductModal";
 
 function Header(props) {
-  
   const [show, setShow] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showCreateProduct, setShowCreateProduct] = useState(false);
 
   const handleCloseCreateProduct = () => {
     setShowCreateProduct(false);
-  }
+  };
 
   const handleShowCreateProduct = () => {
-    if(sessionExist()){
+    if (sessionExist()) {
       setShowCreateProduct(true);
-    }else{
+    } else {
       setShow(true);
     }
-  }
+  };
 
   const handleCloseLogin = () => {
     setShow(false);
@@ -48,13 +47,13 @@ function Header(props) {
     <div className="row d-flex flex-row customNavBar sticky-top ">
       <div height="50" className="center col-xs-12 col-sm-12 col-md-2 col-lg-1">
         <a href="/" className="d-flex center">
-        <img
-          src="logo_white.png"
-          width="50"
-          height="50"
-          className="d-inline align-top"
-        ></img>
-        <div className="navbar-text title">Commed</div>
+          <img
+            src="logo_white.png"
+            width="50"
+            height="50"
+            className="d-inline align-top"
+          ></img>
+          <div className="navbar-text title">Commed</div>
         </a>
       </div>
       <div className="searchBar col-xs-12 col-sm-12 col-md-7 col-lg-8">
@@ -83,7 +82,7 @@ function Header(props) {
       {!sessionExist() && (
         <div className="center col-xs-12 col-sm-12 col-md-3 col-lg-3 d-flex justify-content-end">
           <button
-            className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
+            className="button btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
             variant="primary"
             onClick={handleShowLogin}
           >
@@ -91,7 +90,7 @@ function Header(props) {
               xmlns="http://www.w3.org/2000/svg"
               width="18"
               height="18"
-              fill="currentColor"
+              fill="#ffffff"
               className="icon bi bi-box-arrow-in-right justify-content-center align-self-center"
               viewBox="0 0 18 18"
             >
@@ -114,13 +113,13 @@ function Header(props) {
           </button>
           <button
             onClick={handleShowRegister}
-            className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
+            className="button btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
               height="18"
-              fill="currentColor"
+              fill="#ffffff"
               className="icon bi bi-person-plus justify-content-center align-self-center"
               viewBox="0 0 18 18"
             >
@@ -156,7 +155,10 @@ function Header(props) {
             </svg>
             <a style={{ color: "white", textDecoration: "none" }}>Chat</a>
           </button>
-          <button onClick={handleShowCreateProduct} className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
+          <button
+            onClick={handleShowCreateProduct}
+            className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -228,7 +230,9 @@ function Header(props) {
         aria-labelledby="myModalLabel"
         width="50%"
       >
-        <CreateProductModal close={handleCloseCreateProduct}></CreateProductModal>
+        <CreateProductModal
+          close={handleCloseCreateProduct}
+        ></CreateProductModal>
       </Modal>
     </div>
   );

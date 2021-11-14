@@ -6,9 +6,7 @@ import { get } from "../../utils.js";
 import EditProductModal from "./EditProductModal/EditProductModal";
 import DeleteProductModal from "./DeleteProductModal/DeleteProductModal";
 import { Modal } from "react-bootstrap";
-import { Carousel } from 'react-bootstrap';
-
-
+import { Carousel } from "react-bootstrap";
 
 function Product(props) {
   const { productId } = useParams();
@@ -52,18 +50,14 @@ function Product(props) {
           <div className="withPicture col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex ">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-self-center card-img2">
               <Carousel>
-                  { productDetails.images && 
-                      productDetails.images.map((image) => {
-                          return (
-                              <Carousel.Item>
-                                  <img
-                                  className="d-block w-100"
-                                  src={image.image}
-                                  />
-                              </Carousel.Item>
-                          )
-                      })
-                  }
+                {productDetails.images &&
+                  productDetails.images.map((image) => {
+                    return (
+                      <Carousel.Item>
+                        <img className="d-block w-100" src={image.image} />
+                      </Carousel.Item>
+                    );
+                  })}
               </Carousel>
             </div>
           </div>
@@ -84,11 +78,11 @@ function Product(props) {
               </p>
             </div>
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex">
-                {  productDetails.tag &&
-                    productDetails.tag.map((tag) => { 
-                    return(
-                      <span className="badge badge-pill badge-secondary">
-                        <svg
+              {productDetails.tag &&
+                productDetails.tag.map((tag) => {
+                  return (
+                    <span className="badge badge-pill badge-secondary">
+                      <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="13"
                         height="13"
@@ -100,9 +94,8 @@ function Product(props) {
                       </svg>
                       {tag.name}
                     </span>
-                    );
-                  })
-                }
+                  );
+                })}
             </div>
             <div className="d-flex align-items-center col-xs-12 col-sm-12 col-md-12 col-lg-12 linkRow">
               <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 enterprise">
@@ -129,16 +122,24 @@ function Product(props) {
             </div>
           </div>
         </div>
-        { productDetails.owner == logedUser.pk && productDetails.owner != undefined && logedUser.pk != undefined &&
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-start">
-                <button className="buttonProduct2 btn btn-danger mt-3" onClick={handleShowEdit}>
-                  Edit
-                </button>
-                <button className="buttonProduct2 btn btn-danger mt-3" onClick={handleShowDelete}>
-                  Delete
-                </button>
-              </div>
-            }
+        {productDetails.owner == logedUser.pk &&
+          productDetails.owner != undefined &&
+          logedUser.pk != undefined && (
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-start">
+              <button
+                className="buttonProduct2 btn btn-danger mt-3"
+                onClick={handleShowEdit}
+              >
+                Edit
+              </button>
+              <button
+                className="buttonProduct2 btn btn-danger mt-3"
+                onClick={handleShowDelete}
+              >
+                Delete
+              </button>
+            </div>
+          )}
       </div>
       <Modal
         show={showEdit}
@@ -148,7 +149,10 @@ function Product(props) {
         aria-labelledby="myModalLabel"
         width="50%"
       >
-        <EditProductModal productId={productId} close={handleCloseEdit}></EditProductModal>
+        <EditProductModal
+          productId={productId}
+          close={handleCloseEdit}
+        ></EditProductModal>
       </Modal>
       <Modal
         show={showDelete}
@@ -158,7 +162,10 @@ function Product(props) {
         aria-labelledby="myModalLabel"
         width="50%"
       >
-        <DeleteProductModal productId={productId} close={handleCloseDelete}></DeleteProductModal>
+        <DeleteProductModal
+          productId={productId}
+          close={handleCloseDelete}
+        ></DeleteProductModal>
       </Modal>
     </div>
   );
