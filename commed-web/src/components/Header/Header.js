@@ -5,8 +5,8 @@ import ReactDOM from "react-dom";
 import { Modal } from "react-bootstrap";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import { sessionService } from 'redux-react-session';
-import  { sessionExist }  from '../../utils.js';
+import { sessionService } from "redux-react-session";
+import { sessionExist } from "../../utils.js";
 
 function Header(props) {
   const [show, setShow] = useState(false);
@@ -74,7 +74,7 @@ function Header(props) {
       {!sessionExist() && (
         <div className="center col-xs-12 col-sm-12 col-md-3 col-lg-3 d-flex justify-content-end">
           <button
-            className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
+            className="button btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
             variant="primary"
             onClick={handleShowLogin}
           >
@@ -82,7 +82,7 @@ function Header(props) {
               xmlns="http://www.w3.org/2000/svg"
               width="18"
               height="18"
-              fill="currentColor"
+              fill="#ffffff"
               className="icon bi bi-box-arrow-in-right justify-content-center align-self-center"
               viewBox="0 0 18 18"
             >
@@ -105,13 +105,13 @@ function Header(props) {
           </button>
           <button
             onClick={handleShowRegister}
-            className="button btn btn-sm btn-outline-light col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
+            className="button btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
               height="18"
-              fill="currentColor"
+              fill="#ffffff"
               className="icon bi bi-person-plus justify-content-center align-self-center"
               viewBox="0 0 18 18"
             >

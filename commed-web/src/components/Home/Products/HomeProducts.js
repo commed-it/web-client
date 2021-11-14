@@ -34,7 +34,7 @@ function HomeProducts(props) {
               {product.images && (
                 <img
                   class="card-img-top"
-                  src={product.images[0].image}
+                  src={() => product.images[0].image}
                   alt="Product Card Image"
                 ></img>
               )}

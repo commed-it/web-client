@@ -35,6 +35,10 @@
   border: none;
 }
 
+.button:hover {
+  border: 1px solid white;
+}
+
 .icon {
   padding: 1%;
   margin: 2%;

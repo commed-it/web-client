@@ -43,11 +43,13 @@ function Product(props) {
               </svg>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11 align-self-center card-img2">
-              <img
-                className=" col-xs-12 col-sm-12 col-md-12 col-lg-12"
-                src={() => productDetails.images[0].image}
-                alt="Product image"
-              ></img>
+              {productDetails.images && (
+                <img
+                  className=" col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                  src={() => productDetails.images[0].image}
+                  alt="Product image"
+                ></img>
+              )}
             </div>
             <div className="col-xs-2 col-sm-2 col-md-1 col-lg-1 align-self-center  iconsHome2 ">
               <svg
