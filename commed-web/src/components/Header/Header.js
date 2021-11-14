@@ -9,28 +9,21 @@ import { sessionService } from "redux-react-session";
 import { sessionExist } from "../../utils.js";
 
 function Header(props) {
+  
   const [show, setShow] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
   const handleCloseLogin = () => {
-    console.log(show);
     setShow(false);
-    console.log(show);
   };
   const handleShowLogin = () => {
-    console.log(show);
     setShow(true);
-    console.log(show);
   };
   const handleCloseRegister = () => {
-    console.log(show);
     setShowRegister(false);
-    console.log(show);
   };
   const handleShowRegister = () => {
-    console.log(show);
     setShowRegister(true);
-    console.log(show);
   };
   const handleLogOut = () => {
     sessionService.deleteSession();
@@ -40,6 +33,7 @@ function Header(props) {
   return (
     <div className="row d-flex flex-row customNavBar sticky-top ">
       <div height="50" className="center col-xs-12 col-sm-12 col-md-2 col-lg-1">
+        <a href="/" className="d-flex center">
         <img
           src="logo_white.png"
           width="50"
@@ -47,6 +41,7 @@ function Header(props) {
           className="d-inline align-top"
         ></img>
         <div className="navbar-text title">Commed</div>
+        </a>
       </div>
       <div className="searchBar col-xs-12 col-sm-12 col-md-7 col-lg-8">
         <form className=" d-flex col-xs-8 col-sm-8 col-md-8 col-lg-8">

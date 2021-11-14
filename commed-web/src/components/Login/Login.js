@@ -15,7 +15,7 @@ function Login(props) {
 
   const [password, setPassword] = useState('');
   
-  const handlePassword= (event) => {
+  const handlePassword = (event) => {
     setPassword(event.target.value);
   }
 
@@ -28,7 +28,7 @@ function Login(props) {
     if (result.ok){
       const result_json = await result.json();
       sessionService.saveSession(result_json);
-      props.close();
+      window.location.reload()
     }
     
   }
