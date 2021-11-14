@@ -7,6 +7,10 @@
     font-size: medium;
   }
   
+  .imageProperties{
+      padding: 2%;
+  }
+
   button:hover {
     color: white !important;
     outline: #007a6e56;

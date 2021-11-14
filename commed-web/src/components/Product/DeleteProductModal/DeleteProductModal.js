@@ -1,12 +1,16 @@
 import React from 'react';
 import { remove } from '../../../utils';
+import { useNavigate } from 'react-router-dom';
 
-const handleDelete = (product) => {
-    remove('/product/'+product+"/");
-    window.location.reload();
-}
 
 function DeleteProductModal(props) {
+    const navigate = useNavigate();
+
+    const handleDelete = (product) => {
+        remove('/product/'+product+"/");
+        navigate(-1);
+    }
+
     return (
         <div>
             <div role="document" borderRadius="0.8rem">
