@@ -4,8 +4,6 @@
   display: flex;
   position: absolute;
   height: fit-content;
-  overflow: scroll;
-  overflow-y: scroll;
 }
 
 .outCard{

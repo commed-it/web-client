@@ -99,6 +99,7 @@ function Product(props) {
             </div>
             <div className="d-flex align-items-center col-xs-12 col-sm-12 col-md-12 col-lg-12 linkRow">
               <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 enterprise">
+                <a href={"/profile/"+productDetails.owner}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="35"
@@ -111,8 +112,9 @@ function Product(props) {
                   <path
                     fill-rule="evenodd"
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                  />{" "}
-                </svg>{" "}
+                  />
+                </svg>
+                </a>
               </div>
               <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 justify-content-end">
                 <button className="buttonProduct2 btn btn-danger mt-3">
