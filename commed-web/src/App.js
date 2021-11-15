@@ -38,16 +38,18 @@ function App() {
       )
     );
 
+    
   return (
+    <BrowserRouter>
     <div className="fill-window App container-fluid">
       <div>
         <Header></Header>
       </div>
       <div className="Body">
-        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/search/:search" element={<Search />} />
+            <Route path="/search/" element={<Search />} />
             <Route path="/product/:productId" element={<Product />} />
             <Route path="/profile/:userId" element={<Profile />} />
             <Route
@@ -55,9 +57,10 @@ function App() {
               element={sessionExist() ? <Chat /> : <Navigate to="/" />}
             />
           </Routes>
-        </BrowserRouter>
+
       </div>
     </div>
+    </BrowserRouter>
   );
 }
 

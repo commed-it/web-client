@@ -8,11 +8,16 @@ import Register from "../Register/Register";
 import { sessionService } from "redux-react-session";
 import { sessionExist } from "../../utils.js";
 import CreateProductModal from "../Product/CreateProductModal/CreateProductModal";
+import configData from "../../config.json";
+import { useNavigate } from "react-router";
 
 function Header(props) {
   const [show, setShow] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showCreateProduct, setShowCreateProduct] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const navigate = useNavigate();
 
   const handleCloseCreateProduct = () => {
     setShowCreateProduct(false);
@@ -42,6 +47,15 @@ function Header(props) {
     sessionService.deleteSession();
     window.location.reload();
   };
+  const handleSearchInput = (event) => {
+    setSearch(event.target.value)
+  }
+
+  const submitSearch = (e) => {
+    if (e.keyCode == 13){
+      navigate("/search/"+search);
+    }
+  }
 
   return (
     <div className="row d-flex flex-row customNavBar sticky-top ">
@@ -57,7 +71,7 @@ function Header(props) {
         </a>
       </div>
       <div className="searchBar col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-        <form className=" d-flex col-xs-8 col-sm-8 col-md-8 col-lg-8 d-flex justify-content-center">
+        <div className=" d-flex col-xs-8 col-sm-8 col-md-8 col-lg-8 d-flex justify-content-center" >
           <div className="inputField">
             <input
               className="inputField form-control form-control-sm col-xs-8 col-sm-8 col-md-8 col-lg-8 rounded-pill ml-auto mr-auto"
@@ -65,6 +79,8 @@ function Header(props) {
               placeholder="Search"
               aria-label="Search"
               padding-left="30px"
+              onChange={handleSearchInput}
+              onKeyUp={submitSearch}
             ></input>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +93,7 @@ function Header(props) {
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
             </svg>
           </div>
-        </form>
+        </div>
       </div>
       {!sessionExist() && (
         <div className="center col-xs-12 col-sm-12 col-md-3 col-lg-3 d-flex justify-content-end">
