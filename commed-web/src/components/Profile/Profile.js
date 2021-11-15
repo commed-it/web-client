@@ -3,20 +3,33 @@ import { useParams } from "react-router-dom";
 import "./Profile.css";
 import { get } from "../../utils.js";
 import ProfileProduct from "./ProfileProduct/ProfileProduct";
+import ProfileFormalOffer from "./ProfileFormalOffers/ProfileFormalOffer";
 
 function Profile(props) {
   const { userId } = useParams();
 
-  const [userDetails, setUserDetails] = React.useState([]);
-  const [profile, setProfile] = React.useState(false);
+  const [logedUser, setLogedUser] = React.useState(false);
+  const [userDetails, setUserDetails] = React.useState(false);
+  const [profile, setProfile] = React.useState(true);
+  const [products, setProducts] = React.useState(false);
+  const [formalOffers, setFormalOffers] = React.useState(false);
   const [enterpriseDetails, setEnterpriseDetails] = React.useState([]);
 
   const handleOpenProfile = () => {
     setProfile(true);
+    setProducts(false);
+    setFormalOffers(false);
   };
 
   const handleOpenProducts = () => {
     setProfile(false);
+    setProducts(true);
+    setFormalOffers(false);
+  };
+  const handleOpenFormalOffers = () => {
+    setProfile(false);
+    setProducts(false);
+    setFormalOffers(true);
   };
   const getUserDetails = async () => {
     const result = await get("/user/" + userId + "/", false);
@@ -32,9 +45,16 @@ function Profile(props) {
     setEnterpriseDetails(result_json);
   };
 
+  const getLoggedUser = async () => {
+    const result = await get("/auth/user/", true);
+    const result_json = await result.json();
+    setLogedUser(result_json);
+  };
+
   React.useEffect(() => {
     getUserDetails();
     getEnterpriseDetails();
+    getLoggedUser();
   }, []);
 
   return (
@@ -46,9 +66,13 @@ function Profile(props) {
         <button className="flaps" onClick={handleOpenProducts}>
           Product
         </button>
-        <button className="flaps" onClick={handleOpenProducts}>
-          Formal Offers
-        </button>
+        {enterpriseDetails.owner == logedUser.pk &&
+          enterpriseDetails.owner != undefined &&
+          logedUser.pk != undefined && (
+            <button className="flaps" onClick={handleOpenFormalOffers}>
+              Formal Offers
+            </button>
+          )}
       </div>
       {profile && (
         <div className="centering">
@@ -70,7 +94,8 @@ function Profile(props) {
           </div>
         </div>
       )}
-      {!profile && <ProfileProduct></ProfileProduct>}
+      {products && <ProfileProduct></ProfileProduct>}
+      {formalOffers && <ProfileFormalOffer></ProfileFormalOffer>}
     </div>
   );
 }
