@@ -80,7 +80,6 @@
 }
 
 .buttonProduct2 {
-  width: 100px;
   background-color: #373843;
   outline: none;
   border: none;
@@ -131,4 +130,17 @@
 
 h6 {
   text-align: left;
+}
+
+.btn2 {
+  background-color: #373843;
+  border-radius: 0.9rem;
+  outline: none;
+  border: none;
+  color: white;
+  width: 40%;
+}
+
+.btn2:hover {
+  background-color: #373843c4;
 }

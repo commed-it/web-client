@@ -2,11 +2,11 @@
   margin: auto;
   justify-content: space-evenly;
   display: flex;
-  position: absolute;
-  height: fit-content;
+  padding: 15px;
+  margin-bottom: 30px;
 }
 
-.outCard{
+.outCard {
   padding: 12px;
 }
 
