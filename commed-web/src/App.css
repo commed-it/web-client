@@ -4,12 +4,17 @@
 .Body {
   height: 100%;
   width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .App {
   width: 100% !important;
   height: 100% !important;
   margin: 0 !important;
   padding: 0;
+  background: linear-gradient(180deg, #e5cfb0 0%, #007a6e 100%) !important;
 }
 
 .App-logo {
@@ -23,6 +28,7 @@
   }
   .Body {
     height: 100%;
+    overflow: hidden;
   }
   .App {
     height: 100%;

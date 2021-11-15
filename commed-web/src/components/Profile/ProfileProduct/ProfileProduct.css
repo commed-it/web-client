@@ -1,0 +1,33 @@
+.top3 {
+  padding: 3%;
+  background-color: transparent;
+
+  display: flex;
+  flex-direction: row;
+  z-index: 999;
+  border-bottom-right-radius: 0.9rem;
+
+  border-bottom-left-radius: 0.9rem;
+
+  border-top-right-radius: 0.9rem;
+
+  border-top-left-radius: none;
+  border: 3px solid #007a6e;
+}
+
+.productCard2 {
+  padding: 5px;
+  max-width: 20%;
+  margin: 1%;
+
+  background-color: #ffffffcc;
+
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+}
+
+.productCard2:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}

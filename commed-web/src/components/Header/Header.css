@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .searchBar {
@@ -31,6 +32,12 @@
 .button {
   margin: 1%;
   width: 30%;
+  background-color: #373843;
+  border: none;
+}
+
+.button:hover {
+  border: 1px solid white;
 }
 
 .icon {
@@ -54,4 +61,11 @@
   top: 25%;
   transform: translate(-50%);
   left: 15px;
+}
+#modalLoginForm {
+  width: 90% !important;
+}
+
+.custom-modal-style {
+  width: 100% !important;
 }

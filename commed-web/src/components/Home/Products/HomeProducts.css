@@ -1,15 +1,17 @@
 .productsDiv {
   margin: auto;
   justify-content: space-evenly;
-  background-color: #3738436b;
   display: flex;
-  position: absolute;
-  height: fit-content;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.outCard {
+  padding: 12px;
 }
 
 .productCard {
   padding: 12px;
-  max-width: 20%;
   margin-top: 2%;
   margin-bottom: 2%;
   background-color: #ffffffcc;
@@ -25,13 +27,13 @@
 
 .buttonProduct {
   width: 100%;
-  background-color: #009688;
+  background-color: #373843;
   outline: none;
   border: none;
   margin-top: auto;
 }
 .buttonProduct:hover {
-  background-color: #009687d2;
+  background-color: #373843d8;
 }
 
 .buttonProduct:focus {

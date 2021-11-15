@@ -1,0 +1,113 @@
+.container3 {
+  background-color: rgba(255, 255, 255, 0.479);
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  margin-bottom: 2%;
+
+  border-radius: 0.9rem;
+  width: 90%;
+  margin: auto;
+}
+
+.parent3 {
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  padding: 3%;
+}
+
+.decription3 {
+  background-color: rgba(255, 255, 255, 0.479);
+
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  vertical-align: middle;
+  align-content: center;
+  text-align: left;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  border-radius: 0.9rem;
+  width: 90%;
+  margin: auto;
+}
+
+.image3 {
+  position: absolute;
+  top: 25%;
+  max-height: 20%;
+  max-width: 10%;
+  margin: 2%;
+}
+
+.decription3 h5 {
+  margin-bottom: 0;
+  padding: 1%;
+  color: #373843;
+}
+.decription3 p {
+  margin-bottom: 0;
+  padding-left: 1%;
+  color: #373843;
+}
+
+.top1 {
+  max-height: 50%;
+  border-bottom: 1px solid #40414f;
+  padding: 7%;
+  background-color: #40414f;
+  margin-top: -2%;
+}
+
+.top2 {
+  border-bottom: 1px solid #40414f;
+  padding: 7%;
+  background-color: #ffffff65;
+  margin-top: -2%;
+}
+.bottom1 {
+  max-height: 50%;
+  padding-left: 2%;
+  padding-bottom: 0%;
+  color: #373843;
+  padding-top: 8%;
+}
+.bottom1 h6 {
+  text-align: left;
+}
+
+.flaps {
+  width: 9%;
+  background-color: #007a6e;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+  margin: 0;
+  margin-bottom: -3px;
+  border-right: 0.5px solid white;
+
+  padding: 5px;
+  border: 1px 1px 1px solid white;
+  display: inline;
+  color: white;
+  text-align: center;
+  font-size: calc();
+  overflow: hidden;
+}
+
+.flaps:hover {
+  background-color: #007a6eb4;
+}
+
+.flapContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%;
+}
+
+.centering {
+  margin-top: 2%;
+}

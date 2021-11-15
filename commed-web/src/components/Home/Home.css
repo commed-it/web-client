@@ -1,11 +1,10 @@
 .topDiv {
   box-sizing: border-box;
-  background-color: #e6e6e6;
   margin: 0;
   height: 100%;
   width: 100%;
-  overflow: scroll;
-  overflow-y: scroll;
+  overflow: auto;
+  overflow-y: auto;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -16,6 +15,6 @@
 .divOpacity {
   height: "100%";
   width: "100%";
-  background-color: rgba(255, 255, 255, 0.24);
+  background-color: rgba(255, 255, 255, 0.349);
   z-index: 999;
 }
