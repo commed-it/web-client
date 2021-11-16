@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { combineReducers, createStore } from "redux";
 import { sessionReducer, sessionService } from "redux-react-session";
 import { sessionExist } from "./utils";
+import NotFound from "./NotFound";
 
 function App() {
   const reducers = {
@@ -47,15 +48,13 @@ function App() {
       </div>
       <div className="Body">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route exact path="/" element={<Home />} />
             <Route path="/search/:search" element={<Search />} />
             <Route path="/search/" element={<Search />} />
             <Route path="/product/:productId" element={<Product />} />
             <Route path="/profile/:userId" element={<Profile />} />
-            <Route
-              path="/chat"
-              element={sessionExist() ? <Chat /> : <Navigate to="/" />}
-            />
+            <Route path="/chat" element={sessionExist() ? <Chat /> : <Navigate to="/" />}/>
+            <Route path="*" element={<NotFound/>} />
           </Routes>
 
       </div>

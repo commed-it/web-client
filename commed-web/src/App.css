@@ -64,3 +64,25 @@
     transform: rotate(360deg);
   }
 }
+
+.notFoundDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.notFoundTitle{
+  font-size: 100px !important;
+}
+
+.buttonGoHome {
+  background-color: #373843;
+  outline: none;
+  border: none;
+  margin-top: auto;
+}
+
+.contentDivNotFound{
+  text-align: center;
+}
