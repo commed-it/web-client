@@ -4,6 +4,9 @@ import { get } from "../../../utils";
 import { useParams } from "react-router-dom";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { untilTherteeChars } from "../../../utils";
+import { Carousel } from "react-bootstrap";
+import configData from "../../../config.json";
 
 function ProfileProduct(props) {
   const { userId } = useParams();
@@ -41,16 +44,27 @@ function ProfileProduct(props) {
                 return (
                   <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 productCard2">
                     <h6>{enterpriseDetails.name}</h6>
-                    {product.images && (
-                      <img
-                        class="card-img-top"
-                        src={() => product.images[0].image}
-                        alt="Product Card Image"
-                      ></img>
-                    )}
+                    <Carousel>
+                      {product.images &&
+                        product.images.map((image) => {
+                          return (
+                            <Carousel.Item>
+                              <img
+                                className="carouselImage d-block w-100"
+                                src={configData.SERVER_URL + image.image}
+                              />
+                            </Carousel.Item>
+                          );
+                        })}
+                    </Carousel>
                     <div class="d-flex flex-column card-body">
                       <h5 class="card-title">{product.title}</h5>
-                      <p class="card-text">{product.description}</p>
+                      <p class="card-text">
+                        {" "}
+                        {product.description.length > 47
+                          ? product.description.substring(0, 47) + "..."
+                          : untilTherteeChars(product.description)}
+                      </p>
                     </div>
                     <button
                       class="buttonProduct mt-auto btn btn-primary"

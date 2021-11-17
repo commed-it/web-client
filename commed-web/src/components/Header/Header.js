@@ -43,19 +43,19 @@ function Header(props) {
   const handleShowRegister = () => {
     setShowRegister(true);
   };
-  const handleLogOut = () => {
-    sessionService.deleteSession();
+  const handleLogOut = async () => {
+    await sessionService.deleteSession();
     window.location.reload();
   };
   const handleSearchInput = (event) => {
-    setSearch(event.target.value)
-  }
+    setSearch(event.target.value);
+  };
 
   const submitSearch = (e) => {
-    if (e.keyCode == 13){
-      navigate("/search/"+search);
+    if (e.keyCode == 13) {
+      navigate("/search/" + search);
     }
-  }
+  };
 
   return (
     <div className="row d-flex flex-row customNavBar sticky-top ">
@@ -71,7 +71,7 @@ function Header(props) {
         </a>
       </div>
       <div className="searchBar col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-        <div className=" d-flex col-xs-8 col-sm-8 col-md-8 col-lg-8 d-flex justify-content-center" >
+        <div className=" d-flex col-xs-8 col-sm-8 col-md-8 col-lg-8 d-flex justify-content-center">
           <div className="inputField">
             <input
               className="inputField form-control form-control-sm col-xs-8 col-sm-8 col-md-8 col-lg-8 rounded-pill ml-auto mr-auto"
@@ -210,13 +210,13 @@ function Header(props) {
                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
               />
             </svg>
-            <a
+            <label
               style={{ color: "white", textDecoration: "none" }}
               data-toggle="modal"
               data-target="#modalRegisterForm"
             >
               Log Out
-            </a>
+            </label>
           </button>
         </div>
       )}

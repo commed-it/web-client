@@ -38,7 +38,10 @@ function HomeProducts(props) {
                     product.images.map((image) => {
                       return (
                         <Carousel.Item>
-                          <img className="d-block w-100" src={image.image} />
+                          <img
+                            className="carouselImage d-block w-100"
+                            src={image.image}
+                          />
                         </Carousel.Item>
                       );
                     })}
