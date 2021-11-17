@@ -1,0 +1,35 @@
+.category-slide {
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.home-subtitle {
+  padding-bottom: 0%;
+  padding-top: 3%;
+  font-size: 40px;
+  color: #373843;
+  width: 100%;
+}
+.iconsHome:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+
+.iconRound:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+
+.iconRound {
+  height: 55px;
+  line-height: 80px;
+  width: 55px;
+  border-radius: 50%;
+  background-color: #373843;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+}

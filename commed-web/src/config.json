@@ -1,0 +1,15 @@
+{
+
+    "SERVER_URL": "http://localhost:7000",
+  
+    "PALETE_COLORS": {
+      "PERSIAN_GREEN": "#009688",
+      "PINE_GREEN": "#007A6E",
+      "WHITE": "#FFFFFF",
+      "INDEPENDENCE": "#40414F",
+      "ONYX": "#373843",
+      "CULTURED": "#F4F6F6",
+      "WHEAT": "#E5CFB0"
+    }
+  
+  }

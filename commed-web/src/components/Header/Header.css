@@ -1,0 +1,71 @@
+.customNavBar {
+  background-color: #007a6e !important;
+  display: flex;
+  justify-content: center;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+}
+
+.title {
+  color: white;
+  font-size: 15px !important;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 65%;
+  padding: 0;
+  margin: auto;
+  margin-left: -1.9%;
+}
+
+.button {
+  margin: 1%;
+  width: 30%;
+  background-color: #373843;
+  border: none;
+}
+
+.button:hover {
+  border: 1px solid white;
+}
+
+.icon {
+  padding: 1%;
+  margin: 2%;
+  vertical-align: bottom;
+  margin-right: 3%;
+}
+
+.inputField {
+  position: relative;
+  flex: 1;
+  text-indent: 20px;
+  color: #40414f;
+  margin: 0;
+}
+
+.searchIcon {
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  transform: translate(-50%);
+  left: 15px;
+}
+#modalLoginForm {
+  width: 90% !important;
+}
+
+.custom-modal-style {
+  width: 100% !important;
+}

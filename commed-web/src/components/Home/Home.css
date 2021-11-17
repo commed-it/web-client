@@ -1,0 +1,20 @@
+.topDiv {
+  box-sizing: border-box;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  overflow-y: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: url("https://pixabay.com/get/gef187e4a7e10f11ecbe87ba749c0e263350efb4838df09748b14f0d48cbac0a4dcd7947b5168b1f84c2c19dc7e6406bc9a4a1ac9c598c1cbc8820e192aa17734c3c0f957bce22c67673d87be230fccc0_1920.jpg");
+}
+
+.divOpacity {
+  height: "100%";
+  width: "100%";
+  background-color: rgba(255, 255, 255, 0.349);
+  z-index: 999;
+}

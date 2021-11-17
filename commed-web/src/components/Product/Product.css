@@ -1,0 +1,146 @@
+.parent2 {
+  z-index: 999;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  padding: 3%;
+}
+
+.container2 {
+  background-color: rgba(255, 255, 255, 0.548);
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 5%;
+  border-radius: 0.9rem;
+  width: 90%;
+  padding: 2%;
+}
+.iconsHome2 {
+  padding-left: 0.5%;
+  margin: auto;
+  align-content: center;
+}
+
+.row2 {
+  display: flex;
+  justify-content: space-evenly;
+  vertical-align: middle;
+}
+
+.cardDescription {
+  background-color: transparent;
+  border: none;
+  justify-content: space-evenly;
+  padding: 3%;
+}
+
+.card-subtitle2 {
+  text-align: center;
+}
+.iconsHome2:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+
+.centerIcon {
+  margin-left: 5%;
+}
+
+.centerIcon:hover {
+  transform: scale(1.1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+
+.enterprise {
+  display: flex;
+  justify-content: left;
+  align-self: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.card-img2 {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  border: 1px solid black;
+  margin: auto;
+  float: left;
+  position: relative;
+}
+.card-body2 {
+  text-align: center;
+  align-content: center;
+  flex-direction: column;
+  float: left;
+  margin-left: 5%;
+}
+
+.buttonProduct2 {
+  background-color: #373843;
+  outline: none;
+  border: none;
+  margin-top: auto;
+  border-radius: 0.8rem;
+}
+.buttonProduct2:hover {
+  background-color: #009687d2;
+}
+
+.withPicture {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+}
+
+.card-text {
+  text-align: justify;
+  color: #373843;
+  padding: 5%;
+}
+
+.card-title {
+  padding: 10px;
+}
+.card-title2 {
+  color: #373843;
+}
+
+.badge {
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 0.8rem;
+  font-weight: normal;
+  border: 1px solid #373843;
+  color: #373843;
+  margin-right: 5px;
+  width: fit-content;
+  justify-content: space-between;
+  float: left !important;
+}
+
+.linkRow {
+  padding-top: 5%;
+}
+
+h6 {
+  text-align: left;
+}
+
+.btn2 {
+  background-color: #373843;
+  border-radius: 0.9rem;
+  outline: none;
+  border: none;
+  color: white;
+  width: 40%;
+}
+
+.btn2:hover {
+  background-color: #373843c4;
+}
