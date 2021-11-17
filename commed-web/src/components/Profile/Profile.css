@@ -111,3 +111,17 @@
 .centering {
   margin-top: 2%;
 }
+
+.buttonEditProfile{
+  width: 5%;
+  background-color: #373843;
+  outline: none;
+  border: none;
+  margin-top: auto;
+  border-radius: 0.8rem;
+}
+
+.editButtonDiv{
+  margin:auto;
+  width: 90% !important;
+}

@@ -4,16 +4,27 @@ import "./Profile.css";
 import { get } from "../../utils.js";
 import ProfileProduct from "./ProfileProduct/ProfileProduct";
 import ProfileFormalOffer from "./ProfileFormalOffers/ProfileFormalOffer";
+import EditProfileModal from "./EditProfileModal/EditProfileModal";
+import { Modal } from "react-bootstrap";
+
 
 function Profile(props) {
   const { userId } = useParams();
 
   const [logedUser, setLogedUser] = React.useState(false);
-  const [userDetails, setUserDetails] = React.useState(false);
   const [profile, setProfile] = React.useState(true);
   const [products, setProducts] = React.useState(false);
   const [formalOffers, setFormalOffers] = React.useState(false);
   const [enterpriseDetails, setEnterpriseDetails] = React.useState([]);
+  const [showEdit, setShowEdit] = React.useState(false);
+
+  const handleShowEdit = () => {
+    setShowEdit(true);
+  }
+
+  const handleCloseEdit = () => {
+    setShowEdit(false);
+  }
 
   const handleOpenProfile = () => {
     setProfile(true);
@@ -31,12 +42,6 @@ function Profile(props) {
     setProducts(false);
     setFormalOffers(true);
   };
-  const getUserDetails = async () => {
-    const result = await get("/user/" + userId + "/", false);
-    const result_json = await result.json();
-    console.log(result_json);
-    setUserDetails(result_json);
-  };
 
   const getEnterpriseDetails = async () => {
     const result = await get("/enterprise/user/" + userId, false);
@@ -52,7 +57,7 @@ function Profile(props) {
   };
 
   React.useEffect(() => {
-    getUserDetails();
+    console.log("I made it here")
     getEnterpriseDetails();
     getLoggedUser();
   }, []);
@@ -75,7 +80,7 @@ function Profile(props) {
           )}
       </div>
       {profile && (
-        <div className="centering">
+        <div className="centering row">
           <div className="container3">
             <div className="top1"></div>
             <img
@@ -92,10 +97,35 @@ function Profile(props) {
             <h5>Description</h5>
             <p>{enterpriseDetails.description}</p>
           </div>
+          {enterpriseDetails.owner == logedUser.pk &&
+          enterpriseDetails.owner != undefined &&
+          logedUser.pk != undefined && (
+            <div className="editButtonDiv col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
+              <button
+                className="buttonEditProfile btn btn-danger mt-3"
+                onClick={handleShowEdit}
+              >
+                Edit
+              </button>
+            </div>
+          )}
         </div>
       )}
       {products && <ProfileProduct></ProfileProduct>}
       {formalOffers && <ProfileFormalOffer></ProfileFormalOffer>}
+      <Modal
+        show={showEdit}
+        onHide={handleCloseEdit}
+        id="editFrom"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        contentClassName="custom-modal-style"
+      >
+        <EditProfileModal
+          userId={userId}
+          close={handleCloseEdit}
+        ></EditProfileModal>
+      </Modal>
     </div>
   );
 }
