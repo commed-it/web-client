@@ -10,7 +10,6 @@ import { sessionExist } from "../../utils.js";
 import CreateProductModal from "../Product/CreateProductModal/CreateProductModal";
 import configData from "../../config.json";
 import { useNavigate } from "react-router";
-
 import "react-dropdown/style.css";
 import { get } from "../../utils.js";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -81,10 +80,11 @@ function Header(props) {
       <div height="50" className="center col-xs-12 col-sm-12 col-md-2 col-lg-1">
         <a href="/" className="d-flex center">
           <img
-            src="logo_white.png"
+            src="/logo_white.png"
             width="50"
             height="50"
             className="d-inline align-top"
+            data-src="logo_white.png"
           ></img>
           <div className="navbar-text title">Commed</div>
         </a>
