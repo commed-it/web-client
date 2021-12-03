@@ -119,7 +119,7 @@
   border: 1px solid #373843;
   color: #373843;
   margin-right: 5px;
-  width: 11%;
+  width: fit-content;
   justify-content: space-between;
   float: left !important;
 }

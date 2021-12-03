@@ -68,11 +68,7 @@ function Product(props) {
                 {productDetails.title}
               </h1>
             </div>
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h6 className="card-subtitle2 col-xs-12 col-sm-12 col-md-12 col-lg-12 text-muted ">
-                Category
-              </h6>
-            </div>
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <p className="card-text col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                 {productDetails.description}

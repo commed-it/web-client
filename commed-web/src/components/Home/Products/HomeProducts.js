@@ -3,23 +3,59 @@ import "./HomeProducts.css";
 import configData from "../../../config.json";
 import { sessionService } from "redux-react-session";
 import { useNavigate } from "react-router-dom";
-import { get, untilTherteeChars } from "../../../utils.js";
+import { get, untilTherteeChars, post } from "../../../utils.js";
+import useGeolocation from "react-hook-geolocation";
 import { Carousel } from "react-bootstrap";
 
 function HomeProducts(props) {
   const navigate = useNavigate();
 
   const [products, setProducts] = React.useState([]);
+  const [recommendedProducts, setRecommendedProducts] = React.useState([]);
+  const [userLatitude, setLatitude] = React.useState(0);
+  const [userLongitude, setLongitude] = React.useState(0);
+  var latitude = 0;
+  var longitude = 0;
 
   const getProducts = async () => {
     const result = await get("/product/", false);
     const result_json = await result.json();
     setProducts(result_json);
     console.log(result_json);
+    console.log("I am a loser!");
+  };
+
+  const getLocation = async () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      console.log("I am first!");
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      console.log(" My latitude " + latitude);
+      console.log(" My longitude " + longitude);
+    });
+  };
+
+  const getRecommendedProducts = async () => {
+    var data = {
+      location: {
+        longitude: longitude,
+        latitude: latitude,
+        distance_km: 200,
+      },
+    };
+    const result = await post("/product/recomendation/", data, false);
+
+    const result_json = await result.json();
+    console.log("wtf " + result_json);
+    setRecommendedProducts(result_json);
   };
 
   React.useEffect(() => {
+    getLocation();
     getProducts();
+    getRecommendedProducts();
   }, []);
 
   const handleVisitProduct = (product) => {
@@ -38,7 +74,10 @@ function HomeProducts(props) {
                     product.images.map((image) => {
                       return (
                         <Carousel.Item>
-                          <img className="d-block w-100" src={image.image} />
+                          <img
+                            className="carouselImage d-block w-100"
+                            src={image.image}
+                          />
                         </Carousel.Item>
                       );
                     })}

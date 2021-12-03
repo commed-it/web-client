@@ -5,7 +5,7 @@
   align-self: center;
   flex-direction: column;
   margin-bottom: 2%;
-
+  padding: 0;
   border-radius: 0.9rem;
   width: 90%;
   margin: auto;
@@ -38,10 +38,10 @@
 
 .image3 {
   position: absolute;
-  top: 25%;
-  max-height: 20%;
-  max-width: 10%;
-  margin: 2%;
+  top: 26%;
+  max-height: 25%;
+  max-width: 13%;
+  margin: 1.5%;
 }
 
 .decription3 h5 {
@@ -56,13 +56,21 @@
 }
 
 .top1 {
-  max-height: 50%;
+  max-height: 30% !important;
   border-bottom: 1px solid #40414f;
-  padding: 7%;
+
   background-color: #40414f;
   margin-top: -2%;
+  overflow: hidden;
 }
 
+.top1 img {
+  background-size: cover;
+  margin-bottom: -17%;
+  max-width: 100%;
+  max-height: 100%;
+  border-top-right-radius: 0.9rem;
+}
 .top2 {
   border-bottom: 1px solid #40414f;
   padding: 7%;
@@ -112,16 +120,29 @@
   margin-top: 2%;
 }
 
-.buttonEditProfile{
+.buttonEditProfile {
   width: 5%;
   background-color: #373843;
-  outline: none;
-  border: none;
+
   margin-top: auto;
   border-radius: 0.8rem;
+  color: white;
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
 }
 
-.editButtonDiv{
-  margin:auto;
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+.buttonEditProfile:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.editButtonDiv {
+  margin: auto;
   width: 90% !important;
 }

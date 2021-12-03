@@ -33,3 +33,17 @@
   align-self: center;
   align-content: center;
 }
+
+.links {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  text-decoration: none;
+  color: #373843;
+  font-weight: bold;
+}
+.links:hover {
+  color: #24252c;
+}

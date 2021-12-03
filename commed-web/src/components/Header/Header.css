@@ -69,3 +69,73 @@
 .custom-modal-style {
   width: 100% !important;
 }
+
+.dropdown2 {
+  display: flex !important;
+  justify-content: center !important;
+  width: 10% !important;
+  padding: 5px !important;
+  margin-right: 2% !important;
+}
+.dropdown3 {
+  background-color: transparent !important;
+  border: none;
+  border-radius: 0.9rem;
+}
+
+#dropdown-menu {
+  width: 34px !important;
+  background-color: transparent !important;
+  border: none;
+  border-radius: 0.9rem;
+}
+#dropdown-menu:focus {
+  outline: 0 !important;
+  box-shadow: none;
+}
+#dropdown-menu:active {
+  outline: 0 !important;
+  box-shadow: none;
+}
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+.profileIcon2 {
+  position: absolute;
+}
+
+.dropdown-item:focus,
+.dropdown-item:active {
+  outline: none !important;
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.568) !important;
+}
+.dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.733) !important;
+  border-radius: 0.9rem;
+  border: 1px solid #40414f;
+  width: 100% !important;
+}
+
+#dropdown-menu .dropdown-toggle {
+  width: 20px !important;
+  justify-content: center !important;
+  align-content: center;
+}
+
+.show {
+  margin-top: 3% !important;
+}
+.dropdown-toggle {
+  color: transparent;
+  padding: 0 !important;
+}
+
+.dropdown-toggle :active,
+.dropdown-toggle:focus,
+.dropdown-toggle:hover,
+.dropdown-toggle::after {
+  color: transparent !important;
+}

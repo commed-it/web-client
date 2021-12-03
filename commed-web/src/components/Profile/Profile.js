@@ -6,7 +6,7 @@ import ProfileProduct from "./ProfileProduct/ProfileProduct";
 import ProfileFormalOffer from "./ProfileFormalOffers/ProfileFormalOffer";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { Modal } from "react-bootstrap";
-
+import configData from "../../config.json";
 
 function Profile(props) {
   const { userId } = useParams();
@@ -20,11 +20,11 @@ function Profile(props) {
 
   const handleShowEdit = () => {
     setShowEdit(true);
-  }
+  };
 
   const handleCloseEdit = () => {
     setShowEdit(false);
-  }
+  };
 
   const handleOpenProfile = () => {
     setProfile(true);
@@ -57,7 +57,7 @@ function Profile(props) {
   };
 
   React.useEffect(() => {
-    console.log("I made it here")
+    console.log("I made it here");
     getEnterpriseDetails();
     getLoggedUser();
   }, []);
@@ -80,13 +80,17 @@ function Profile(props) {
           )}
       </div>
       {profile && (
-        <div className="centering row">
+        <div className="centering">
           <div className="container3">
-            <div className="top1"></div>
+            <div className="top1">
+              <img
+                src={configData.SERVER_URL + enterpriseDetails.bannerImage}
+              ></img>
+            </div>
             <img
               className=" col-xs-12 col-sm-12 col-md-12 col-lg-12 image3"
               alt="Profile image"
-              src="https://images-na.ssl-images-amazon.com/images/I/81-yKbVND-L.png"
+              src={configData.SERVER_URL + enterpriseDetails.profileImage}
             ></img>
             <div className="bottom1">
               <h3>{enterpriseDetails.name}</h3>
@@ -98,17 +102,17 @@ function Profile(props) {
             <p>{enterpriseDetails.description}</p>
           </div>
           {enterpriseDetails.owner == logedUser.pk &&
-          enterpriseDetails.owner != undefined &&
-          logedUser.pk != undefined && (
-            <div className="editButtonDiv col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
-              <button
-                className="buttonEditProfile btn btn-danger mt-3"
-                onClick={handleShowEdit}
-              >
-                Edit
-              </button>
-            </div>
-          )}
+            enterpriseDetails.owner != undefined &&
+            logedUser.pk != undefined && (
+              <div className="editButtonDiv col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
+                <button
+                  className="buttonEditProfile btn mt-3"
+                  onClick={handleShowEdit}
+                >
+                  Edit
+                </button>
+              </div>
+            )}
         </div>
       )}
       {products && <ProfileProduct></ProfileProduct>}
