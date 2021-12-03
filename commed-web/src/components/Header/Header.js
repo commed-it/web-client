@@ -10,19 +10,30 @@ import { sessionExist } from "../../utils.js";
 import CreateProductModal from "../Product/CreateProductModal/CreateProductModal";
 import configData from "../../config.json";
 import { useNavigate } from "react-router";
+import "react-dropdown/style.css";
+import { get } from "../../utils.js";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function Header(props) {
   const [show, setShow] = useState(false);
+
   const [showRegister, setShowRegister] = useState(false);
   const [showCreateProduct, setShowCreateProduct] = useState(false);
   const [search, setSearch] = useState("");
+  const [logedUser, setLogedUser] = React.useState(false);
 
   const navigate = useNavigate();
 
   const handleCloseCreateProduct = () => {
     setShowCreateProduct(false);
   };
-
+  const getLoggedUser = async () => {
+    const result = await get("/auth/user/", true);
+    const result_json = await result.json();
+    setLogedUser(result_json);
+    console.log("Hayoooooooooo" + logedUser);
+  };
   const handleShowCreateProduct = () => {
     if (sessionExist()) {
       setShowCreateProduct(true);
@@ -56,16 +67,24 @@ function Header(props) {
       navigate("/search/" + search);
     }
   };
-
+  const handleSelect = (e) => {
+    console.log(e);
+    if (e == "profile") navigate("/profile/" + logedUser.pk + "/");
+    if (e == "logout") handleLogOut();
+  };
+  React.useEffect(() => {
+    getLoggedUser();
+  }, []);
   return (
     <div className="row d-flex flex-row customNavBar sticky-top ">
       <div height="50" className="center col-xs-12 col-sm-12 col-md-2 col-lg-1">
         <a href="/" className="d-flex center">
           <img
-            src="logo_white.png"
+            src="/logo_white.png"
             width="50"
             height="50"
             className="d-inline align-top"
+            data-src="logo_white.png"
           ></img>
           <div className="navbar-text title">Commed</div>
         </a>
@@ -189,34 +208,30 @@ function Header(props) {
             </svg>
             <a style={{ color: "white", textDecoration: "none" }}>Product</a>
           </button>
-          <button
-            onClick={handleLogOut}
-            className="button btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center"
-          >
+          <button className="dropdown2 button btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="white"
-              class="bi bi-box-arrow-right icon"
+              width="25"
+              height="25"
+              fill="#ffffff"
+              className="bi bi-person-circle profileIcon2"
               viewBox="0 0 16 16"
             >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
               <path
                 fill-rule="evenodd"
-                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
-              />
-            </svg>
-            <label
-              style={{ color: "white", textDecoration: "none" }}
-              data-toggle="modal"
-              data-target="#modalRegisterForm"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+              />{" "}
+            </svg>{" "}
+            <DropdownButton
+              title=" "
+              id="dropdown-menu"
+              onSelect={handleSelect}
+              className="dropdown3"
             >
-              Log Out
-            </label>
+              <Dropdown.Item eventKey="profile">Profile</Dropdown.Item>
+              <Dropdown.Item eventKey="logout">Log out</Dropdown.Item>
+            </DropdownButton>
           </button>
         </div>
       )}
