@@ -26,19 +26,13 @@ function EditProductModal(props) {
     const [images, setImages] = React.useState([]);
 
     const handleDeleteImage = () => {
-        var newImages = []
-        for(var i = 0; i<images.length; i++){
-            if (i!=index){
-                newImages.push(images[i]);
-            }
-        }
-        setImages(newImages);
+      
     }
 
     const [newImage, setNewImage] = React.useState("");
 
     const handleNewImage = (event) => {
-        setNewImage(event.target.value);
+        setNewImage(event.target.files);
     }
 
     const [newImages, setNewImages] = React.useState([]);
@@ -46,7 +40,7 @@ function EditProductModal(props) {
     const handleNewImages = (event) => {
         var uploadedImages = newImages;
         console.log(newImage)
-        uploadedImages.push(newImage);
+        uploadedImages.push(newImage[0]);
         console.log(uploadedImages)
         setNewImages(uploadedImages);
     }
@@ -84,7 +78,7 @@ function EditProductModal(props) {
         var data = {
             owner : owner,
             title : title,
-            images : images,
+            images : newImages,
             description : description,
             longitude : longitude,
             latitude : latitude,
@@ -188,7 +182,7 @@ function EditProductModal(props) {
                     newImages.map((image) => {
                         return(
                             <div>
-                                {image}
+                                {image.name}
                             </div>
                         )
                     })
