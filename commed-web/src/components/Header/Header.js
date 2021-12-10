@@ -64,6 +64,7 @@ function Header(props) {
   const submitSearch = (e) => {
     if (e.keyCode == 13) {
       navigate("/search/" + search);
+      window.location.reload();
     }
   };
   const handleSelect = (e) => {
