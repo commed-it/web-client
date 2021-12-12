@@ -80,6 +80,27 @@
   border: 1px solid #007a6e;
 }
 
+.chatBubble:hover {
+  color: #373843 !important;
+  transform: scale(1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+
+.chatBubbleActive {
+  width: 95%;
+  color: #373843;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 1%;
+  border-radius: 0.9rem;
+  background-color: rgba(0, 122, 110, 0.418);
+  border: 1px solid #007a6e;
+}
+.chatBubbleActive:hover {
+  color: #373843 !important;
+  background-color: rgba(0, 122, 110, 0.164);
+}
 .chatContentRight {
   display: flex;
   flex-direction: column;

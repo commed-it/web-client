@@ -24,7 +24,7 @@ function HomeCategories(props) {
             </svg>
           </div>
           <a
-            href="/search/apple"
+            href="/search/food"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
             <button className="btn iconRound">
@@ -102,7 +102,7 @@ function HomeCategories(props) {
             <label>Music</label>
           </a>
           <a
-            href="/search?s=apple"
+            href="/search/fun"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
             <button className="btn iconRound">
@@ -121,7 +121,7 @@ function HomeCategories(props) {
             <label>Fun</label>
           </a>
           <a
-            href="/search?s=apple"
+            href="/search/drinks"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
             <button className="btn iconRound">
@@ -139,7 +139,7 @@ function HomeCategories(props) {
             <label>Drinks</label>
           </a>
           <a
-            href="/search?s=apple"
+            href="/search/transport"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
             <button className="btn iconRound">
@@ -157,7 +157,7 @@ function HomeCategories(props) {
             <label>Transport</label>
           </a>
           <a
-            href="/search?s=apple"
+            href="/search/culture"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
             <button className="btn iconRound">

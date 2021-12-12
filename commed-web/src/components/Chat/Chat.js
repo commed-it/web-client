@@ -1,8 +1,82 @@
 import React from "react";
 import "./Chat.css";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { get } from "../../utils.js";
+import useWebSocket, { ReadyState } from "react-use-websocket";
+import configData from "../../config.json";
+import { getTokenFromSession } from "../../utils.js";
 
 function Chat(props) {
+  const [encounters, setEncounters] = React.useState([]);
+  const [messages, setMessages] = React.useState([]);
+  const [logedUser, setLogedUser] = React.useState({});
+  const [chat, setChat] = React.useState("");
+  const [newMessage, setNewMessage] = React.useState("");
+  const [socketUrl, setSocketUrl] = React.useState("ws://echo.websocket.org");
+
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+
+  const getLoggedUser = async () => {
+    const result = await get("/auth/user/", true);
+    const result_json = await result.json();
+    console.log(result_json);
+    setLogedUser(result_json);
+    return result_json;
+  };
+
+  const handleChangeActiveChat = (id) => {
+    setChat(id);
+    getMessages(id);
+    startSocket(id);
+  };
+
+  const startSocket = React.useCallback(
+    (id) => setSocketUrl("ws://localhost:7000/ws/chat/" + id + "/"),
+    []
+  );
+
+  const handleClickSendMessage = React.useCallback(
+    (newMessage) => sendMessage({ user: logedUser.pk, text: newMessage }),
+    []
+  );
+
+  const handleInputChange = (event) => {
+    setNewMessage(event.target.value);
+  };
+
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: "Connecting",
+    [ReadyState.OPEN]: "Open",
+    [ReadyState.CLOSING]: "Closing",
+    [ReadyState.CLOSED]: "Closed",
+    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
+  }[readyState];
+
+  const getEncounters = async (user) => {
+    const result = await get("/offer/encounter/user/" + user.pk);
+    const result_json = await result.json();
+    console.log(result_json);
+    setEncounters(result_json);
+  };
+
+  const getMessages = async (id) => {
+    const result = await get("/chat/encounter/" + id + "/messages/", true);
+    const result_json = await result.json();
+    setMessages(result_json);
+    console.log(result_json);
+  };
+
+  const handleInitChat = async () => {};
+
+  React.useEffect(() => {
+    async function initChat() {
+      var user = await getLoggedUser();
+      await getEncounters(user);
+    }
+    initChat();
+  }, []);
+
   return (
     <div className="chatContainer">
       <div className="chatHeader">
@@ -45,52 +119,66 @@ function Chat(props) {
       </div>
       <div className="chatContent">
         <div className="chatContentLeft">
-          <div className="chatBubble">
-            <strong>Enterprise:</strong> A chat
-          </div>
-          <div className="chatBubble">
-            {" "}
-            <strong>Enterprise2:</strong> Another chat
-          </div>
-          <div className="chatBubble">
-            {" "}
-            <strong>Enterprise3:</strong> Another another chat
-          </div>
-          <div className="chatBubble">
-            {" "}
-            <strong>Enterprise4:</strong> Another another another chat
-          </div>
-          <div className="chatBubble">
-            {" "}
-            <strong>Enterprise5:</strong> Stack overflow
-          </div>
-          <div className="chatBubble">
-            {" "}
-            <strong>Enterprise6:</strong> Stack overflow 2.0
-          </div>
-          <div className="chatBubble">
-            {" "}
-            <strong>Enterprise7:</strong> buy pls
-          </div>
+          {encounters &&
+            encounters.map((encounter) => {
+              console.log(encounter);
+              if (encounter.id == chat) {
+                return (
+                  <button className="chatBubbleActive" value={encounter.id}>
+                    {" "}
+                    <strong>
+                      {encounter.client.name + " - " + encounter.product.title}
+                    </strong>
+                  </button>
+                );
+              } else {
+                console.log(encounter);
+                console.log(encounter.client.name);
+                console.log(encounter.product.title);
+                return (
+                  <button
+                    className="chatBubble"
+                    onClick={() => handleChangeActiveChat(encounter.id)}
+                    value={encounter.id}
+                  >
+                    {" "}
+                    <strong>
+                      {encounter.client.name + " - " + encounter.product.title}
+                    </strong>
+                  </button>
+                );
+              }
+            })}
         </div>
         <div className="chatContentRight">
-          <div className="receiver">Hey, how are you?</div>
-          <div className="alignSender">
-            <div className="sender">Good, you?</div>
-          </div>
-
-          <div className="receiver">Good, you?</div>
-          <div className="alignSender">
-            <div className="sender">Good, you?</div>
-          </div>
-          <div className="receiver">Good, you?</div>
-          <div className="alignSender">
-            <div className="sender">Good, you?</div>
-          </div>
-          <div className="receiver">Good, and you?</div>
+          {messages &&
+            messages.map((message) => {
+              var isAuthor = message.author == logedUser.pk;
+              console.log(isAuthor);
+              return (
+                <div>
+                  {isAuthor ? (
+                    <div className="alignSender">
+                      <div className="sender">{message.msg}</div>
+                    </div>
+                  ) : (
+                    <div className="receiver">{message.msg}</div>
+                  )}
+                </div>
+              );
+            })}
           <div className="inputPart">
-            <input className="messageInput"></input>
-            <button className="sendButton">Send</button>
+            <input
+              className="messageInput"
+              onChange={handleInputChange}
+            ></input>
+            <button
+              className="sendButton"
+              onClick={handleClickSendMessage}
+              disabled={readyState !== ReadyState.OPEN}
+            >
+              Send
+            </button>
           </div>
         </div>
       </div>
