@@ -4,7 +4,7 @@
   justify-content: center;
   align-self: center;
   flex-direction: column;
-
+  border: 2px solid #009688;
   width: 95%;
   margin: auto;
   margin-top: 2%;
@@ -13,13 +13,16 @@
 .chatHeader {
   display: flex;
   flex-direction: row;
+  border: 2px solid #007a6e;
+  border: none;
 }
 .myProfile {
   padding: 5px;
   display: flex;
   flex-direction: row;
   width: 20%;
-  border: 1px solid #007a6e;
+  border: none;
+  border-right: 2px solid #007a6e;
 }
 .myProfile h5 {
   padding-left: 15px;
@@ -33,7 +36,7 @@
   display: flex;
   flex-direction: row;
   width: 20%;
-  border: 1px solid #007a6e;
+
   justify-content: space-between;
   width: 80%;
 }
@@ -65,9 +68,14 @@
 .chatContentLeft {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   padding: 5px;
   width: 20%;
-  border: 1px solid #009688;
+  height: 100%;
+  border: 2px solid #009688;
+  border-right: 2px solid #009688;
+  border-bottom: none;
+  border-left: none;
 }
 .chatBubble {
   width: 95%;
@@ -104,7 +112,7 @@
 .chatContentRight {
   display: flex;
   flex-direction: column;
-  border: 1px solid #009688;
+  border: 2px solid #009688;
   width: 80%;
 }
 
