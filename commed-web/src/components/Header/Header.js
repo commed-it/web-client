@@ -32,7 +32,6 @@ function Header(props) {
     const result = await get("/auth/user/", true);
     const result_json = await result.json();
     setLogedUser(result_json);
-    console.log("Hayoooooooooo" + logedUser);
   };
   const handleShowCreateProduct = () => {
     if (sessionExist()) {
