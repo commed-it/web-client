@@ -45,10 +45,15 @@ function Chat(props) {
     []
   );
 
-  const handleClickSendMessage = React.useCallback(
-    (newMessage) => sendMessage({ user: logedUser.pk, text: newMessage }),
-    []
-  );
+  const handleClickSendMessage = () => {
+    var message = {
+      user: logedUser.pk,
+      type: "message",
+      message: newMessage,
+    };
+    sendMessage(JSON.stringify(message));
+    window.location.reload();
+  };
 
   const handleInputChange = (event) => {
     setNewMessage(event.target.value);
@@ -72,7 +77,8 @@ function Chat(props) {
   const getMessages = async (id) => {
     const result = await get("/chat/encounter/" + id + "/messages/", true);
     const result_json = await result.json();
-    setMessages(result_json);
+    setMessages(result_json.reverse());
+
     console.log(result_json);
   };
 

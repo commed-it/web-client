@@ -40,6 +40,17 @@
   border: 1px solid white;
 }
 
+.button2 {
+  margin: 1%;
+  width: 35px !important;
+  background-color: #373843;
+  border: none;
+}
+
+.button2:hover {
+  border: 1px solid white;
+}
+
 .icon {
   padding: 1%;
   margin: 2%;
@@ -73,7 +84,7 @@
 .dropdown2 {
   display: flex !important;
   justify-content: center !important;
-  width: 10% !important;
+
   padding: 5px !important;
   margin-right: 2% !important;
 }
@@ -125,9 +136,6 @@
   align-content: center;
 }
 
-.show {
-  margin-top: 3% !important;
-}
 .dropdown-toggle {
   color: transparent;
   padding: 0 !important;

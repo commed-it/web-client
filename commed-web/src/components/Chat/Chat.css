@@ -45,7 +45,7 @@
 }
 
 .formalOfferButton {
-  width: 10%;
+  width: fit-content;
   background-color: #373843;
   outline: none;
   border-radius: 0.9rem;

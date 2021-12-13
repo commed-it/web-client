@@ -209,7 +209,7 @@ function Header(props) {
             </svg>
             <a style={{ color: "white", textDecoration: "none" }}>Product</a>
           </button>
-          <button className="dropdown2 button btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
+          <button className="dropdown2 button2 btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
