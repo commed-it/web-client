@@ -45,13 +45,17 @@
 }
 
 .formalOfferButton {
-  width: 10%;
+  width: fit-content;
   background-color: #373843;
   outline: none;
   border-radius: 0.9rem;
   margin-top: auto;
   justify-content: flex-end;
   align-self: flex-end;
+}
+.scrollable {
+  overflow-y: scroll;
+  height: 100% !important;
 }
 
 .formalOfferButton:hover {
@@ -127,6 +131,7 @@
   border: none;
 
   width: 80%;
+  height: 100% !important;
 }
 
 .sender {
