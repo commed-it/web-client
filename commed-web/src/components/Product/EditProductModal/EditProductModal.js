@@ -1,9 +1,36 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './EditProductModal.css';
-import { get, put } from '../../../utils';
+import { get, put, convertBase64, remove } from '../../../utils';
 
 function EditProductModal(props) {
+
+  const [formResult, setFormResult] = React.useState(0);
+
+  const getComponent = () => {
+    console.log(formResult);
+    if (formResult == 0) {
+      return <div></div>;
+    } else if (formResult == 1) {
+      return (
+        <div
+          class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          role="alert"
+        >
+          Product Succesfully updated! :)
+        </div>
+      );
+    } else {
+      return (
+        <div
+          class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          role="alert"
+        >
+          Error Updating Product. Check the data is correct.
+        </div>
+      );
+    }
+  };
 
     const [owner, setOwner] = React.useState("")
 
@@ -24,25 +51,33 @@ function EditProductModal(props) {
     }
 
     const [images, setImages] = React.useState([]);
+    const [imageCounter, setImageCounter] = React.useState(0);
 
     const handleDeleteImage = () => {
-      
+        var uploadedImages = images;
+        var image = uploadedImages.splice(index, 1);
+        remove('/product/images/'+image[0].id+'/');
+        setImages(uploadedImages);
+        setImageCounter(images.length);
     }
 
     const [newImage, setNewImage] = React.useState("");
+    const [newImageCounter, setNewImageCounter] = React.useState(0);
 
-    const handleNewImage = (event) => {
-        setNewImage(event.target.files);
+    const handleNewImage = async (event) => {
+      const file = event.target.files[0]
+      const base64 = await convertBase64(file);        
+      setNewImage({name: file.name, image:base64});
+      setNewImageCounter(newImageCounter+1);
     }
 
     const [newImages, setNewImages] = React.useState([]);
 
     const handleNewImages = (event) => {
         var uploadedImages = newImages;
-        console.log(newImage)
-        uploadedImages.push(newImage[0]);
-        console.log(uploadedImages)
+        uploadedImages.push(newImage);
         setNewImages(uploadedImages);
+        setImageCounter(imageCounter+1);
     }
 
     const [index, setIndex] = React.useState(0);
@@ -85,6 +120,12 @@ function EditProductModal(props) {
             tag: requestTags
         };
         var result = await put('/product/'+props.productId+'/', data);
+        if (result.ok){
+          setFormResult(1)
+          window.location.reload();
+        }else{
+          setFormResult(-1)
+        }
     }
 
     const getProductDetails = async () => {
@@ -116,6 +157,7 @@ function EditProductModal(props) {
             Edit Product
           </h4>
         </div>
+        {getComponent()}
         <div className="modal-body mx-3 border-0">
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">

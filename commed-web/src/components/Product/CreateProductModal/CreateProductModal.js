@@ -1,9 +1,15 @@
 import React from "react";
 import "./CreateProductModal.css";
-import { get, post } from "../../../utils";
+import { get, post, convertBase64 } from "../../../utils";
 import { map } from "jquery";
+import { useNavigate } from "react-router";
+
 
 function CreateProductModal(props) {
+
+  const navigate = useNavigate();
+
+
   const [formResult, setFormResult] = React.useState(0);
   const [imagesCount, setImagesCount] = React.useState(0);
 
@@ -68,19 +74,6 @@ function CreateProductModal(props) {
     setNewImage({name : file.name, image:base64});
   };
 
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file)
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      }
-      fileReader.onerror = (error) => {
-        reject(error);
-      }
-    })
-  }
-
   const [newImages, setNewImages] = React.useState([]);
 
   const handleNewImages = (event) => {
@@ -128,6 +121,8 @@ function CreateProductModal(props) {
     var result = await post("/product/", data);
     if (result.ok) {
       setFormResult(1);
+      navigate("/profile/"+owner+"/");
+      window.location.reload();
     } else {
       setFormResult(-1);
     }
