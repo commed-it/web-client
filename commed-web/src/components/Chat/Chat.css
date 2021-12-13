@@ -53,6 +53,10 @@
   justify-content: flex-end;
   align-self: flex-end;
 }
+.scrollable {
+  overflow-y: scroll;
+  height: 100% !important;
+}
 
 .formalOfferButton:hover {
   background-color: #373843d8;
@@ -127,6 +131,7 @@
   border: none;
 
   width: 80%;
+  height: 100% !important;
 }
 
 .sender {

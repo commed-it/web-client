@@ -15,13 +15,22 @@ function Chat(props) {
   const [chat, setChat] = React.useState("");
   const [newMessage, setNewMessage] = React.useState("");
   const [socketUrl, setSocketUrl] = React.useState("ws://echo.websocket.org");
+  const [messageEvent, setMessageEvent] = React.useState(0);
 
-  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+  const handleMessageEvent = () => {
+    setMessageEvent(messageEvent + 1);
+    getMessages(chat);
+  };
+
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, {
+    onMessage: () => {
+      handleMessageEvent();
+    },
+  });
 
   const getLoggedUser = async () => {
     const result = await get("/auth/user/", true);
     const result_json = await result.json();
-    console.log(result_json);
     setLogedUser(result_json);
     return result_json;
   };
@@ -29,7 +38,6 @@ function Chat(props) {
   const getUsers = async () => {
     const result = await get("/enterprise/", true);
     const result_json = await result.json();
-    console.log(result_json);
     setUsers(result_json);
     return result_json;
   };
@@ -52,7 +60,6 @@ function Chat(props) {
       message: newMessage,
     };
     sendMessage(JSON.stringify(message));
-    window.location.reload();
   };
 
   const handleInputChange = (event) => {
@@ -70,7 +77,6 @@ function Chat(props) {
   const getEncounters = async (user) => {
     const result = await get("/offer/encounter/user/" + user.pk);
     const result_json = await result.json();
-    console.log(result_json);
     setEncounters(result_json);
   };
 
@@ -78,11 +84,7 @@ function Chat(props) {
     const result = await get("/chat/encounter/" + id + "/messages/", true);
     const result_json = await result.json();
     setMessages(result_json.reverse());
-
-    console.log(result_json);
   };
-
-  const handleInitChat = async () => {};
 
   React.useEffect(() => {
     async function initChat() {
@@ -91,7 +93,6 @@ function Chat(props) {
     }
     initChat();
     getUsers();
-    console.log(users);
   }, []);
 
   return (
@@ -147,7 +148,6 @@ function Chat(props) {
         <div className="chatContentLeft">
           {encounters &&
             encounters.map((encounter) => {
-              console.log(encounter);
               if (encounter.id == chat) {
                 return (
                   <button className="chatBubbleActive" value={encounter.id}>
@@ -158,9 +158,6 @@ function Chat(props) {
                   </button>
                 );
               } else {
-                console.log(encounter);
-                console.log(encounter.client.name);
-                console.log(encounter.product.title);
                 return (
                   <button
                     className="chatBubble"
@@ -177,22 +174,27 @@ function Chat(props) {
             })}
         </div>
         <div className="chatContentRight">
-          {messages &&
-            messages.map((message) => {
-              var isAuthor = message.author == logedUser.pk;
-              console.log(isAuthor);
-              return (
-                <div>
-                  {isAuthor ? (
-                    <div className="alignSender">
-                      <div className="sender">{message.msg}</div>
-                    </div>
-                  ) : (
-                    <div className="receiver">{message.msg}</div>
-                  )}
-                </div>
-              );
-            })}
+          <div className="scrollable">
+            {messages &&
+              messages.map((message) => {
+                var isAuthor = message.author == logedUser.pk;
+                return (
+                  <div>
+                    {isAuthor ? (
+                      <div className="alignSender">
+                        <div className="sender">
+                          {JSON.parse(message.msg).message}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="receiver">
+                        {JSON.parse(message.msg).message}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+          </div>
           <div className="inputPart">
             <input
               className="messageInput"
