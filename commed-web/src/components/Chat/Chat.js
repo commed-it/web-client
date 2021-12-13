@@ -10,6 +10,7 @@ import { getTokenFromSession } from "../../utils.js";
 function Chat(props) {
   const [encounters, setEncounters] = React.useState([]);
   const [messages, setMessages] = React.useState([]);
+  const [users, setUsers] = React.useState([]);
   const [logedUser, setLogedUser] = React.useState({});
   const [chat, setChat] = React.useState("");
   const [newMessage, setNewMessage] = React.useState("");
@@ -22,6 +23,14 @@ function Chat(props) {
     const result_json = await result.json();
     console.log(result_json);
     setLogedUser(result_json);
+    return result_json;
+  };
+
+  const getUsers = async () => {
+    const result = await get("/enterprise/", true);
+    const result_json = await result.json();
+    console.log(result_json);
+    setUsers(result_json);
     return result_json;
   };
 
@@ -75,6 +84,8 @@ function Chat(props) {
       await getEncounters(user);
     }
     initChat();
+    getUsers();
+    console.log(users);
   }, []);
 
   return (
@@ -117,9 +128,10 @@ function Chat(props) {
               encounter.id == chat &&
               encounter.client.owner == logedUser.pk
             ) {
+              var i = encounter.product.owner;
               return (
                 <div className="partner">
-                  <h5>{encounter.product.owner}</h5>
+                  <h5>{users[i - 1].name}</h5>
                 </div>
               );
             }

@@ -1,11 +1,12 @@
 .chatContainer {
   background-color: rgba(255, 255, 255, 0.479);
   display: flex;
-  justify-content: center;
-  align-self: center;
+  justify-content: flex-start;
+  align-self: flex-start;
   flex-direction: column;
   border: 2px solid #009688;
   width: 95%;
+  height: 85% !important;
   margin: auto;
   margin-top: 2%;
 }
@@ -15,6 +16,8 @@
   flex-direction: row;
   border: 2px solid #007a6e;
   border: none;
+  border-bottom: 2px solid #007a6e;
+  height: 10% !important;
 }
 .myProfile {
   padding: 5px;
@@ -63,19 +66,23 @@
 .chatContent {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
   width: 100%;
+  height: 90% !important;
 }
 .chatContentLeft {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
   padding: 5px;
   width: 20%;
-  height: 100%;
-  border: 2px solid #009688;
-  border-right: 2px solid #009688;
-  border-bottom: none;
-  border-left: none;
+  height: 100% !important;
+
+  border: none;
+  border-right: 2px solid #007a6e;
 }
 .chatBubble {
   width: 95%;
@@ -83,6 +90,7 @@
   padding: 10px;
   margin: auto;
   margin-bottom: 1%;
+  margin-top: 0;
   border-radius: 0.9rem;
   background-color: #ffffffbb;
   border: 1px solid #007a6e;
@@ -101,6 +109,7 @@
   padding: 10px;
   margin: auto;
   margin-bottom: 1%;
+  margin-top: 0;
   border-radius: 0.9rem;
   background-color: rgba(0, 122, 110, 0.418);
   border: 1px solid #007a6e;
@@ -112,7 +121,11 @@
 .chatContentRight {
   display: flex;
   flex-direction: column;
-  border: 2px solid #009688;
+  align-content: flex-end;
+  align-self: flex-end;
+  padding-top: none;
+  border: none;
+
   width: 80%;
 }
 
@@ -149,6 +162,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-self: flex-end;
   padding: 5px;
   margin-top: 15px;
 }
