@@ -1,9 +1,11 @@
 import React from "react";
 import "./CreateProductModal.css";
 import { get, post } from "../../../utils";
+import { map } from "jquery";
 
 function CreateProductModal(props) {
   const [formResult, setFormResult] = React.useState(0);
+  const [imagesCount, setImagesCount] = React.useState(0);
 
   const getComponent = () => {
     console.log(formResult);
@@ -60,9 +62,24 @@ function CreateProductModal(props) {
 
   const [newImage, setNewImage] = React.useState("");
 
-  const handleNewImage = (event) => {
-    setNewImage(event.target.value);
+  const handleNewImage = async (event) => {
+    const file = event.target.files[0]
+    const base64 = await convertBase64(file)
+    setNewImage({name : file.name, image:base64});
   };
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      }
+      fileReader.onerror = (error) => {
+        reject(error);
+      }
+    })
+  }
 
   const [newImages, setNewImages] = React.useState([]);
 
@@ -72,6 +89,7 @@ function CreateProductModal(props) {
     uploadedImages.push(newImage);
     console.log(uploadedImages);
     setNewImages(uploadedImages);
+    setImagesCount(imagesCount + 1);
   };
 
   const [tags, setTags] = React.useState("");
@@ -185,7 +203,7 @@ function CreateProductModal(props) {
             <div className="justify-content-center imageProperties">
               {newImages &&
                 newImages.map((image) => {
-                  return <div>{image}</div>;
+                  return <div>{image.name}</div>;
                 })}
             </div>
           </div>
