@@ -122,7 +122,7 @@ function EditProductModal(props) {
         var result = await put('/product/'+props.productId+'/', data);
         if (result.ok){
           setFormResult(1)
-          window.location.reload();
+          window.location.reload()
         }else{
           setFormResult(-1)
         }
