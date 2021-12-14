@@ -61,7 +61,8 @@ function Chat(props) {
   };
 
   const startSocket = React.useCallback(
-    (id) => setSocketUrl("ws://localhost:7000/ws/chat/" + id + "/"),
+    (id) =>
+      setSocketUrl("ws://" + configData.SERVER_HOST + "/ws/chat/" + id + "/"),
     []
   );
 
@@ -71,7 +72,8 @@ function Chat(props) {
       type: "message",
       message: newMessage,
     };
-    if (newMessage != "") sendMessage(JSON.stringify(message));
+    if (!(newMessage === null || newMessage.match(/^ *$/) !== null))
+      sendMessage(JSON.stringify(message));
   };
   const handleEnterSendMessage = (e) => {
     if (e.keyCode == 13) {
@@ -80,7 +82,8 @@ function Chat(props) {
         type: "message",
         message: newMessage,
       };
-      if (newMessage != "") sendMessage(JSON.stringify(message));
+      if (!(newMessage === null || newMessage.match(/^ *$/) !== null))
+        sendMessage(JSON.stringify(message));
       e.target.value = "";
     }
   };
