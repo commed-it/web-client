@@ -110,6 +110,14 @@ function Chat(props) {
     setMessages(result_json.reverse());
   };
 
+  const createMessage = (message) => {
+    if (message.type == "message"){
+      return message.message;
+    }else {
+      return JSON.stringify(message);
+    }
+  }
+
   React.useEffect(() => {
     async function initChat() {
       var user = await getLoggedUser();
@@ -252,7 +260,7 @@ function Chat(props) {
                     {isAuthor ? (
                       <div className="alignSender">
                         <div className="sender">
-                          {JSON.parse(message.msg).message}
+                          {createMessage(JSON.parse(message.msg))}
                         </div>
                       </div>
                     ) : (
