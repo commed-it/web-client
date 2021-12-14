@@ -100,7 +100,7 @@ function Product(props) {
                 {productDetails.description}
               </p>
             </div>
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex linkRow">
               {productDetails.tag &&
                 productDetails.tag.map((tag) => {
                   return (
@@ -130,7 +130,7 @@ function Product(props) {
                   <h5>{enterprise.name}</h5>
                 </a>
               </div>
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-center">
+              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-end">
                 <button
                   className="btn2 btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
                   onClick={handleContact}

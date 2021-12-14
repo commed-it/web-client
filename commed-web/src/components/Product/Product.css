@@ -150,7 +150,8 @@
 }
 
 .linkRow {
-  padding-top: 5%;
+  padding: 5%;
+  width: 100%;
 }
 
 h6 {
@@ -166,8 +167,6 @@ h6 {
   height: fit-content;
   width: fit-content;
   align-self: center;
-  margin-left: 100%;
-  margin-right: -200%;
 }
 
 .btn2:hover {
@@ -182,6 +181,6 @@ h6 {
 
 @media (max-width: 575px) {
   .btn2 {
-    margin-right: 0;
+    margin-left: 20px !important;
   }
 }

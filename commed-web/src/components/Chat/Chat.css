@@ -111,8 +111,13 @@
 }
 .chatBubble {
   width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
   color: #373843;
-  padding: 10px;
+
   margin: auto;
   margin-bottom: 1%;
   margin-top: 0;
@@ -127,11 +132,22 @@
 
   filter: drop-shadow(6px 3px 1px #3738436c);
 }
+.chatBubbleImage {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 5px;
+  margin-left: 10px;
+}
 
 .chatBubbleActive {
   width: 95%;
   color: #373843;
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
   margin: auto;
   margin-bottom: 1%;
   margin-top: 0;

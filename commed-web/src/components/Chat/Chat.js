@@ -176,6 +176,13 @@ function Chat(props) {
                 return (
                   <button className="chatBubbleActive" value={encounter.id}>
                     {" "}
+                    <img
+                      src={
+                        configData.SERVER_URL +
+                        encounter.theOtherClient.profileImage
+                      }
+                      className="chatBubbleImage"
+                    />
                     <strong>
                       {encounter.theOtherClient.name +
                         " - " +
@@ -193,6 +200,13 @@ function Chat(props) {
                     value={encounter.encounter.id}
                   >
                     {" "}
+                    <img
+                      src={
+                        configData.SERVER_URL +
+                        encounter.theOtherClient.profileImage
+                      }
+                      className="chatBubbleImage"
+                    />
                     <strong>
                       {encounter.theOtherClient.name +
                         " - " +

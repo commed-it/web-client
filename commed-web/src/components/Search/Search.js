@@ -40,7 +40,7 @@ function Search(props) {
   };
 
   return (
-    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row productsDiv">
+    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row productsDiv yOverflow">
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-self-center searchTitle">
         <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5 d-flex justify-content-center align-self-center home-subtitle">
           Search
