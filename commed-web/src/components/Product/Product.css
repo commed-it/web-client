@@ -54,18 +54,37 @@
 
   filter: drop-shadow(6px 3px 1px #3738436c);
 }
+.enterpriseProfile {
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 50%;
+  float: left;
+}
 
 .enterprise {
   display: flex;
-  justify-content: left;
-  align-self: flex-start;
-  align-content: flex-start;
-  flex-direction: column;
+  width: fit-content;
+  flex-direction: row;
+
   padding: 5px;
 }
 .enterprise a {
-  width: 20%;
-  margin: auto;
+  text-decoration: none;
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-content: center;
+  vertical-align: middle;
+  align-self: center;
+  justify-content: center;
+  color: #373843;
+}
+.enterprise h5 {
+  float: left;
+  margin-bottom: 0 !important;
+  vertical-align: middle;
+  align-self: center;
+  padding-left: 7%;
 }
 
 .card-img2 {
@@ -144,7 +163,9 @@ h6 {
   outline: none;
   border: none;
   color: white;
+  height: fit-content;
   width: fit-content;
+  align-self: center;
   margin-left: 100%;
   margin-right: -200%;
 }

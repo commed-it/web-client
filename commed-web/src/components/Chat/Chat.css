@@ -59,6 +59,15 @@
   text-indent: 10px;
   margin-bottom: 0 !important;
 }
+.partnerLeft {
+  display: flex;
+  flex-direction: row;
+}
+.partnerLeft img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
 
 .formalOfferButton {
   width: fit-content;
