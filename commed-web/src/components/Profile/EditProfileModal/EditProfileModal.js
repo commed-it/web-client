@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './EditProfileModal.css';
-import { get, put } from '../../../utils';
+import { get, put, convertBase64 } from '../../../utils';
 import { useNavigate } from 'react-router';
 
 function EditProfileModal(props) {
@@ -13,6 +13,8 @@ function EditProfileModal(props) {
     const [nif, setNif] = React.useState("");
     const [contactInfo, setContactInfo] = React.useState("");
     const [description, setDescription] = React.useState("");
+    const [profileImage, setProfileImage] = React.useState([]);
+    const [bannerImage, setBannerImage] = React.useState([]);
 
     const handleNameChange = (event) => {
         setName(event.target.value)
@@ -30,6 +32,16 @@ function EditProfileModal(props) {
         setDescription(event.target.value)
     }
 
+    const handleProfileImage = (event) => {
+        console.log(event.target.files[0])
+        setProfileImage(event.target.files[0])
+    }
+
+    const handleBannerImage = (event) => {
+        console.log(event.target.files[0])
+        setBannerImage(event.target.files[0])
+    }
+
     const handleEdit = async () => {
         var data = {
             owner : props.userId,
@@ -37,8 +49,15 @@ function EditProfileModal(props) {
             name : name,
             contactInfo : contactInfo,
             description : description,
-
         };
+        if(bannerImage != ""){
+            var b64Banner = await convertBase64(bannerImage)
+            data.bannerImage = b64Banner
+        }
+        if(profileImage != ""){
+            var b64Profile = await convertBase64(profileImage)
+            data.profileImage = b64Profile
+        }
         var result = await put('/enterprise/'+enterprise.id+'/', data);
         if (result.ok){
             window.location.reload()
@@ -50,6 +69,7 @@ function EditProfileModal(props) {
         const result_json = await result.json();
         return result_json;
     };
+
 
     React.useEffect(async () => {
         var enterprise = await getEnterpriseDetails();
@@ -138,6 +158,22 @@ function EditProfileModal(props) {
                         onChange={handleDescriptionChange}
                         value = {description}
                         ></textarea>
+                    </div>
+                    <div class="md-form mb-5">
+                        <input
+                        type="file"
+                        id="defaultForm-description"
+                        class="inputs form-control validate"
+                        onChange={handleProfileImage}
+                        ></input>
+                    </div>
+                    <div class="md-form mb-5">
+                        <input
+                        type="file"
+                        id="defaultForm-description"
+                        class="inputs form-control validate"
+                        onChange={handleBannerImage}
+                        ></input>
                     </div>
                     <div className="modal-footer d-flex justify-content-center">
                         <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>Update</button>

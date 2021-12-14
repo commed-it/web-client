@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import "./Product.css";
 import { useNavigate } from "react-router-dom";
-import { get } from "../../utils.js";
+import { get, post } from "../../utils.js";
 import EditProductModal from "./EditProductModal/EditProductModal";
 import DeleteProductModal from "./DeleteProductModal/DeleteProductModal";
 import { Modal } from "react-bootstrap";
@@ -43,6 +43,17 @@ function Product(props) {
     getProductDetails();
     getUserDetails();
   }, []);
+
+  const handleContact = async () => {
+    var data = {
+      client : logedUser,
+      product: productDetails.id,
+    }
+    var result = await post("/offer/encounter/create-if-not-exists/", data)
+    if (result.ok){
+      navigate("/chat")
+    }
+  }
 
   return (
     <div className="parent2 row">
@@ -116,7 +127,7 @@ function Product(props) {
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-center">
                 <button
                   className="btn2 btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
-                  onClick={() => navigate("/chat")}
+                  onClick={handleContact}
                 >
                   Contact
                 </button>
