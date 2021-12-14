@@ -7,6 +7,8 @@ import useWebSocket, { ReadyState } from "react-use-websocket";
 import configData from "../../config.json";
 import { getTokenFromSession } from "../../utils.js";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { Modal } from "react-bootstrap";
+import  FoModal  from "./SendFoModal/SendFoModal.js"
 
 function Chat(props) {
   const [encounters, setEncounters] = React.useState([]);
@@ -17,6 +19,15 @@ function Chat(props) {
   const [newMessage, setNewMessage] = React.useState("");
   const [socketUrl, setSocketUrl] = React.useState("ws://echo.websocket.org");
   const [messageEvent, setMessageEvent] = React.useState(0);
+  const [showFoModal, setShowFoModal] = React.useState(false);
+
+  const handleShowFoModal = () => {
+    setShowFoModal(true);
+  };
+
+  const handleCloseFoModal = () => {
+    setShowFoModal(false);
+  };
 
   const handleMessageEvent = () => {
     setMessageEvent(messageEvent + 1);
@@ -142,7 +153,7 @@ function Chat(props) {
                     />
                     <h5>{encounter.theOtherClient.name}</h5>
                   </div>
-                  <button class="formalOfferButton mt-auto btn btn-primary">
+                  <button class="formalOfferButton mt-auto btn btn-primary" onClick={handleShowFoModal}>
                     Formal offer
                   </button>
                 </div>
@@ -257,6 +268,16 @@ function Chat(props) {
           </ScrollToBottom>
         </div>
       </div>
+      <Modal
+        show={showFoModal}
+        onHide={handleCloseFoModal}
+        id="modalLoginForm"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        width="50%"
+      >
+        <FoModal close={handleCloseFoModal} encounterId={chat} sendFO={sendMessage} user={logedUser.pk}></FoModal>
+      </Modal>
     </div>
   );
 }
