@@ -55,7 +55,7 @@ function ProfileFormalOffer(props) {
                         <span class="badge bg-success">Signed</span>
                       }
                     { (formalOffer.formalOffer.state == "NS") &&
-                        <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                        <span class="badge rounded-pill bg-warning text-dark">Pending</span>
                       }
                     </a>
                   </div>
