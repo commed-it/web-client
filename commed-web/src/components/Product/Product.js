@@ -61,10 +61,10 @@ function Product(props) {
 
   const handleContact = async () => {
     var data = {
-      client: logedUser,
+      client: logedUser.pk,
       product: productDetails.id,
     };
-    var result = await post("/offer/encounter/create-if-not-exists/", data);
+    var result = await post("/offer/encounter/create-if-not-exists", data);
     if (result.ok) {
       navigate("/chat");
     }
