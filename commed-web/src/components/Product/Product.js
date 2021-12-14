@@ -31,8 +31,8 @@ function Product(props) {
   const handleShowDelete = () => {
     setShowDelete(true);
   };
-  const getEnterprise = async (user) => {
-    const result = await get("/enterprise/" + productId + "/");
+  const getEnterprise = async (product) => {
+    const result = await get("/enterprise/" + product.owner + "/");
     const result_json = await result.json();
     console.log(enterprise);
     setEnterprise(result_json);
@@ -41,6 +41,7 @@ function Product(props) {
     const result = await get("/product/" + productId + "/", false);
     const result_json = await result.json();
     setProductDetails(result_json);
+    return result_json;
   };
   const getUserDetails = async () => {
     const result = await get("/auth/user/", true);
@@ -49,9 +50,13 @@ function Product(props) {
     console.log(logedUser);
   };
   React.useEffect(() => {
-    getProductDetails();
+    async function loadOwner() {
+      var product = await getProductDetails();
+      await getEnterprise(product);
+    }
+    loadOwner();
+
     getUserDetails();
-    getEnterprise();
   }, []);
 
   const handleContact = async () => {
