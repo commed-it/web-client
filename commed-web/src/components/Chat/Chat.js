@@ -6,6 +6,7 @@ import { get } from "../../utils.js";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import configData from "../../config.json";
 import { getTokenFromSession } from "../../utils.js";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 function Chat(props) {
   const [encounters, setEncounters] = React.useState([]);
@@ -61,6 +62,17 @@ function Chat(props) {
     };
     sendMessage(JSON.stringify(message));
   };
+  const handleEnterSendMessage = (e) => {
+    if (e.keyCode == 13) {
+      var message = {
+        user: logedUser.pk,
+        type: "message",
+        message: newMessage,
+      };
+      sendMessage(JSON.stringify(message));
+      e.target.value = "";
+    }
+  };
 
   const handleInputChange = (event) => {
     setNewMessage(event.target.value);
@@ -75,9 +87,10 @@ function Chat(props) {
   }[readyState];
 
   const getEncounters = async (user) => {
-    const result = await get("/offer/encounter/user/" + user.pk);
+    const result = await get("/offer/encounter/fromUser/" + user.pk);
     const result_json = await result.json();
     setEncounters(result_json);
+    console.log(encounters);
   };
 
   const getMessages = async (id) => {
@@ -93,7 +106,7 @@ function Chat(props) {
     }
     initChat();
     getUsers();
-  }, []);
+  }, [messages]);
 
   return (
     <div className="chatContainer">
@@ -104,7 +117,7 @@ function Chat(props) {
             width="35"
             height="35"
             fill="#373843"
-            className="bi bi-person-circle centerIcon"
+            className="bi bi-person-circle "
             viewBox="0 0 16 16"
           >
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -113,18 +126,18 @@ function Chat(props) {
               d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
             />{" "}
           </svg>{" "}
-          <h5>My profile</h5>
+          <h5>My chats</h5>
         </div>
         {chat != "" &&
           encounters &&
           encounters.map((encounter) => {
             if (
-              encounter.id == chat &&
+              encounter.encounter.id == chat &&
               encounter.product.owner == logedUser.pk
             ) {
               return (
                 <div className="partner">
-                  <h5>{encounter.client.name}</h5>
+                  <h5>{encounter.theOtherClient.name}</h5>
                   <button class="formalOfferButton mt-auto btn btn-primary">
                     Formal offer
                   </button>
@@ -132,13 +145,12 @@ function Chat(props) {
               );
             }
             if (
-              encounter.id == chat &&
-              encounter.client.owner == logedUser.pk
+              encounter.encounter.id == chat &&
+              encounter.encounter.client == logedUser.pk
             ) {
-              var i = encounter.product.owner;
               return (
                 <div className="partner">
-                  <h5>{users[i - 1].name}</h5>
+                  <h5>{encounter.theOtherClient.name}</h5>
                 </div>
               );
             }
@@ -148,12 +160,14 @@ function Chat(props) {
         <div className="chatContentLeft">
           {encounters &&
             encounters.map((encounter) => {
-              if (encounter.id == chat) {
+              if (encounter.encounter.id == chat) {
                 return (
                   <button className="chatBubbleActive" value={encounter.id}>
                     {" "}
                     <strong>
-                      {encounter.client.name + " - " + encounter.product.title}
+                      {encounter.theOtherClient.name +
+                        " - " +
+                        encounter.product.title}
                     </strong>
                   </button>
                 );
@@ -161,12 +175,16 @@ function Chat(props) {
                 return (
                   <button
                     className="chatBubble"
-                    onClick={() => handleChangeActiveChat(encounter.id)}
-                    value={encounter.id}
+                    onClick={() =>
+                      handleChangeActiveChat(encounter.encounter.id)
+                    }
+                    value={encounter.encounter.id}
                   >
                     {" "}
                     <strong>
-                      {encounter.client.name + " - " + encounter.product.title}
+                      {encounter.theOtherClient.name +
+                        " - " +
+                        encounter.product.title}
                     </strong>
                   </button>
                 );
@@ -174,7 +192,21 @@ function Chat(props) {
             })}
         </div>
         <div className="chatContentRight">
-          <div className="scrollable">
+          <div className="inputPart">
+            <input
+              className="messageInput"
+              onChange={handleInputChange}
+              onKeyUp={handleEnterSendMessage}
+            ></input>
+            <button
+              className="sendButton"
+              onClick={handleClickSendMessage}
+              disabled={readyState !== ReadyState.OPEN}
+            >
+              Send
+            </button>
+          </div>
+          <ScrollToBottom className="scrollable">
             {messages &&
               messages.map((message) => {
                 var isAuthor = message.author == logedUser.pk;
@@ -187,27 +219,16 @@ function Chat(props) {
                         </div>
                       </div>
                     ) : (
-                      <div className="receiver">
-                        {JSON.parse(message.msg).message}
+                      <div className="alignReceiver">
+                        <div className="receiver">
+                          {JSON.parse(message.msg).message}
+                        </div>
                       </div>
                     )}
                   </div>
                 );
               })}
-          </div>
-          <div className="inputPart">
-            <input
-              className="messageInput"
-              onChange={handleInputChange}
-            ></input>
-            <button
-              className="sendButton"
-              onClick={handleClickSendMessage}
-              disabled={readyState !== ReadyState.OPEN}
-            >
-              Send
-            </button>
-          </div>
+          </ScrollToBottom>
         </div>
       </div>
     </div>

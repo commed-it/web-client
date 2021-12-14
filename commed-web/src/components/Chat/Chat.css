@@ -14,6 +14,7 @@
 .chatHeader {
   display: flex;
   flex-direction: row;
+
   border: 2px solid #007a6e;
   border: none;
   border-bottom: 2px solid #007a6e;
@@ -23,6 +24,10 @@
   padding: 5px;
   display: flex;
   flex-direction: row;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  padding-left: 1%;
   width: 20%;
   border: none;
   border-right: 2px solid #007a6e;
@@ -32,16 +37,27 @@
   vertical-align: middle;
   align-content: center;
   align-self: center;
+  margin-bottom: 0 !important;
 }
 
 .partner {
   padding: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  align-content: center;
+  text-align: center;
   width: 20%;
-
   justify-content: space-between;
   width: 80%;
+}
+.partner h5 {
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  text-indent: 10px;
+  margin-bottom: 0 !important;
 }
 
 .formalOfferButton {
@@ -52,10 +68,6 @@
   margin-top: auto;
   justify-content: flex-end;
   align-self: flex-end;
-}
-.scrollable {
-  overflow-y: scroll;
-  height: 100% !important;
 }
 
 .formalOfferButton:hover {
@@ -124,13 +136,16 @@
 }
 .chatContentRight {
   display: flex;
-  flex-direction: column;
-  align-content: flex-end;
-  align-self: flex-end;
+  flex-direction: column-reverse;
   padding-top: none;
   border: none;
 
   width: 80%;
+  height: 100% !important;
+}
+.scrollable {
+  overflow-y: hidden;
+  scroll-behavior: smooth;
   height: 100% !important;
 }
 
@@ -162,12 +177,18 @@
   justify-content: right;
 }
 
+.alignReceiver {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+
 .inputPart {
   background-color: rgba(255, 255, 255, 0.507);
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-self: flex-end;
+  align-self: flex-start;
   padding: 5px;
   margin-top: 15px;
 }
