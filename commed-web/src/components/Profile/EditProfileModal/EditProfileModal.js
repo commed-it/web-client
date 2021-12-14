@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './EditProfileModal.css';
-import { get, put } from '../../../utils';
+import { get, put, convertBase64 } from '../../../utils';
 import { useNavigate } from 'react-router';
 
 function EditProfileModal(props) {
@@ -13,6 +13,8 @@ function EditProfileModal(props) {
     const [nif, setNif] = React.useState("");
     const [contactInfo, setContactInfo] = React.useState("");
     const [description, setDescription] = React.useState("");
+    const [profileImage, setProfileImage] = React.useState([]);
+    const [bannerImage, setBannerImage] = React.useState([]);
 
     const handleNameChange = (event) => {
         setName(event.target.value)
@@ -30,6 +32,16 @@ function EditProfileModal(props) {
         setDescription(event.target.value)
     }
 
+    const handleProfileImage = (event) => {
+        console.log(event.target.files[0])
+        setProfileImage(event.target.files[0])
+    }
+
+    const handleBannerImage = (event) => {
+        console.log(event.target.files[0])
+        setBannerImage(event.target.files[0])
+    }
+
     const handleEdit = async () => {
         var data = {
             owner : props.userId,
@@ -37,8 +49,15 @@ function EditProfileModal(props) {
             name : name,
             contactInfo : contactInfo,
             description : description,
-
         };
+        if(bannerImage != ""){
+            var b64Banner = await convertBase64(bannerImage)
+            data.bannerImage = b64Banner
+        }
+        if(profileImage != ""){
+            var b64Profile = await convertBase64(profileImage)
+            data.profileImage = b64Profile
+        }
         var result = await put('/enterprise/'+enterprise.id+'/', data);
         if (result.ok){
             window.location.reload()
@@ -50,6 +69,7 @@ function EditProfileModal(props) {
         const result_json = await result.json();
         return result_json;
     };
+
 
     React.useEffect(async () => {
         var enterprise = await getEnterpriseDetails();
@@ -69,6 +89,7 @@ function EditProfileModal(props) {
                 </h4>
                 </div>
                 <div className="modal-body mx-3 border-0">
+                    Name:
                     <div className="md-form mb-4">
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +109,7 @@ function EditProfileModal(props) {
                         value = {name}
                         />
                     </div>
+                    NIF:
                     <div className="md-form mb-4">
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -107,6 +129,7 @@ function EditProfileModal(props) {
                         value = {nif}
                         />
                     </div>
+                    Contact Info:
                     <div class="md-form mb-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>            
@@ -119,6 +142,7 @@ function EditProfileModal(props) {
                         value = {contactInfo}
                         ></input>
                     </div>
+                    Description:
                     <div class="md-form mb-5">
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -138,6 +162,24 @@ function EditProfileModal(props) {
                         onChange={handleDescriptionChange}
                         value = {description}
                         ></textarea>
+                    </div>
+                    Profile Image:
+                    <div class="md-form mb-5">
+                        <input
+                        type="file"
+                        id="defaultForm-description"
+                        class="inputs form-control validate"
+                        onChange={handleProfileImage}
+                        ></input>
+                    </div>
+                    Banner Image:
+                    <div class="md-form mb-5">
+                        <input
+                        type="file"
+                        id="defaultForm-description"
+                        class="inputs form-control validate"
+                        onChange={handleBannerImage}
+                        ></input>
                     </div>
                     <div className="modal-footer d-flex justify-content-center">
                         <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>Update</button>

@@ -40,6 +40,17 @@
   border: 1px solid white;
 }
 
+.button2 {
+  margin: 1%;
+  width: 35px !important;
+  background-color: #373843;
+  border: none;
+}
+
+.button2:hover {
+  border: 1px solid white;
+}
+
 .icon {
   padding: 1%;
   margin: 2%;
@@ -68,4 +79,78 @@
 
 .custom-modal-style {
   width: 100% !important;
+}
+
+.dropdown2 {
+  display: flex !important;
+  justify-content: center !important;
+
+  padding: 5px !important;
+  margin-right: 2% !important;
+  z-index: 999;
+}
+.dropdown2 img {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: absolute;
+}
+.dropdown3 {
+  background-color: transparent !important;
+  border: none;
+  border-radius: 0.9rem;
+}
+
+#dropdown-menu {
+  width: 34px !important;
+  background-color: transparent !important;
+  border: none;
+  border-radius: 0.9rem;
+}
+#dropdown-menu:focus {
+  outline: 0 !important;
+  box-shadow: none;
+}
+#dropdown-menu:active {
+  outline: 0 !important;
+  box-shadow: none;
+}
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+.profileIcon2 {
+  position: absolute;
+}
+
+.dropdown-item:focus,
+.dropdown-item:active {
+  outline: none !important;
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.568) !important;
+}
+.dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.733) !important;
+  border-radius: 0.9rem;
+  border: 1px solid #40414f;
+  width: 100% !important;
+}
+
+#dropdown-menu .dropdown-toggle {
+  width: 20px !important;
+  justify-content: center !important;
+  align-content: center;
+}
+
+.dropdown-toggle {
+  color: transparent;
+  padding: 0 !important;
+}
+
+.dropdown-toggle :active,
+.dropdown-toggle:focus,
+.dropdown-toggle:hover,
+.dropdown-toggle::after {
+  color: transparent !important;
 }

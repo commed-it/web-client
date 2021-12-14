@@ -1,9 +1,17 @@
 import React from "react";
 import "./CreateProductModal.css";
-import { get, post } from "../../../utils";
+import { get, post, convertBase64 } from "../../../utils";
+import { map } from "jquery";
+import { useNavigate } from "react-router";
+
 
 function CreateProductModal(props) {
+
+  const navigate = useNavigate();
+
+
   const [formResult, setFormResult] = React.useState(0);
+  const [imagesCount, setImagesCount] = React.useState(0);
 
   const getComponent = () => {
     console.log(formResult);
@@ -60,8 +68,10 @@ function CreateProductModal(props) {
 
   const [newImage, setNewImage] = React.useState("");
 
-  const handleNewImage = (event) => {
-    setNewImage(event.target.value);
+  const handleNewImage = async (event) => {
+    const file = event.target.files[0]
+    const base64 = await convertBase64(file)
+    setNewImage({name : file.name, image:base64});
   };
 
   const [newImages, setNewImages] = React.useState([]);
@@ -72,6 +82,7 @@ function CreateProductModal(props) {
     uploadedImages.push(newImage);
     console.log(uploadedImages);
     setNewImages(uploadedImages);
+    setImagesCount(imagesCount + 1);
   };
 
   const [tags, setTags] = React.useState("");
@@ -110,6 +121,8 @@ function CreateProductModal(props) {
     var result = await post("/product/", data);
     if (result.ok) {
       setFormResult(1);
+      navigate("/profile/"+owner+"/");
+      window.location.reload();
     } else {
       setFormResult(-1);
     }
@@ -185,7 +198,7 @@ function CreateProductModal(props) {
             <div className="justify-content-center imageProperties">
               {newImages &&
                 newImages.map((image) => {
-                  return <div>{image}</div>;
+                  return <div>{image.name}</div>;
                 })}
             </div>
           </div>

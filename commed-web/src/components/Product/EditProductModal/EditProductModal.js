@@ -1,9 +1,36 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './EditProductModal.css';
-import { get, put } from '../../../utils';
+import { get, put, convertBase64, remove } from '../../../utils';
 
 function EditProductModal(props) {
+
+  const [formResult, setFormResult] = React.useState(0);
+
+  const getComponent = () => {
+    console.log(formResult);
+    if (formResult == 0) {
+      return <div></div>;
+    } else if (formResult == 1) {
+      return (
+        <div
+          class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          role="alert"
+        >
+          Product Succesfully updated! :)
+        </div>
+      );
+    } else {
+      return (
+        <div
+          class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          role="alert"
+        >
+          Error Updating Product. Check the data is correct.
+        </div>
+      );
+    }
+  };
 
     const [owner, setOwner] = React.useState("")
 
@@ -24,31 +51,33 @@ function EditProductModal(props) {
     }
 
     const [images, setImages] = React.useState([]);
+    const [imageCounter, setImageCounter] = React.useState(0);
 
     const handleDeleteImage = () => {
-        var newImages = []
-        for(var i = 0; i<images.length; i++){
-            if (i!=index){
-                newImages.push(images[i]);
-            }
-        }
-        setImages(newImages);
+        var uploadedImages = images;
+        var image = uploadedImages.splice(index, 1);
+        remove('/product/images/'+image[0].id+'/');
+        setImages(uploadedImages);
+        setImageCounter(images.length);
     }
 
     const [newImage, setNewImage] = React.useState("");
+    const [newImageCounter, setNewImageCounter] = React.useState(0);
 
-    const handleNewImage = (event) => {
-        setNewImage(event.target.value);
+    const handleNewImage = async (event) => {
+      const file = event.target.files[0]
+      const base64 = await convertBase64(file);        
+      setNewImage({name: file.name, image:base64});
+      setNewImageCounter(newImageCounter+1);
     }
 
     const [newImages, setNewImages] = React.useState([]);
 
     const handleNewImages = (event) => {
         var uploadedImages = newImages;
-        console.log(newImage)
         uploadedImages.push(newImage);
-        console.log(uploadedImages)
         setNewImages(uploadedImages);
+        setImageCounter(imageCounter+1);
     }
 
     const [index, setIndex] = React.useState(0);
@@ -84,13 +113,19 @@ function EditProductModal(props) {
         var data = {
             owner : owner,
             title : title,
-            images : images,
+            images : newImages,
             description : description,
             longitude : longitude,
             latitude : latitude,
             tag: requestTags
         };
         var result = await put('/product/'+props.productId+'/', data);
+        if (result.ok){
+          setFormResult(1)
+          window.location.reload();
+        }else{
+          setFormResult(-1)
+        }
     }
 
     const getProductDetails = async () => {
@@ -122,7 +157,9 @@ function EditProductModal(props) {
             Edit Product
           </h4>
         </div>
+        {getComponent()}
         <div className="modal-body mx-3 border-0">
+          Title:
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>            </svg>
@@ -134,6 +171,7 @@ function EditProductModal(props) {
               value = {title}
             ></input>
           </div>
+          Description:
           <div class="md-form mb-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -154,6 +192,7 @@ function EditProductModal(props) {
               value = {description}
             ></textarea>
           </div>
+          Images:
           <div className="md-form mb-5">
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 { images && 
@@ -188,13 +227,14 @@ function EditProductModal(props) {
                     newImages.map((image) => {
                         return(
                             <div>
-                                {image}
+                                {image.name}
                             </div>
                         )
                     })
                 }
             </div>
           </div>
+          Tags:
           <div className="md-form mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -219,6 +259,7 @@ function EditProductModal(props) {
               htmlFor="defaultForm-pass"
             ></label>
           </div>
+          Latitude:
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>            
@@ -231,6 +272,7 @@ function EditProductModal(props) {
               value = {latitude}
             ></input>
           </div>
+          Longitude:
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>            

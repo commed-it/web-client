@@ -1,11 +1,12 @@
 .chatContainer {
   background-color: rgba(255, 255, 255, 0.479);
   display: flex;
-  justify-content: center;
-  align-self: center;
+  justify-content: flex-start;
+  align-self: flex-start;
   flex-direction: column;
-
+  border: 2px solid #009688;
   width: 95%;
+  height: 85% !important;
   margin: auto;
   margin-top: 2%;
 }
@@ -13,33 +14,63 @@
 .chatHeader {
   display: flex;
   flex-direction: row;
+
+  border: 2px solid #007a6e;
+  border: none;
+  border-bottom: 2px solid #007a6e;
+  height: 10% !important;
 }
 .myProfile {
   padding: 5px;
   display: flex;
   flex-direction: row;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  padding-left: 1%;
   width: 20%;
-  border: 1px solid #007a6e;
+  border: none;
+  border-right: 2px solid #007a6e;
 }
 .myProfile h5 {
   padding-left: 15px;
   vertical-align: middle;
   align-content: center;
   align-self: center;
+  margin-bottom: 0 !important;
 }
 
 .partner {
   padding: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  align-content: center;
+  text-align: center;
   width: 20%;
-  border: 1px solid #007a6e;
   justify-content: space-between;
   width: 80%;
 }
+.partner h5 {
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  text-indent: 10px;
+  margin-bottom: 0 !important;
+}
+.partnerLeft {
+  display: flex;
+  flex-direction: row;
+}
+.partnerLeft img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
 
 .formalOfferButton {
-  width: 10%;
+  width: fit-content;
   background-color: #373843;
   outline: none;
   border-radius: 0.9rem;
@@ -60,31 +91,87 @@
 .chatContent {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
   width: 100%;
+  height: 90% !important;
 }
 .chatContentLeft {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
   padding: 5px;
   width: 20%;
-  border: 1px solid #009688;
+  height: 100% !important;
+
+  border: none;
+  border-right: 2px solid #007a6e;
 }
 .chatBubble {
   width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
   color: #373843;
-  padding: 10px;
+
   margin: auto;
   margin-bottom: 1%;
+  margin-top: 0;
   border-radius: 0.9rem;
   background-color: #ffffffbb;
   border: 1px solid #007a6e;
 }
 
+.chatBubble:hover {
+  color: #373843 !important;
+  transform: scale(1);
+
+  filter: drop-shadow(6px 3px 1px #3738436c);
+}
+.chatBubbleImage {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 5px;
+  margin-left: 10px;
+}
+
+.chatBubbleActive {
+  width: 95%;
+  color: #373843;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+  margin-bottom: 1%;
+  margin-top: 0;
+  border-radius: 0.9rem;
+  background-color: rgba(0, 122, 110, 0.418);
+  border: 1px solid #007a6e;
+}
+.chatBubbleActive:hover {
+  color: #373843 !important;
+  background-color: rgba(0, 122, 110, 0.164);
+}
 .chatContentRight {
   display: flex;
-  flex-direction: column;
-  border: 1px solid #009688;
+  flex-direction: column-reverse;
+  padding-top: none;
+  border: none;
+
   width: 80%;
+  height: 100% !important;
+}
+.scrollable {
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  height: 100% !important;
 }
 
 .sender {
@@ -115,11 +202,18 @@
   justify-content: right;
 }
 
+.alignReceiver {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+
 .inputPart {
   background-color: rgba(255, 255, 255, 0.507);
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-self: flex-start;
   padding: 5px;
   margin-top: 15px;
 }
@@ -135,9 +229,18 @@ input:focus {
 }
 
 .sendButton {
-  background-color: #007a6e;
+  background-color: #373843;
   width: 7%;
   margin-right: 1%;
   border-radius: 0.9rem;
   color: white;
+}
+
+.sendButton:hover {
+  background-color: #373843d8;
+}
+
+.sendButton:focus {
+  background-color: #009688;
+  outline-color: none;
 }

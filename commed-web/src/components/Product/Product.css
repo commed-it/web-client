@@ -4,6 +4,8 @@
   justify-content: center;
   align-self: center;
   padding: 3%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .container2 {
@@ -52,14 +54,37 @@
 
   filter: drop-shadow(6px 3px 1px #3738436c);
 }
+.enterpriseProfile {
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 50%;
+  float: left;
+}
 
 .enterprise {
   display: flex;
-  justify-content: left;
-  align-self: flex-start;
-  align-content: flex-start;
-  flex-direction: column;
+  width: fit-content;
+  flex-direction: row;
+
   padding: 5px;
+}
+.enterprise a {
+  text-decoration: none;
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-content: center;
+  vertical-align: middle;
+  align-self: center;
+  justify-content: center;
+  color: #373843;
+}
+.enterprise h5 {
+  float: left;
+  margin-bottom: 0 !important;
+  vertical-align: middle;
+  align-self: center;
+  padding-left: 7%;
 }
 
 .card-img2 {
@@ -125,7 +150,8 @@
 }
 
 .linkRow {
-  padding-top: 5%;
+  padding: 5%;
+  width: 100%;
 }
 
 h6 {
@@ -138,9 +164,23 @@ h6 {
   outline: none;
   border: none;
   color: white;
-  width: 40%;
+  height: fit-content;
+  width: fit-content;
+  align-self: center;
 }
 
 .btn2:hover {
   background-color: #373843c4;
+}
+
+@media (min-width: 576px) {
+  .col-sm-12 {
+    flex: auto 0 0 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .btn2 {
+    margin-left: 20px !important;
+  }
 }

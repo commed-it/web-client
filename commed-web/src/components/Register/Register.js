@@ -56,6 +56,18 @@ function Register(props) {
     setRepeatPassword(event.target.value);
   }
 
+  const [enterpriseName, setEnterpriseName] = useState('');
+
+  const handleEnterpriseName =  (event) => {
+    setEnterpriseName(event.target.value)
+  }
+
+  const [NIF, setNIF] = useState('');
+
+  const handleNIF =  (event) => {
+    setNIF(event.target.value)
+  }
+
   const handleRegister = async () => {
     var data={
       'username' : username,
@@ -63,7 +75,29 @@ function Register(props) {
       'password1' : password,
       'password2' : repeatPassword
     };
-    const result = await post("/auth/registration/", data, false);
+    var result = await post("/auth/registration/", data, false);
+    var result_json = await result.json();
+    console.log(result_json)
+    result = await fetch(configData.SERVER_URL + "/auth/user/", {
+          method: "GET",
+          headers: {
+          "Authorization": "Token " + result_json.key,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+      });
+    var user = await result.json()
+    console.log(user);
+    console.log(NIF);
+    console.log(enterpriseName);
+    data = {
+      'owner' : user.pk,
+      'NIF' : NIF,
+      'name' : enterpriseName,
+      'contactInfo' : email,
+    }
+    console.log(data);
+    var result = await post("/enterprise/", data, false);
     if (result.ok){
       setFormResult(1);
     }else{
@@ -198,6 +232,32 @@ function Register(props) {
               data-success="right"
               htmlFor="defaultForm-pass"
             ></label>
+          </div>
+          <div class="md-form mb-5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sticky-fill" viewBox="0 0 16 16">
+            <path d="M2.5 1A1.5 1.5 0 0 0 1 2.5v11A1.5 1.5 0 0 0 2.5 15h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 15 8.586V2.5A1.5 1.5 0 0 0 13.5 1h-11zm6 8.5a1 1 0 0 1 1-1h4.396a.25.25 0 0 1 .177.427l-5.146 5.146a.25.25 0 0 1-.427-.177V9.5z"/>
+          </svg>
+            <input
+              type="text"
+              id="defaultForm-number"
+              class="inputs form-control validate"
+              placeholder="Enterprise Name"
+              onChange={handleEnterpriseName}
+              value = {enterpriseName}
+            ></input>
+          </div>
+          <div class="md-form mb-5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+          </svg>
+            <input
+              type="text"
+              id="defaultForm-number"
+              class="inputs form-control validate"
+              placeholder="NIF"
+              onChange={handleNIF}
+              value = {NIF}
+            ></input>
           </div>
         </div>
         <div className="modal-footer d-flex justify-content-center">

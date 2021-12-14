@@ -33,6 +33,12 @@ function Login(props) {
     
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin()
+    }
+  }
+
   return (
     <div>
       <div role="document" borderRadius="0.8rem">
@@ -87,6 +93,7 @@ function Login(props) {
                 placeholder="Password"
                 value={password}
                 onChange={handlePassword}
+                onKeyDown={handleKeyDown}
               />
               <label
                 data-error="wrong"

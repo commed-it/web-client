@@ -43,7 +43,6 @@ function ProfileProduct(props) {
               products.map((product) => {
                 return (
                   <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 productCard2">
-                    <h6>{enterpriseDetails.name}</h6>
                     <Carousel>
                       {product.images &&
                         product.images.map((image) => {
