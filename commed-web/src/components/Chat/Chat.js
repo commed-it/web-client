@@ -114,12 +114,12 @@ function Chat(props) {
   };
 
   const createMessage = (message) => {
-    if (message.type == "message"){
+    if (message.type == "message") {
       return message.message;
-    }else {
+    } else {
       return JSON.stringify(message);
     }
-  }
+  };
 
   React.useEffect(() => {
     async function initChat() {
