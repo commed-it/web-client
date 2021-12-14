@@ -22,6 +22,7 @@ function Header(props) {
   const [showCreateProduct, setShowCreateProduct] = useState(false);
   const [search, setSearch] = useState("");
   const [logedUser, setLogedUser] = React.useState(false);
+  const [enterprise, setEnterprise] = React.useState({});
 
   const navigate = useNavigate();
 
@@ -32,6 +33,13 @@ function Header(props) {
     const result = await get("/auth/user/", true);
     const result_json = await result.json();
     setLogedUser(result_json);
+    return result_json;
+  };
+  const getEnterprise = async (user) => {
+    const result = await get("/enterprise/user/" + user.pk);
+    const result_json = await result.json();
+    console.log(enterprise);
+    setEnterprise(result_json);
   };
   const handleShowCreateProduct = () => {
     if (sessionExist()) {
@@ -73,7 +81,12 @@ function Header(props) {
     if (e == "logout") handleLogOut();
   };
   React.useEffect(() => {
-    getLoggedUser();
+    async function getPicture() {
+      var user = await getLoggedUser();
+      console.log(user);
+      await getEnterprise(user);
+    }
+    getPicture();
   }, []);
   return (
     <div className="row d-flex flex-row customNavBar sticky-top ">
@@ -208,21 +221,8 @@ function Header(props) {
             </svg>
             <a style={{ color: "white", textDecoration: "none" }}>Product</a>
           </button>
-          <button className="dropdown2 button2 btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="#ffffff"
-              className="bi bi-person-circle profileIcon2"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-              />{" "}
-            </svg>{" "}
+          <div className="dropdown2 button2 btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
+            <img src={configData.SERVER_URL + enterprise.profileImage} />
             <DropdownButton
               title=" "
               id="dropdown-menu"
@@ -232,7 +232,7 @@ function Header(props) {
               <Dropdown.Item eventKey="profile">Profile</Dropdown.Item>
               <Dropdown.Item eventKey="logout">Log out</Dropdown.Item>
             </DropdownButton>
-          </button>
+          </div>
         </div>
       )}
       <Modal

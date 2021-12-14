@@ -7,6 +7,7 @@ import EditProductModal from "./EditProductModal/EditProductModal";
 import DeleteProductModal from "./DeleteProductModal/DeleteProductModal";
 import { Modal } from "react-bootstrap";
 import { Carousel } from "react-bootstrap";
+import configData from "../../config.json";
 
 function Product(props) {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function Product(props) {
   const [showDelete, setShowDelete] = React.useState(false);
   const [productDetails, setProductDetails] = React.useState([]);
   const [logedUser, setLogedUser] = React.useState(false);
+  const [enterprise, setEnterprise] = React.useState({});
 
   const handleCloseEdit = () => {
     setShowEdit(false);
@@ -29,6 +31,12 @@ function Product(props) {
   const handleShowDelete = () => {
     setShowDelete(true);
   };
+  const getEnterprise = async (user) => {
+    const result = await get("/enterprise/" + productId + "/");
+    const result_json = await result.json();
+    console.log(enterprise);
+    setEnterprise(result_json);
+  };
   const getProductDetails = async () => {
     const result = await get("/product/" + productId + "/", false);
     const result_json = await result.json();
@@ -38,22 +46,24 @@ function Product(props) {
     const result = await get("/auth/user/", true);
     const result_json = await result.json();
     setLogedUser(result_json);
+    console.log(logedUser);
   };
   React.useEffect(() => {
     getProductDetails();
     getUserDetails();
+    getEnterprise();
   }, []);
 
   const handleContact = async () => {
     var data = {
-      client : logedUser,
+      client: logedUser,
       product: productDetails.id,
+    };
+    var result = await post("/offer/encounter/create-if-not-exists/", data);
+    if (result.ok) {
+      navigate("/chat");
     }
-    var result = await post("/offer/encounter/create-if-not-exists/", data)
-    if (result.ok){
-      navigate("/chat")
-    }
-  }
+  };
 
   return (
     <div className="parent2 row">
@@ -106,22 +116,13 @@ function Product(props) {
                 })}
             </div>
             <div className="d-flex col-xs-6 col-sm-6 col-md-6 col-lg-6 linkRow">
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 enterprise">
+              <div className=" enterprise">
                 <a href={"/profile/" + productDetails.owner}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="35"
-                    height="35"
-                    fill="#373843"
-                    className="bi bi-person-circle centerIcon"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path
-                      fill-rule="evenodd"
-                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                    />
-                  </svg>
+                  <img
+                    src={enterprise.profileImage}
+                    className="enterpriseProfile"
+                  />
+                  <h5>{enterprise.name}</h5>
                 </a>
               </div>
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-center">
