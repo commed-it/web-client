@@ -8,7 +8,7 @@ import configData from "../../config.json";
 import { getTokenFromSession } from "../../utils.js";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { Modal } from "react-bootstrap";
-import  FoModal  from "./SendFoModal/SendFoModal.js"
+import FoModal from "./SendFoModal/SendFoModal.js";
 
 function Chat(props) {
   const [encounters, setEncounters] = React.useState([]);
@@ -71,7 +71,7 @@ function Chat(props) {
       type: "message",
       message: newMessage,
     };
-    sendMessage(JSON.stringify(message));
+    if (newMessage != "") sendMessage(JSON.stringify(message));
   };
   const handleEnterSendMessage = (e) => {
     if (e.keyCode == 13) {
@@ -80,7 +80,7 @@ function Chat(props) {
         type: "message",
         message: newMessage,
       };
-      sendMessage(JSON.stringify(message));
+      if (newMessage != "") sendMessage(JSON.stringify(message));
       e.target.value = "";
     }
   };
@@ -153,7 +153,10 @@ function Chat(props) {
                     />
                     <h5>{encounter.theOtherClient.name}</h5>
                   </div>
-                  <button class="formalOfferButton mt-auto btn btn-primary" onClick={handleShowFoModal}>
+                  <button
+                    class="formalOfferButton mt-auto btn btn-primary"
+                    onClick={handleShowFoModal}
+                  >
                     Formal offer
                   </button>
                 </div>
@@ -276,7 +279,12 @@ function Chat(props) {
         aria-labelledby="myModalLabel"
         width="50%"
       >
-        <FoModal close={handleCloseFoModal} encounterId={chat} sendFO={sendMessage} user={logedUser.pk}></FoModal>
+        <FoModal
+          close={handleCloseFoModal}
+          encounterId={chat}
+          sendFO={sendMessage}
+          user={logedUser.pk}
+        ></FoModal>
       </Modal>
     </div>
   );
