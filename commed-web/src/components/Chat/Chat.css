@@ -213,9 +213,18 @@ input:focus {
 }
 
 .sendButton {
-  background-color: #007a6e;
+  background-color: #373843;
   width: 7%;
   margin-right: 1%;
   border-radius: 0.9rem;
   color: white;
+}
+
+.sendButton:hover {
+  background-color: #373843d8;
+}
+
+.sendButton:focus {
+  background-color: #009688;
+  outline-color: none;
 }

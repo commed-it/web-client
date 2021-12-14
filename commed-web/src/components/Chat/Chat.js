@@ -206,12 +206,12 @@ function Chat(props) {
         <div className="chatContentRight">
           <div className="inputPart">
             <input
-              className="messageInput"
+              className="messageInput form-control"
               onChange={handleInputChange}
               onKeyUp={handleEnterSendMessage}
             ></input>
             <button
-              className="sendButton"
+              className="sendButton btn"
               onClick={handleClickSendMessage}
               disabled={readyState !== ReadyState.OPEN}
             >
