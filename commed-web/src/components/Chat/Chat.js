@@ -2,11 +2,13 @@ import React from "react";
 import "./Chat.css";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { get } from "../../utils.js";
+import { get, patch } from "../../utils.js";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import configData from "../../config.json";
 import { getTokenFromSession } from "../../utils.js";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { Modal } from "react-bootstrap";
+import FoModal from "./SendFoModal/SendFoModal.js";
 
 function Chat(props) {
   const [encounters, setEncounters] = React.useState([]);
@@ -17,6 +19,15 @@ function Chat(props) {
   const [newMessage, setNewMessage] = React.useState("");
   const [socketUrl, setSocketUrl] = React.useState("ws://echo.websocket.org");
   const [messageEvent, setMessageEvent] = React.useState(0);
+  const [showFoModal, setShowFoModal] = React.useState(false);
+
+  const handleShowFoModal = () => {
+    setShowFoModal(true);
+  };
+
+  const handleCloseFoModal = () => {
+    setShowFoModal(false);
+  };
 
   const handleMessageEvent = () => {
     setMessageEvent(messageEvent + 1);
@@ -50,7 +61,8 @@ function Chat(props) {
   };
 
   const startSocket = React.useCallback(
-    (id) => setSocketUrl("ws://localhost:7000/ws/chat/" + id + "/"),
+    (id) =>
+      setSocketUrl("ws://" + configData.SERVER_HOST + "/ws/chat/" + id + "/"),
     []
   );
 
@@ -60,7 +72,8 @@ function Chat(props) {
       type: "message",
       message: newMessage,
     };
-    sendMessage(JSON.stringify(message));
+    if (!(newMessage === null || newMessage.match(/^ *$/) !== null))
+      sendMessage(JSON.stringify(message));
   };
   const handleEnterSendMessage = (e) => {
     if (e.keyCode == 13) {
@@ -69,7 +82,8 @@ function Chat(props) {
         type: "message",
         message: newMessage,
       };
-      sendMessage(JSON.stringify(message));
+      if (!(newMessage === null || newMessage.match(/^ *$/) !== null))
+        sendMessage(JSON.stringify(message));
       e.target.value = "";
     }
   };
@@ -77,6 +91,14 @@ function Chat(props) {
   const handleInputChange = (event) => {
     setNewMessage(event.target.value);
   };
+
+  const handleSignature = async (message) => {
+    var content = JSON.parse(message.msg)
+    content.formalOffer.state="SI"
+    message.msg = JSON.stringify(content)
+    var result = await patch("/chat/encounter/"+message.channel_context+"/messages/"+message.id+"/", {msg: message.msg});
+    setMessageEvent(messageEvent+1);
+  }
 
   const connectionStatus = {
     [ReadyState.CONNECTING]: "Connecting",
@@ -98,6 +120,54 @@ function Chat(props) {
     const result_json = await result.json();
     setMessages(result_json.reverse());
   };
+
+  const createMessage = (message) => {
+    var content = JSON.parse(message.msg)
+    if (content.type == "message") {
+      return content.message;
+    } else {
+        return (
+          <div>
+            <div className="messageDivision">
+              <h5>{content.formalOffer.contract}</h5>
+            </div>
+            <div className="bottomMessage">
+            { content.user == logedUser.pk && 
+              <a href={configData.SERVER_URL + content.formalOffer.pdf}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                  <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                </svg>
+                { (content.formalOffer.state === "SI")  &&
+                  <span className="badge bg-light">Signed</span>
+                }
+                { (content.formalOffer.state == "NS") &&
+                  <span className="badge rounded-pill bg-warning text-dark">Pending</span>
+                }
+            </a>
+            }
+            { content.user != logedUser.pk && 
+              <a href={configData.SERVER_URL + content.formalOffer.pdf}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                  <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                </svg>
+                { (content.formalOffer.state === "SI")  &&
+                  <span className="badge bg-light">Contract Signed</span>
+                }
+            </a>
+            }
+            </div>
+            { content.user != logedUser.pk && (content.formalOffer.state == "NS") &&
+                <div className="bottomMessage">
+                  <button className="btn btnSign" onClick={() => handleSignature(message)}>Sign</button>
+                </div>
+            }
+          </div>
+        )
+    };
+      }
+      
 
   React.useEffect(() => {
     async function initChat() {
@@ -142,7 +212,10 @@ function Chat(props) {
                     />
                     <h5>{encounter.theOtherClient.name}</h5>
                   </div>
-                  <button class="formalOfferButton mt-auto btn btn-primary">
+                  <button
+                    class="formalOfferButton mt-auto btn btn-primary"
+                    onClick={handleShowFoModal}
+                  >
                     Formal offer
                   </button>
                 </div>
@@ -241,13 +314,13 @@ function Chat(props) {
                     {isAuthor ? (
                       <div className="alignSender">
                         <div className="sender">
-                          {JSON.parse(message.msg).message}
+                          {createMessage(message)}
                         </div>
                       </div>
                     ) : (
                       <div className="alignReceiver">
                         <div className="receiver">
-                          {JSON.parse(message.msg).message}
+                          {createMessage(message)}
                         </div>
                       </div>
                     )}
@@ -257,6 +330,21 @@ function Chat(props) {
           </ScrollToBottom>
         </div>
       </div>
+      <Modal
+        show={showFoModal}
+        onHide={handleCloseFoModal}
+        id="modalLoginForm"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        width="50%"
+      >
+        <FoModal
+          close={handleCloseFoModal}
+          encounterId={chat}
+          sendFO={sendMessage}
+          user={logedUser.pk}
+        ></FoModal>
+      </Modal>
     </div>
   );
 }

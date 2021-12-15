@@ -228,6 +228,13 @@ input:focus {
   width: 90%;
 }
 
+.btnSign{
+  background-color: #373843;
+  border-radius: 0.9rem;
+  width:100%;
+  color: white;
+}
+
 .sendButton {
   background-color: #373843;
   width: 7%;
@@ -243,4 +250,15 @@ input:focus {
 .sendButton:focus {
   background-color: #009688;
   outline-color: none;
+}
+
+.messageDivision{
+  width:100%;
+  border-bottom: white solid 1px;
+}
+
+.bottomMessage{
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
 }

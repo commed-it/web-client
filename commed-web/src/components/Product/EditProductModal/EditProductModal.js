@@ -58,7 +58,7 @@ function EditProductModal(props) {
         var image = uploadedImages.splice(index, 1);
         remove('/product/images/'+image[0].id+'/');
         setImages(uploadedImages);
-        setImageCounter(images.length);
+        setImageCounter(imageCounter+1);
     }
 
     const [newImage, setNewImage] = React.useState("");
@@ -122,7 +122,7 @@ function EditProductModal(props) {
         var result = await put('/product/'+props.productId+'/', data);
         if (result.ok){
           setFormResult(1)
-          window.location.reload();
+          window.location.reload()
         }else{
           setFormResult(-1)
         }
@@ -143,7 +143,7 @@ function EditProductModal(props) {
         var tags_string = "";
         if (result.tag)
             result.tag.map((tag) => { tags_string += (tag.name+" ") })
-        setTags(tags_string);
+        setTags(tags_string.slice(0, -1));
         setLatitude(result.latitude);
         setLongitude(result.longitude);
       }, []);
