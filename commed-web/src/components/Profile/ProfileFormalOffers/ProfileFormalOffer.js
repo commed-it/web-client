@@ -43,7 +43,7 @@ function ProfileFormalOffer(props) {
                     <img height="75px" width="75px" src={configData.SERVER_URL + formalOffer.product.images[0].image}></img>
                   </div>
                   <div className="col-xs-5 col-sm-5 col-md-5 col-lg-3 align-self-center">
-                    {formalOffer.product.title} - {formalOffer.theOtherClient.name}
+                    {formalOffer.product.title} - {formalOffer.theOtherClient.name} - version: {formalOffer.formalOffer.version}
                   </div>
                   <div className="col-xs-4 col-sm-4 col-md-5 col-lg-8 d-flex justify-content-end align-self-center">
                     <a href={configData.SERVER_URL + formalOffer.formalOffer.pdf}>

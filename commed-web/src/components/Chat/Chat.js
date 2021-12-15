@@ -94,9 +94,11 @@ function Chat(props) {
 
   const handleSignature = async (message) => {
     var content = JSON.parse(message.msg)
+    console.log(content)
     content.formalOffer.state="SI"
     message.msg = JSON.stringify(content)
     var result = await patch("/chat/encounter/"+message.channel_context+"/messages/"+message.id+"/", {msg: message.msg});
+    var result = await patch("/offer/formaloffer/"+content.formalOffer.id+"/", {state : "SI"});
     setMessageEvent(messageEvent+1);
   }
 
