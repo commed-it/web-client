@@ -17,6 +17,7 @@ function FoModal(props) {
       contract: contract.name,
       encounterId: props.encounterId,
       pdf: b64Contract,
+      state: "NS",
     };
     const result = await post("/offer/formaloffer/", data, true);
     var result_json = await result.json();
