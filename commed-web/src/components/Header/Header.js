@@ -241,7 +241,6 @@ function Header(props) {
         id="modalRegisterForm"
         role="dialog"
         aria-labelledby="myModalLabel"
-        width="50%"
       >
         <Register close={handleCloseRegister}></Register>
       </Modal>
@@ -251,7 +250,6 @@ function Header(props) {
         id="modalLoginForm"
         role="dialog"
         aria-labelledby="myModalLabel"
-        width="50%"
       >
         <Login close={handleCloseLogin}></Login>
       </Modal>
