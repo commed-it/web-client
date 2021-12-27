@@ -131,6 +131,7 @@ function Product(props) {
                   <h5>{enterprise.name}</h5>
                 </a>
               </div>
+              {logedUser.pk != undefined && (
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-end">
                 <button
                   className="btn2 btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
@@ -139,6 +140,7 @@ function Product(props) {
                   Contact
                 </button>
               </div>
+              )}
             </div>
           </div>
         </div>
