@@ -66,7 +66,8 @@ function Product(props) {
     };
     var result = await post("/offer/encounter/create-if-not-exists", data);
     if (result.ok) {
-      navigate("/chat");
+      var result_json = await result.json()
+      navigate("/chat/"+result_json.encounter.id);
     }
   };
 
@@ -183,6 +184,7 @@ function Product(props) {
       >
         <DeleteProductModal
           productId={productId}
+          owner={logedUser.pk}
           close={handleCloseDelete}
         ></DeleteProductModal>
       </Modal>

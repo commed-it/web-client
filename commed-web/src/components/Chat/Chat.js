@@ -1,7 +1,6 @@
 import React from "react";
 import "./Chat.css";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { get, patch } from "../../utils.js";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import configData from "../../config.json";
@@ -11,9 +10,13 @@ import { Modal } from "react-bootstrap";
 import FoModal from "./SendFoModal/SendFoModal.js";
 
 function Chat(props) {
+
+  const param = useParams();
+  const navigate = useNavigate();
+
+
   const [encounters, setEncounters] = React.useState([]);
   const [messages, setMessages] = React.useState([]);
-  const [users, setUsers] = React.useState([]);
   const [logedUser, setLogedUser] = React.useState({});
   const [chat, setChat] = React.useState("");
   const [newMessage, setNewMessage] = React.useState("");
@@ -47,12 +50,6 @@ function Chat(props) {
     return result_json;
   };
 
-  const getUsers = async () => {
-    const result = await get("/enterprise/", true);
-    const result_json = await result.json();
-    setUsers(result_json);
-    return result_json;
-  };
 
   const handleChangeActiveChat = (id) => {
     setChat(id);
@@ -169,7 +166,7 @@ function Chat(props) {
         )
     };
       }
-      
+
 
   React.useEffect(() => {
     async function initChat() {
@@ -177,7 +174,9 @@ function Chat(props) {
       await getEncounters(user);
     }
     initChat();
-    getUsers();
+    if (param.encounterId){
+      handleChangeActiveChat(param.encounterId)
+    }
   }, [messages]);
 
   return (
@@ -205,7 +204,7 @@ function Chat(props) {
             ) {
               return (
                 <div className="partner">
-                  <div className="partnerLeft">
+                  <a className="partnerLeft" href={"/profile/"+encounter.theOtherClient.id+"/"}>
                     <img
                       src={
                         configData.SERVER_URL +
@@ -213,7 +212,7 @@ function Chat(props) {
                       }
                     />
                     <h5>{encounter.theOtherClient.name}</h5>
-                  </div>
+                  </a>
                   <button
                     class="formalOfferButton mt-auto btn btn-primary"
                     onClick={handleShowFoModal}

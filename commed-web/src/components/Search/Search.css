@@ -1,6 +1,9 @@
 .searchTitle {
-  padding-bottom: 5% !important;
+  padding: 5% !important;
+  background-color: white;
 }
 .yOverflow {
-  overflow-y: scroll;
+  overflow: auto !important;
+  overflow-y: auto !important;
 }
+

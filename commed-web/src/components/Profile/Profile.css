@@ -1,4 +1,17 @@
 .container3 {
+  background-color: white !important;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  margin-bottom: 2%;
+  padding: 0;
+  border-radius: 0.9rem;
+  width: 90%;
+  margin: auto;
+}
+
+.container4 {
   background-color: rgba(255, 255, 255, 0.479);
   display: flex;
   justify-content: center;
@@ -25,7 +38,7 @@
 }
 
 .decription3 {
-  background-color: rgba(255, 255, 255, 0.479);
+  background-color: white;
 
   display: flex;
   flex-direction: column;
@@ -62,7 +75,7 @@
 .top1 {
   max-height: 30% !important;
   border-bottom: 1px solid #40414f;
-
+  border-top-right-radius: 0.9rem;
   background-color: #40414f;
   margin-top: -2%;
   overflow: hidden;
@@ -110,6 +123,8 @@
   overflow: hidden;
 }
 
+.flaps:active,
+.flaps:focus,
 .flaps:hover {
   background-color: #007a6eb4;
 }

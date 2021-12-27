@@ -33,7 +33,7 @@ function ProfileFormalOffer(props) {
 
   return (
     <div>
-      <div className="container3">
+      <div className="container4">
         <div className="top4">
           {formalOffers &&
             formalOffers.map((formalOffer) => {
