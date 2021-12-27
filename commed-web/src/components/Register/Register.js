@@ -114,6 +114,11 @@ function Register(props) {
             Welcome!
           </h4>
         </div>
+        <div className="text-center">
+          <p color="#007a6e" className="modal-title w-100 font-weight-bold">
+            Fill the form with all the information requested in orther to register into Commed! 
+          </p>
+        </div>
         {getComponent()}
         <div className="modal-body mx-3 border-0">
           <div class="md-form mb-5">

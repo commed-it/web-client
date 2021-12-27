@@ -14,7 +14,7 @@
 .chatHeader {
   display: flex;
   flex-direction: row;
-
+  background-color: white;
   border: 2px solid #007a6e;
   border: none;
   border-bottom: 2px solid #007a6e;
@@ -172,6 +172,7 @@
   overflow-y: hidden;
   scroll-behavior: smooth;
   height: 100% !important;
+  background: linear-gradient(to right,  #007a6e88, white) !important;
 }
 
 .sender {
@@ -184,6 +185,7 @@
   padding: 6px;
   border-radius: 0.8rem;
   float: right;
+  border: 1px solid #373843;
 }
 
 .receiver {
@@ -194,6 +196,7 @@
   width: fit-content;
   padding: 6px;
   border-radius: 0.8rem;
+  border: 1px solid #373843;
 }
 
 .alignSender {
@@ -209,13 +212,12 @@
 }
 
 .inputPart {
-  background-color: rgba(255, 255, 255, 0.507);
+  background: linear-gradient(to right,  #007a6e88, white) !important;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-self: flex-start;
   padding: 5px;
-  margin-top: 15px;
 }
 textarea:focus,
 input:focus {
@@ -224,7 +226,7 @@ input:focus {
 }
 .messageInput {
   background-color: white;
-  border: none;
+  border: 1px solid #373843;
   width: 90%;
 }
 

@@ -51,6 +51,7 @@ input:focus {
 
 .modal-title {
   padding: 20px;
+  padding-bottom: 5px !important;
 }
 .modal-header {
   border: none;

@@ -9,6 +9,9 @@ import { Modal } from "react-bootstrap";
 import configData from "../../config.json";
 
 function Profile(props) {
+
+  const param = useParams();
+
   const { userId } = useParams();
 
   const [logedUser, setLogedUser] = React.useState(false);
@@ -57,7 +60,11 @@ function Profile(props) {
   };
 
   React.useEffect(() => {
-    console.log("I made it here");
+    if (param.tab == 'formaloffers'){
+      handleOpenFormalOffers();
+    }else if (param.tab == 'products'){
+      handleOpenProducts();
+    }
     getEnterpriseDetails();
     getLoggedUser();
   }, []);
@@ -69,7 +76,7 @@ function Profile(props) {
           Profile
         </button>
         <button className="flaps" onClick={handleOpenProducts}>
-          Product
+          Products
         </button>
         {enterpriseDetails.owner == logedUser.pk &&
           enterpriseDetails.owner != undefined &&

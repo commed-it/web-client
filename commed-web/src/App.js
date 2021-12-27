@@ -52,8 +52,10 @@ function App() {
             <Route path="/search/:search" element={<Search />} />
             <Route path="/search/" element={<Search />} />
             <Route path="/product/:productId" element={<Product />} />
-            <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/profile/:userId/" element={<Profile />} />
+            <Route path="/profile/:userId/:tab" element={<Profile />} />
             <Route path="/chat" element={sessionExist() ? <Chat /> : <Navigate to="/" />}/>
+            <Route path="/chat/:encounterId" element={sessionExist() ? <Chat /> : <Navigate to="/" />}/>
             <Route path="*" element={<NotFound/>} />
           </Routes>
 

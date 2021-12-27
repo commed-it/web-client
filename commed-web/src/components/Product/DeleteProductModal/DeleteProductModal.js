@@ -8,7 +8,7 @@ function DeleteProductModal(props) {
 
     const handleDelete = (product) => {
         remove('/product/'+product+"/");
-        navigate(-1);
+        navigate("/profile/"+props.owner+"/products");
     }
 
     return (

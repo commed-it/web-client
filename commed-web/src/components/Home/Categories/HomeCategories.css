@@ -3,13 +3,22 @@
   padding-bottom: 3%;
 }
 
+.home-subsubtitle {
+  padding-bottom: 0%;
+  padding-top: 1%;
+  font-size: 15px;
+  color: #373843a2;
+  width: 100%;
+}
+
 .home-subtitle {
   padding-bottom: 0%;
-  padding-top: 3%;
+  padding-top: 1%;
   font-size: 40px;
   color: #373843;
   width: 100%;
 }
+
 .iconsHome:hover {
   transform: scale(1.1);
 
@@ -46,4 +55,8 @@
 }
 .links:hover {
   color: #24252c;
+}
+
+.homeTopDir{
+  background: white !important;
 }

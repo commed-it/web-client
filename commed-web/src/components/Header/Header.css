@@ -73,9 +73,6 @@
   transform: translate(-50%);
   left: 15px;
 }
-#modalLoginForm {
-  width: 90% !important;
-}
 
 .custom-modal-style {
   width: 100% !important;
@@ -124,15 +121,20 @@
   position: absolute;
 }
 
+.dropdown-item{
+  font-size: 12px;
+}
+
 .dropdown-item:focus,
+.dropdown-item:hover,
 .dropdown-item:active {
   outline: none !important;
   box-shadow: none;
-  background-color: rgba(255, 255, 255, 0.568) !important;
+  background-color: #007a6e !important;
+  color: white;
 }
 .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.733) !important;
-  border-radius: 0.9rem;
+  border-radius: 0.3rem;
   border: 1px solid #40414f;
   width: 100% !important;
 }
@@ -153,4 +155,11 @@
 .dropdown-toggle:hover,
 .dropdown-toggle::after {
   color: transparent !important;
+}
+
+.dropdown-text{
+  padding-left: 3% !important;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #373843;
 }

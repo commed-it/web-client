@@ -66,7 +66,8 @@ function Product(props) {
     };
     var result = await post("/offer/encounter/create-if-not-exists", data);
     if (result.ok) {
-      navigate("/chat");
+      var result_json = await result.json()
+      navigate("/chat/"+result_json.encounter.id);
     }
   };
 
@@ -130,6 +131,7 @@ function Product(props) {
                   <h5>{enterprise.name}</h5>
                 </a>
               </div>
+              {logedUser.pk != undefined && (
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-end">
                 <button
                   className="btn2 btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
@@ -138,6 +140,7 @@ function Product(props) {
                   Contact
                 </button>
               </div>
+              )}
             </div>
           </div>
         </div>
@@ -183,6 +186,7 @@ function Product(props) {
       >
         <DeleteProductModal
           productId={productId}
+          owner={logedUser.pk}
           close={handleCloseDelete}
         ></DeleteProductModal>
       </Modal>

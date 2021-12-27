@@ -14,7 +14,7 @@
   height: 100% !important;
   margin: 0 !important;
   padding: 0;
-  background: linear-gradient(180deg, #e5cfb0 0%, #007a6e 100%) !important;
+  background: linear-gradient(90deg, rgb(245, 245, 245) 0%, rgba(221,221,221,1) 100%);
 }
 
 .App-logo {

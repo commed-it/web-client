@@ -121,7 +121,7 @@ function CreateProductModal(props) {
     var result = await post("/product/", data);
     if (result.ok) {
       setFormResult(1);
-      navigate("/profile/"+owner+"/");
+      navigate("/profile/"+owner+"/products");
       window.location.reload();
     } else {
       setFormResult(-1);

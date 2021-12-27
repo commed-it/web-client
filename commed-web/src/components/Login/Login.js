@@ -7,6 +7,20 @@ import { post } from '../../utils.js';
 
 function Login(props) {
 
+  const [formResult, setFormResult] = useState(0);
+
+  const getComponent = () => {
+    if (formResult == 0 ){
+      return (<div></div>);
+    }else{
+      return (
+        <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
+          Invalid Credentials.
+        </div>
+      );
+    }
+  }
+
   const [username, setUsername] = useState('');
 
   const handleUsername= (event) => {
@@ -29,6 +43,8 @@ function Login(props) {
       const result_json = await result.json();
       sessionService.saveSession(result_json);
       window.location.reload()
+    }else{
+      setFormResult(-1);
     }
     
   }
@@ -48,6 +64,7 @@ function Login(props) {
               Welcome back!
             </h4>
           </div>
+          {getComponent()}
           <div className="modal-body mx-3 border-0">
             <div className="md-form mb-5">
               <svg
