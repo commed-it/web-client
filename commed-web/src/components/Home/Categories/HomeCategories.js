@@ -6,7 +6,7 @@ function HomeCategories(props) {
     <div className="homeTopDir col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-self-center">
         <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5 d-flex justify-content-center align-self-center home-subsubtitle">
-          « Commerce Mediation Platform for ergonomic Business transactions »
+          « Commercial mediation platform for ergonomic business transactions »
         </div>
       </div>
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-self-center">
