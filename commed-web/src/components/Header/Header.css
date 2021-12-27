@@ -73,9 +73,6 @@
   transform: translate(-50%);
   left: 15px;
 }
-#modalLoginForm {
-  width: 90% !important;
-}
 
 .custom-modal-style {
   width: 100% !important;

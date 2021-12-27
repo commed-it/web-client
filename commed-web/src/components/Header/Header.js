@@ -246,6 +246,7 @@ function Header(props) {
         id="modalRegisterForm"
         role="dialog"
         aria-labelledby="myModalLabel"
+        contentClassName="custom-modal-style"
       >
         <Register close={handleCloseRegister}></Register>
       </Modal>
@@ -255,6 +256,7 @@ function Header(props) {
         id="modalLoginForm"
         role="dialog"
         aria-labelledby="myModalLabel"
+        contentClassName="custom-modal-style"
       >
         <Login close={handleCloseLogin}></Login>
       </Modal>
