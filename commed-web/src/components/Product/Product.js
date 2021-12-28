@@ -66,8 +66,8 @@ function Product(props) {
     };
     var result = await post("/offer/encounter/create-if-not-exists", data);
     if (result.ok) {
-      var result_json = await result.json()
-      navigate("/chat/"+result_json.encounter.id);
+      var result_json = await result.json();
+      navigate("/chat/" + result_json.encounter.id);
     }
   };
 
@@ -131,16 +131,17 @@ function Product(props) {
                   <h5>{enterprise.name}</h5>
                 </a>
               </div>
-              {logedUser.pk != undefined && (
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-end">
-                <button
-                  className="btn2 btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
-                  onClick={handleContact}
-                >
-                  Contact
-                </button>
-              </div>
-              )}
+              {logedUser.pk != undefined &&
+                logedUser.pk != productDetails.owner && (
+                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row justify-content-end">
+                    <button
+                      className="btn2 btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                      onClick={handleContact}
+                    >
+                      Contact
+                    </button>
+                  </div>
+                )}
             </div>
           </div>
         </div>
