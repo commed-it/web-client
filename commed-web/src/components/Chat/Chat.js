@@ -177,7 +177,7 @@ function Chat(props) {
     if (param.encounterId){
       handleChangeActiveChat(param.encounterId)
     }
-  }, [messages]);
+  }, []);
 
   return (
     <div className="chatContainer">
@@ -297,6 +297,7 @@ function Chat(props) {
               className="messageInput form-control"
               onChange={handleInputChange}
               onKeyUp={handleEnterSendMessage}
+              placeholder="Say something..."
             ></input>
             <button
               className="sendButton btn"
