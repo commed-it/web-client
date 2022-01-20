@@ -4,8 +4,6 @@
   justify-content: center;
   align-self: center;
   padding: 3%;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 .container2 {
@@ -183,4 +181,13 @@ h6 {
   .btn2 {
     margin-left: 20px !important;
   }
+}
+
+.goBackBtn{
+  background-color: #373843;
+  color: white;
+}
+
+.goBackBtn:hover {
+  background-color: #373843c4;
 }

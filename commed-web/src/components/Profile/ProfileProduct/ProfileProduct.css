@@ -32,3 +32,23 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 
+.buttonProduct3 {
+  background-color: #373843;
+  outline: none;
+  border: none;
+  margin-top: auto;
+  color: white;
+}
+
+.buttonProduct3:hover {
+  background-color: #373843d8;
+}
+
+.buttonProduct3:focus {
+  background-color: #009688;
+  outline-color: none;
+}
+
+.twoButtonsProd{
+  padding-bottom: 3%;
+}

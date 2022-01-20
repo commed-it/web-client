@@ -194,7 +194,7 @@ function EditProductModal(props) {
           </div>
           Images:
           <div className="md-form mb-5">
-            <Carousel activeIndex={index} onSelect={handleSelect}>
+            <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                 { images && 
                     images.map((image) => {
                         return (
@@ -234,7 +234,7 @@ function EditProductModal(props) {
                 }
             </div>
           </div>
-          Tags:
+          Tags: <label style={{fontSize: 11, color: "grey"}}>(Separated by spaces)</label>
           <div className="md-form mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -286,6 +286,7 @@ function EditProductModal(props) {
             ></input>
           </div>
         </div>
+        {getComponent()}
         <div className="modal-footer d-flex justify-content-center">
           <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>Update</button>
         </div>

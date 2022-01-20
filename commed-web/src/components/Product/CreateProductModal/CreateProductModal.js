@@ -221,6 +221,7 @@ function CreateProductModal(props) {
               value={tags}
               placeholder="Tags"
             />
+            <label style={{fontSize: 11, color: "grey"}}>(Separated by spaces)</label>
             <label
               data-error="wrong"
               data-success="right"
@@ -268,6 +269,7 @@ function CreateProductModal(props) {
             ></input>
           </div>
         </div>
+        {getComponent()}
         <div className="modal-footer d-flex justify-content-center">
           <button
             className="registerButton btn btn-default"

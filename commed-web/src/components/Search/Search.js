@@ -11,7 +11,7 @@ function Search(props) {
 
   const param = useParams();
 
-  const [products, setProducts] = React.useState([]);
+  const [products, setProducts] = React.useState(0);
 
   const getProducts = async () => {
     var data = {
@@ -43,9 +43,19 @@ function Search(props) {
   return (
     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row topDiv">
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-self-top searchTitle">
-        <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5 d-flex justify-content-center align-self-center home-subtitle">
-          Search results for: "{param.search}"
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-self-center home-subtitle">
+          { products.length != 0 &&
+            <div>
+              Results for: "{param.search}"
+            </div>
+          }
+          { products.length === 0 &&
+            <div>
+              Nothing found for: "{param.search}"
+            </div>
+          }
         </div>
+        
       </div>
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 row productsDiv">
         {products &&

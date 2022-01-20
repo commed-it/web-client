@@ -20,6 +20,12 @@ function DeleteProductModal(props) {
                             Delete Product
                         </h4>
                     </div>
+                    <div className='text-center'>
+                        <p>
+                            Are you sure you want to delete this product?
+                        </p>
+                    </div>
+                        
                     <div className="modal-footer d-flex justify-content-center">
                     <button className="registerButton btn btn-default" type="submit" onClick={() => handleDelete(props.productId)}>Delete</button>
                     </div>

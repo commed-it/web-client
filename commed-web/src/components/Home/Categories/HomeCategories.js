@@ -32,7 +32,7 @@ function HomeCategories(props) {
             href="/search/food"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
@@ -51,7 +51,7 @@ function HomeCategories(props) {
             href="/search/safety"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
@@ -72,7 +72,7 @@ function HomeCategories(props) {
             href="/search/health"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
@@ -90,7 +90,7 @@ function HomeCategories(props) {
             href="/search/music"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
@@ -110,7 +110,7 @@ function HomeCategories(props) {
             href="/search/fun"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
@@ -129,7 +129,7 @@ function HomeCategories(props) {
             href="/search/drinks"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
@@ -147,7 +147,7 @@ function HomeCategories(props) {
             href="/search/transport"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
@@ -165,7 +165,7 @@ function HomeCategories(props) {
             href="/search/culture"
             className="col-xs-1 col-sm-1 col-md-1 col-lg-1 justify-content-center align-self-center links"
           >
-            <button className="btn iconRound">
+            <button className="btn iconRound d-flex justify-content-center align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"

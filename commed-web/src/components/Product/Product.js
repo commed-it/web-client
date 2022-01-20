@@ -71,9 +71,21 @@ function Product(props) {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  }
+
   return (
+    <div className="topDiv col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div className="parent2 row">
       <div className="container2">
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-start">
+          <button className="btn btn-circle btn-sm goBackBtn d-flex justify-content-start align-items-center" onClick={handleGoBack}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          </svg>
+          </button>
+        </div>
         <div className="cardDescription col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex">
           <div className="withPicture col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex ">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-self-center card-img2">
@@ -191,6 +203,7 @@ function Product(props) {
           close={handleCloseDelete}
         ></DeleteProductModal>
       </Modal>
+    </div>
     </div>
   );
 }
