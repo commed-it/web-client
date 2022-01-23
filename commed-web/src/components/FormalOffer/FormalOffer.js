@@ -13,7 +13,7 @@ function FormalOffer(props) {
     const navigate = useNavigate();
     const { foId } = useParams();
     const [logedUser, setLogedUser] = React.useState(false);
-    const [formalOffers, setFormalOffers] = React.useState({});
+    const [formalOffers, setFormalOffers] = React.useState(null);
     const [numPages, setNumPages] = React.useState(1);
     const [pageNumber, setPageNumber] = React.useState(1);
 
@@ -70,7 +70,7 @@ function FormalOffer(props) {
     return (
         <div className='container-fuild overflowProperty'>
             <div className='row'>
-                { logedUser && formalOffers != {} && 
+                { logedUser && formalOffers && 
                 <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                     <div className='row'>
                         <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 foInfo'>
