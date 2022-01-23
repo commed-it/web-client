@@ -3,11 +3,14 @@ import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 import  configData  from '../../config.json';
 import { get } from '../../utils.js';
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { Carousel } from "react-bootstrap";
 import './FormalOffer.css';
 
 
 function FormalOffer(props) {
 
+    const navigate = useNavigate();
     const { foId } = useParams();
     const [logedUser, setLogedUser] = React.useState(false);
     const [formalOffers, setFormalOffers] = React.useState({});
@@ -20,12 +23,44 @@ function FormalOffer(props) {
         const result_json = await result.json();
         setLogedUser(result_json);
     };
+
+    const handleVisitProduct = (product) => {
+        navigate({ pathname: "/product/" + product });
+      };
     
     const getFormalOffers = async () => {
         const result = await get("/offer/formaloffer/fromFo/" + foId, true);
         const result_json = await result.json();
         setFormalOffers(result_json);
     };
+
+    const handleMoveToChat = (enconter) => {
+        navigate("/chat/"+enconter)
+    }
+
+    const handleMoveToProfile = (userId) => {
+        navigate("/profile/"+userId+"/")
+    }
+
+    const handleGoBack = () => {
+        navigate(-1);
+      }
+
+    const onDocumentLoadSuccess = ({ numPages }) => {
+        setNumPages(numPages);
+    }
+
+    const handleNextPage = () => {
+        if (pageNumber + 1 <= numPages){
+            setPageNumber(pageNumber+1)
+        }
+    }
+
+    const handlePrevPage = () => {
+        if (pageNumber - 1 >= 1){
+            setPageNumber(pageNumber-1)
+        }
+    }
 
     React.useEffect(() => {
         getLoggedUser();
@@ -38,11 +73,16 @@ function FormalOffer(props) {
                 { logedUser && formalOffers != {} && 
                 <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                     <div className='row'>
-                        <div className='col-xs-5 col-sm-5 col-md-5 col-lg-5 foInfo'>
+                        <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 foInfo'>
                             <div className='d-flex justify-content-between col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                                <button className="btn btn-circle btn-sm goBackBtn d-flex justify-content-start align-items-center" onClick={handleGoBack}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                                    </svg>
+                                </button>
                                 <h1>{formalOffers.formalOffer.contract}</h1>
                                 { (formalOffers.formalOffer.state === "SI")  &&
-                                    <span class="d-flex justify-content-between align-items-center badge bg-success">Signed</span>
+                                    <span class="d-flex justify-content-between align-items-center rounded-pill badge bg-success">Signed</span>
                                 }
                                 { (formalOffers.formalOffer.state == "NS") &&
                                     <span class="d-flex justify-content-between align-items-center badge rounded-pill bg-warning text-dark">Pending</span>
@@ -64,6 +104,23 @@ function FormalOffer(props) {
                                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
                                                 {formalOffers.owner.contactInfo}
                                             </div>
+                                            { logedUser.pk != formalOffers.owner.id && 
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
+                                                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.owner.id)}>Profile</button>
+                                                    </div>
+                                                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToChat(formalOffers.formalOffer.encounterId)}>Chat</button>
+                                                    </div>
+                                                </div>
+                                            }
+                                            { logedUser.pk == formalOffers.owner.id && 
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
+                                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.owner.id)}>Profile</button>
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -82,25 +139,82 @@ function FormalOffer(props) {
                                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
                                                 {formalOffers.client.contactInfo}
                                             </div>
+                                            { logedUser.pk != formalOffers.client.id && 
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
+                                                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12  buttonPages' onClick={() => handleMoveToProfile(formalOffers.client.id)}>Profile</button>
+                                                    </div>
+                                                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToChat(formalOffers.formalOffer.encounterId)}>Chat</button>
+                                                    </div>
+                                                </div>
+                                            }
+                                            { logedUser.pk == formalOffers.client.id && 
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
+                                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.client.id)}>Profile</button>
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div className='row'>
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 productCardFO">
+                                    <div class="d-flex justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 cardTitle">
+                                        Product: 
+                                    </div>
+                                        <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <Carousel>
+                                            {formalOffers.product.images &&
+                                                formalOffers.product.images.map((image) => {
+                                                return (
+                                                    <Carousel.Item>
+                                                    <img
+                                                        className="carouselImage d-block w-100"
+                                                        src={configData.SERVER_URL + image.image}
+                                                    />
+                                                    </Carousel.Item>
+                                                );
+                                                })}
+                                            </Carousel>
+                                            <div class="d-flex flex-column card-body">
+                                            <h5 class="card-title">{formalOffers.product.title}</h5>
+                                            <p class="card-text">
+                                                {formalOffers.product.description}
+                                            </p>
+                                            <button
+                                                class="buttonPages mt-auto btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                                                onClick={() => handleVisitProduct(formalOffers.product.id)}
+                                            >
+                                                Go to product
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
-                        <div className='col-xs-7 col-sm-7 col-md-7 col-lg-7 pdfViewer'>
+                        <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 pdfViewer'>
                             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-items-center divPagesAndButtons'>
-                                <button className='btn buttonPages'>Previous</button>
+                                <button className='btn buttonPages' onClick={handlePrevPage}>Previous</button>
                                 <div className='labelPages d-flex justify-content-center align-items-center'>
                                     Page {pageNumber} of {numPages}
                                 </div>
-                                <button className='btn buttonPages'>Next</button>
+                                <button className='btn buttonPages' onClick={handleNextPage} >Next</button>
                             </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
                                 <Document
                                     file={configData.SERVER_URL + formalOffers.formalOffer.pdf}
+                                    onLoadSuccess={onDocumentLoadSuccess}
                                 >
                                     <Page pageNumber={pageNumber} />
                                 </Document>
+                            </div>
+                            <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-items-center divPagesAndButtons'>
+                                <a href={configData.SERVER_URL + formalOffers.formalOffer.pdf} target="_blank" >
+                                    Download File
+                                </a>
                             </div>
                         </div>
                     </div>

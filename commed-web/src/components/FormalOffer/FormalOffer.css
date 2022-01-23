@@ -39,3 +39,16 @@ background-color: #373843d8;
    padding: 2% !important;
    background-color: white;
 }
+
+.productCardFO{
+    padding: 2%;
+}
+
+.goBackBtn{
+    background-color: #373843;
+    color: white;
+}
+
+.goBackBtn:hover {
+background-color: #373843c4;
+}
