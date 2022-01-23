@@ -40,7 +40,11 @@ function Register(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const handlePhone = (event) => {
-    setPhoneNumber(event.target.value);
+    let phoneRegex = new RegExp('^[0-9]*$');
+    let phoneNumber = event.target.value;
+    if (phoneRegex.test(phoneNumber)){
+      setPhoneNumber(phoneNumber);
+    }
   };
 
   const [email, setEmail] = useState("");
@@ -92,19 +96,16 @@ function Register(props) {
       },
     });
     var user = await result.json();
-    console.log(user);
-    console.log(NIF);
-    console.log(enterpriseName);
     data = {
       owner: user.pk,
       NIF: NIF,
       name: enterpriseName,
       contactInfo: email,
     };
-    console.log(data);
     var result = await post("/enterprise/", data, false);
     if (result.ok) {
       setFormResult(1);
+      window.location.reload()
     } else {
       setFormResult(-1);
     }
@@ -284,6 +285,7 @@ function Register(props) {
               ></input>
             </div>
           </div>
+          {getComponent()}
           <div className="modal-footer d-flex justify-content-center">
             <button
               className="registerButton btn btn-default"

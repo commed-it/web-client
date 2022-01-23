@@ -120,7 +120,7 @@ function Login(props) {
             </div>
           </div>
           <div className="modal-footer d-flex justify-content-center">
-            <button className="loginButton btn btn-default" onClick={handleLogin}>Login</button>
+            <button className="loginButton btn btn-default" onClick={handleLogin}>Log in</button>
           </div>
         </div>
       </div>

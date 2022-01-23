@@ -72,16 +72,16 @@ function Profile(props) {
   return (
     <div className="parent3">
       <div className="flapContainer">
-        <button className="flaps" onClick={handleOpenProfile}>
+        <button className="flaps" onClick={handleOpenProfile} style={{backgroundColor: profile ? "#007a6eb4" : "#007a6e"}}>
           Profile
         </button>
-        <button className="flaps" onClick={handleOpenProducts}>
+        <button className="flaps" onClick={handleOpenProducts} style={{backgroundColor: products ? "#007a6eb4" : "#007a6e"}}>
           Products
         </button>
         {enterpriseDetails.owner == logedUser.pk &&
           enterpriseDetails.owner != undefined &&
           logedUser.pk != undefined && (
-            <button className="flaps" onClick={handleOpenFormalOffers}>
+            <button className="flaps" onClick={handleOpenFormalOffers} style={{backgroundColor: formalOffers ? "#007a6eb4" : "#007a6e"}}>
               Formal Offers
             </button>
           )}
@@ -101,7 +101,7 @@ function Profile(props) {
             ></img>
             <div className="bottom1">
               <h3>{enterpriseDetails.name}</h3>
-              <h6>Info: {enterpriseDetails.contactInfo}</h6>
+              <h6>{enterpriseDetails.contactInfo}</h6>
             </div>
           </div>
           <div className="decription3 centering">
@@ -122,7 +122,7 @@ function Profile(props) {
             )}
         </div>
       )}
-      {products && <ProfileProduct></ProfileProduct>}
+      {products && <ProfileProduct logedUser={logedUser}></ProfileProduct>}
       {formalOffers && <ProfileFormalOffer></ProfileFormalOffer>}
       <Modal
         show={showEdit}

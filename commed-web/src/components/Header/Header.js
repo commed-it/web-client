@@ -41,6 +41,7 @@ function Header(props) {
     console.log(enterprise);
     setEnterprise(result_json);
   };
+
   const handleShowCreateProduct = () => {
     if (sessionExist()) {
       setShowCreateProduct(true);
@@ -245,7 +246,7 @@ function Header(props) {
               onSelect={handleSelect}
               className="dropdown3"
             >
-              <div class="dropdown-text">Logged as {logedUser.username}</div>
+              <div class="dropdown-text">Hi, {logedUser.username}!</div>
               <Dropdown.Item eventKey="profile">Your Profile</Dropdown.Item>
               <Dropdown.Item eventKey="products">Your Products</Dropdown.Item>
               <Dropdown.Item eventKey="formaloffers">

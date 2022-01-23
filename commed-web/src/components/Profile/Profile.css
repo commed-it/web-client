@@ -39,15 +39,13 @@
 
 .decription3 {
   background-color: white;
-
   display: flex;
   flex-direction: column;
   align-self: center;
   vertical-align: middle;
   align-content: center;
   text-align: left;
-  margin-bottom: 5%;
-  margin-top: 5%;
+  padding: 2%;
   border-radius: 0.9rem;
   width: 90%;
   margin: auto;
@@ -96,8 +94,7 @@
 }
 .bottom1 {
   max-height: 50%;
-  padding-left: 2%;
-  padding-bottom: 0%;
+  padding: 2%;
   color: #373843;
   padding-top: 3%;
 }

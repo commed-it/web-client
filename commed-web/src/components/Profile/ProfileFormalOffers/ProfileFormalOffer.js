@@ -27,7 +27,6 @@ function ProfileFormalOffer(props) {
 
   React.useEffect(() => {
     getFormalOffers();
-
     getLoggedUser();
   }, []);
 
@@ -38,6 +37,7 @@ function ProfileFormalOffer(props) {
           {formalOffers &&
             formalOffers.map((formalOffer) => {
               return (
+                <a href={"/formaloffer/"+formalOffer.formalOffer.id}>
                 <div className="card col-xs-12 col-sm-6 col-md-4 col-lg-3 productCard3">
                   <div className="col-xs-3 col-sm-3 col-md-2 col-lg-1">
                     <img height="75px" width="75px" src={configData.SERVER_URL + formalOffer.product.images[0].image}></img>
@@ -60,11 +60,13 @@ function ProfileFormalOffer(props) {
                     </a>
                   </div>
                 </div>
+                </a>
               );
             })}
         </div>
       </div>
     </div>
+    
   );
 }
 

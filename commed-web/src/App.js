@@ -4,6 +4,7 @@ import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import Product from "./components/Product/Product";
 import Profile from "./components/Profile/Profile";
+import FormalOffer from "./components/FormalOffer/FormalOffer";
 import Chat from "./components/Chat/Chat.js";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { combineReducers, createStore } from "redux";
@@ -54,6 +55,7 @@ function App() {
             <Route path="/product/:productId" element={<Product />} />
             <Route path="/profile/:userId/" element={<Profile />} />
             <Route path="/profile/:userId/:tab" element={<Profile />} />
+            <Route path="/formaloffer/:foId" element={<FormalOffer />} />
             <Route path="/chat" element={sessionExist() ? <Chat /> : <Navigate to="/" />}/>
             <Route path="/chat/:encounterId" element={sessionExist() ? <Chat /> : <Navigate to="/" />}/>
             <Route path="*" element={<NotFound/>} />
