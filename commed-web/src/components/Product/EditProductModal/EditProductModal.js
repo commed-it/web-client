@@ -6,6 +6,7 @@ import { get, put, convertBase64, remove } from '../../../utils';
 function EditProductModal(props) {
 
   const [formResult, setFormResult] = React.useState(0);
+  const [msgError, setMsgError] = React.useState("");
 
   const getComponent = () => {
     console.log(formResult);
@@ -26,7 +27,7 @@ function EditProductModal(props) {
           class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          Error Updating Product. Check the data is correct.
+          Error Updating Product. Check the data is correct.{msgError}
         </div>
       );
     }
@@ -124,6 +125,12 @@ function EditProductModal(props) {
           setFormResult(1)
           window.location.reload()
         }else{
+          var error_json = await result.json()
+          var error_message = "";
+          for(var key in error_json) {
+            error_message += " "+ key + " : "+ error_json[key];
+          }
+          setMsgError(error_message);
           setFormResult(-1)
         }
     }
