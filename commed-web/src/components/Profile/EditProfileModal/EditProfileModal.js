@@ -15,6 +15,33 @@ function EditProfileModal(props) {
     const [description, setDescription] = React.useState("");
     const [profileImage, setProfileImage] = React.useState([]);
     const [bannerImage, setBannerImage] = React.useState([]);
+    const [formResult, setFormResult] = React.useState(0);
+    const [msgError, setMsgError] = React.useState("");
+
+    const getComponent = () => {
+        console.log(formResult);
+        if (formResult == 0) {
+          return <div></div>;
+        } else if (formResult == 1) {
+          return (
+            <div
+              class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12"
+              role="alert"
+            >
+              Product Succesfully updated! :)
+            </div>
+          );
+        } else {
+          return (
+            <div
+              class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
+              role="alert"
+            >
+              Error Updating Product. Check the data is correct.{msgError}
+            </div>
+          );
+        }
+      };
 
     const handleNameChange = (event) => {
         setName(event.target.value)
@@ -61,6 +88,14 @@ function EditProfileModal(props) {
         var result = await put('/enterprise/'+enterprise.id+'/', data);
         if (result.ok){
             window.location.reload()
+        }else{
+          var error_json = await result.json()
+          var error_message = "";
+          for(var key in error_json) {
+            error_message += " "+ key + " : "+ error_json[key];
+          }
+          setMsgError(error_message);
+          setFormResult(-1)
         }
     }
 
@@ -88,6 +123,7 @@ function EditProfileModal(props) {
                     Edit Profile
                 </h4>
                 </div>
+                {getComponent()}
                 <div className="modal-body mx-3 border-0">
                     Name:
                     <div className="md-form mb-4">
@@ -175,6 +211,7 @@ function EditProfileModal(props) {
                         onChange={handleBannerImage}
                         ></input>
                     </div>
+                    {getComponent()}
                     <div className="modal-footer d-flex justify-content-center">
                         <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>Update</button>
                     </div>

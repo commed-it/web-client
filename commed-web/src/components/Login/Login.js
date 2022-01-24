@@ -8,6 +8,7 @@ import { post } from '../../utils.js';
 function Login(props) {
 
   const [formResult, setFormResult] = useState(0);
+  const [msgError, setMsgError] = useState("");
 
   const getComponent = () => {
     if (formResult == 0 ){
@@ -16,6 +17,7 @@ function Login(props) {
       return (
         <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
           Invalid Credentials.
+          {msgError}
         </div>
       );
     }
@@ -44,6 +46,12 @@ function Login(props) {
       sessionService.saveSession(result_json);
       window.location.reload()
     }else{
+      var error_json = await result.json()
+      var error_message = "";
+      for(var key in error_json) {
+        error_message += " "+ key + " : "+ error_json[key];
+      }
+      setMsgError(error_message);
       setFormResult(-1);
     }
     

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 function CreateProductModal(props) {
 
   const navigate = useNavigate();
-
+  const [msgError, setMsgError] = React.useState("");
 
   const [formResult, setFormResult] = React.useState(0);
   const [imagesCount, setImagesCount] = React.useState(0);
@@ -32,7 +32,7 @@ function CreateProductModal(props) {
           class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          Error Creating Product. Check the data is correct.
+          Error Creating Product. Check the data is correct.{msgError}
         </div>
       );
     }
@@ -124,6 +124,12 @@ function CreateProductModal(props) {
       navigate("/profile/"+owner+"/products");
       window.location.reload();
     } else {
+      var error_json = await result.json()
+      var error_message = "";
+      for(var key in error_json) {
+        error_message += " "+ key + " : "+ error_json[key];
+      }
+      setMsgError(error_message);
       setFormResult(-1);
     }
   };
