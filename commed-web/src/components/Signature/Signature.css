@@ -25,14 +25,40 @@
     justify-content: flex-end;
     align-self: flex-end;
     color: white;
+    border-radius: 0.9rem;
+    padding:4px;
+    padding-left: 3%;
+    padding-right:3%;
 }
 
 .buttonPages:hover {
 background-color: #373843d8;
 }
+.buttonPagesChange {
+    background-color: #373843;
+    outline: none;
+    display: flex;
+    border: none;
+   
+    padding: 0;
+    justify-content: center;
+    align-content: center;
+    vertical-align: middle;
+    align-self:center;
+    color: white;
+    width:25px ;
+    height:25px;
+    border-radius: 50%  ;
+}
+
+.buttonPagesChange:hover {
+background-color: #373843d8;
+}
 
 .divPagesAndButtons{
-    padding: 2%;
+    padding: 1.2%;
+    margin-bottom: 0;
+    justify-content: center;
 }
 
 .cardTitle{
@@ -60,4 +86,8 @@ background-color: #373843c4;
 
 .aDownload:hover{
     color: grey !important;
+}
+
+.iconSwitch{
+    align-self: center;
 }
