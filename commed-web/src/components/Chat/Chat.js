@@ -1,13 +1,14 @@
 import React from "react";
 import "./Chat.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { get, patch } from "../../utils.js";
+import { get, patch, post } from "../../utils.js";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import configData from "../../config.json";
 import { getTokenFromSession } from "../../utils.js";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { Modal } from "react-bootstrap";
 import FoModal from "./SendFoModal/SendFoModal.js";
+import MailRedirectModal from "./MailRedirectModal/MailRedirectModal"
 
 function Chat(props) {
 
@@ -23,6 +24,7 @@ function Chat(props) {
   const [socketUrl, setSocketUrl] = React.useState("ws://echo.websocket.org");
   const [messageEvent, setMessageEvent] = React.useState(0);
   const [showFoModal, setShowFoModal] = React.useState(false);
+  const [showModalRedirect, setShowModalRedirect] = React.useState(false);
 
   const handleShowFoModal = () => {
     setShowFoModal(true);
@@ -89,13 +91,13 @@ function Chat(props) {
     setNewMessage(event.target.value);
   };
 
-  const handleSignature = async (message) => {
-    var content = JSON.parse(message.msg)
-    console.log(content)
-    content.formalOffer.state="SI"
-    message.msg = JSON.stringify(content)
-    var result = await patch("/chat/encounter/"+message.channel_context+"/messages/"+message.id+"/", {msg: message.msg});
-    var result = await patch("/offer/formaloffer/"+content.formalOffer.id+"/", {state : "SI"});
+  const handleSignature = async (content) => {
+    post("/offer/formaloffer/start-signature",
+    {
+      fo: content.formalOffer.id
+    },
+    true)
+    setShowModalRedirect(true);
     setMessageEvent(messageEvent+1);
   }
 
@@ -120,8 +122,14 @@ function Chat(props) {
     setMessages(result_json.reverse());
   };
 
+  const handleCloseMailRedirectModal = () => {
+    setShowModalRedirect(false)
+  }
+
   const createMessage = (message) => {
     var content = JSON.parse(message.msg)
+    console.log(content)
+    console.log(message)
     if (content.type == "message") {
       return content.message;
     } else {
@@ -161,7 +169,7 @@ function Chat(props) {
             </a>
             { content.user != logedUser.pk && (content.formalOffer.state == "NS") &&
                 <div className="bottomMessage">
-                  <button className="btn btnSign" onClick={() => handleSignature(message)}>Sign</button>
+                  <button className="btn btnSign" onClick={() => handleSignature(content)}>Sign</button>
                 </div>
             }
           </div>
@@ -345,9 +353,19 @@ function Chat(props) {
         <FoModal
           close={handleCloseFoModal}
           encounterId={chat}
-          sendFO={sendMessage}
           user={logedUser.pk}
         ></FoModal>
+      </Modal>
+      <Modal
+        show={showModalRedirect}
+        onHide={handleCloseMailRedirectModal}
+        id="modalLoginForm"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        width="50%"
+      >
+        <MailRedirectModal
+        ></MailRedirectModal>
       </Modal>
     </div>
   );

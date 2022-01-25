@@ -22,12 +22,6 @@ function FoModal(props) {
     const result = await post("/offer/formaloffer/", data, true);
     var result_json = await result.json();
     if (result.ok) {
-      data = {
-        user: props.user,
-        type: "formalOffer",
-        formalOffer: result_json.id,
-      };
-      props.sendFO(JSON.stringify(data));
       props.close();
     }
   };
