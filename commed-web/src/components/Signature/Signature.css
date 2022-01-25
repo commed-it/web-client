@@ -1,0 +1,63 @@
+.divSignature{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.pdfViewer {
+    padding: 2% !important;
+    border-left: 1px solid #007a6e;
+}
+.overflowProperty{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.labelPages{
+    padding: 1%;
+}
+
+.buttonPages {
+    background-color: #373843;
+    outline: none;
+    border: none;
+    margin-top: auto;
+    justify-content: flex-end;
+    align-self: flex-end;
+    color: white;
+}
+
+.buttonPages:hover {
+background-color: #373843d8;
+}
+
+.divPagesAndButtons{
+    padding: 2%;
+}
+
+.cardTitle{
+    padding: 2%;
+    font-size: 20px;
+}
+
+.foInfo{
+   padding: 2% !important;
+   background-color: white;
+}
+
+.productCardFO{
+    padding: 2%;
+}
+
+.goBackBtn{
+    background-color: #373843;
+    color: white;
+}
+
+.goBackBtn:hover {
+background-color: #373843c4;
+}
+
+.aDownload:hover{
+    color: grey !important;
+}

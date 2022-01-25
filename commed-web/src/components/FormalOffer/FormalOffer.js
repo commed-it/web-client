@@ -1,11 +1,13 @@
 import React from 'react';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 import  configData  from '../../config.json';
-import { get } from '../../utils.js';
+import { get, post } from '../../utils.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { Carousel } from "react-bootstrap";
 import './FormalOffer.css';
+import { Modal } from "react-bootstrap";
+import MailRedirectModal from "../Chat/MailRedirectModal/MailRedirectModal"
 
 
 function FormalOffer(props) {
@@ -16,6 +18,7 @@ function FormalOffer(props) {
     const [formalOffers, setFormalOffers] = React.useState(null);
     const [numPages, setNumPages] = React.useState(1);
     const [pageNumber, setPageNumber] = React.useState(1);
+    const [showModalRedirect, setShowModalRedirect] = React.useState(false);
 
 
     const getLoggedUser = async () => {
@@ -49,6 +52,19 @@ function FormalOffer(props) {
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
     }
+
+    const handleCloseMailRedirectModal = () => {
+        setShowModalRedirect(false)
+      }
+
+    const handleSignature = async () => {
+        post("/offer/formaloffer/start-signature",
+        {
+          fo: formalOffers.formalOffer.id
+        },
+        true)
+        setShowModalRedirect(true);
+      }
 
     const handleNextPage = () => {
         if (pageNumber + 1 <= numPages){
@@ -197,11 +213,11 @@ function FormalOffer(props) {
                         </div>
                         <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 pdfViewer'>
                             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-items-center divPagesAndButtons'>
-                                <button className='btn buttonPages' onClick={handlePrevPage}>Previous</button>
+                                <button className='btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2' onClick={handlePrevPage}>Previous</button>
                                 <div className='labelPages d-flex justify-content-center align-items-center'>
                                     Page {pageNumber} of {numPages}
                                 </div>
-                                <button className='btn buttonPages' onClick={handleNextPage} >Next</button>
+                                <button className='btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2' onClick={handleNextPage} >Next</button>
                             </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
                                 <Document
@@ -216,11 +232,29 @@ function FormalOffer(props) {
                                     Download File
                                 </a>
                             </div>
+                            { (formalOffers.formalOffer.state === "NS")  &&
+                                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-items-center divPagesAndButtons'>
+                                    <button class="btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2" onClick={handleSignature}>
+                                        Sign
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
                 }
             </div>
+            <Modal
+            show={showModalRedirect}
+            onHide={handleCloseMailRedirectModal}
+            id="modalLoginForm"
+            role="dialog"
+            aria-labelledby="myModalLabel"
+            width="50%"
+        >
+            <MailRedirectModal
+            ></MailRedirectModal>
+        </Modal>
         </div>
     );
 }

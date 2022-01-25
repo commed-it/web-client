@@ -6,6 +6,7 @@ import Product from "./components/Product/Product";
 import Profile from "./components/Profile/Profile";
 import FormalOffer from "./components/FormalOffer/FormalOffer";
 import Chat from "./components/Chat/Chat.js";
+import Signature from "./components/Signature/Signature";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { combineReducers, createStore } from "redux";
 import { sessionReducer, sessionService } from "redux-react-session";
@@ -52,6 +53,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route path="/search/:search" element={<Search />} />
             <Route path="/search/" element={<Search />} />
+            <Route path="/signature/:foId" element={<Signature />} />
             <Route path="/product/:productId" element={<Product />} />
             <Route path="/profile/:userId/" element={<Profile />} />
             <Route path="/profile/:userId/:tab" element={<Profile />} />
