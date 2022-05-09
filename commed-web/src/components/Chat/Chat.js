@@ -9,6 +9,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { Modal } from "react-bootstrap";
 import FoModal from "./SendFoModal/SendFoModal.js";
 import MailRedirectModal from "./MailRedirectModal/MailRedirectModal"
+import lang from "../../lang/eng.json"
 
 function Chat(props) {
 
@@ -147,10 +148,10 @@ function Chat(props) {
                     <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
                   </svg>
                   { (content.formalOffer.state === "SI")  &&
-                    <span className="badge bg-light">Signed</span>
+                    <span className="badge bg-light">{lang.chat.fo_card.signed}</span>
                   }
                   { (content.formalOffer.state == "NS") &&
-                    <span className="badge rounded-pill bg-warning text-dark">Pending</span>
+                    <span className="badge rounded-pill bg-warning text-dark">{lang.chat.fo_card.signed}</span>
                   }
               </a>
               }
@@ -161,7 +162,7 @@ function Chat(props) {
                     <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
                   </svg>
                   { (content.formalOffer.state === "SI")  &&
-                    <span className="badge bg-light">Contract Signed</span>
+                    <span className="badge bg-light">{lang.chat.fo_card.cont_signed}</span>
                   }
             </a>
             }
@@ -169,7 +170,7 @@ function Chat(props) {
             </a>
             { content.user != logedUser.pk && (content.formalOffer.state == "NS") &&
                 <div className="bottomMessage">
-                  <button className="btn btnSign" onClick={() => handleSignature(content)}>Sign</button>
+                  <button className="btn btnSign" onClick={() => handleSignature(content)}>{lang.chat.fo_card.sign}</button>
                 </div>
             }
           </div>
@@ -203,7 +204,7 @@ function Chat(props) {
           >
             <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z" />
           </svg>{" "}
-          <h5>My chats</h5>
+          <h5>{lang.chat.title}</h5>
         </div>
         {chat != "" &&
           encounters &&
@@ -227,7 +228,7 @@ function Chat(props) {
                     class="formalOfferButton mt-auto btn btn-primary"
                     onClick={handleShowFoModal}
                   >
-                    Formal offer
+                    {lang.chat.fo_button}
                   </button>
                 </div>
               );
@@ -307,14 +308,14 @@ function Chat(props) {
               className="messageInput form-control"
               onChange={handleInputChange}
               onKeyUp={handleEnterSendMessage}
-              placeholder="Say something..."
+              placeholder={lang.chat.placeholder}
             ></input>
             <button
               className="sendButton btn"
               onClick={handleClickSendMessage}
               disabled={readyState !== ReadyState.OPEN}
             >
-              Send
+              {lang.chat.send}
             </button>
           </div>
           <ScrollToBottom className="scrollable">

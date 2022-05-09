@@ -1,8 +1,8 @@
 {
 
-    "SERVER_URL": "http://localhost:8000",
+    "SERVER_URL": "http://172.16.124.91:8000",
 
-    "SERVER_HOST": "localhost:8000",
+    "SERVER_HOST": "172.16.124.91:8000",
   
     "PALETE_COLORS": {
       "PERSIAN_GREEN": "#009688",

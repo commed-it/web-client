@@ -2,6 +2,7 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './EditProductModal.css';
 import { get, put, convertBase64, remove } from '../../../utils';
+import lang from "../../../lang/eng.json"
 
 function EditProductModal(props) {
 
@@ -18,7 +19,7 @@ function EditProductModal(props) {
           class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          Product Succesfully updated! :)
+          {lang.product.modal.edit.succesfull}
         </div>
       );
     } else {
@@ -27,7 +28,8 @@ function EditProductModal(props) {
           class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          Error Updating Product. Check the data is correct.{msgError}
+          {lang.product.modal.edit.error}
+          {msgError}
         </div>
       );
     }
@@ -161,12 +163,12 @@ function EditProductModal(props) {
       <div className="window ">
         <div className="modal-header text-center">
           <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-            Edit Product
+            {lang.product.modal.edit.title}
           </h4>
         </div>
         {getComponent()}
         <div className="modal-body mx-3 border-0">
-          Title:
+          {lang.product.modal.titles.title}:
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>            </svg>
@@ -178,7 +180,7 @@ function EditProductModal(props) {
               value = {title}
             ></input>
           </div>
-          Description:
+          {lang.product.modal.titles.description}:
           <div class="md-form mb-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +201,7 @@ function EditProductModal(props) {
               value = {description}
             ></textarea>
           </div>
-          Images:
+          {lang.product.modal.titles.images}:
           <div className="md-form mb-5">
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                 { images && 
@@ -216,7 +218,7 @@ function EditProductModal(props) {
                 }
             </Carousel>
             <div className="d-flex justify-content-center imageProperties">
-                <button className="registerButton btn btn-default" type="submit" onClick={handleDeleteImage}>Delete</button>
+                <button className="registerButton btn btn-default" type="submit" onClick={handleDeleteImage}>{lang.product.modal.edit.delete}</button>
             </div>
             <div className="d-flex justify-content-center imageProperties">
                 <input
@@ -226,7 +228,7 @@ function EditProductModal(props) {
                 onChange={handleNewImage}
                 ></input>
                 <button className="registerButton btn btn-default" onClick={handleNewImages}>
-                  Upload
+                  {lang.product.modal.titles.upload}
                 </button>
             </div>
             <div className="justify-content-center imageProperties">
@@ -241,7 +243,7 @@ function EditProductModal(props) {
                 }
             </div>
           </div>
-          Tags: <label style={{fontSize: 11, color: "grey"}}>(Separated by spaces)</label>
+          {lang.product.modal.titles.tags}: <label style={{fontSize: 11, color: "grey"}}>({lang.product.modal.titles.spaces})</label>
           <div className="md-form mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -266,7 +268,7 @@ function EditProductModal(props) {
               htmlFor="defaultForm-pass"
             ></label>
           </div>
-          Latitude:
+          {lang.product.modal.titles.latitude}:
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>            
@@ -279,7 +281,7 @@ function EditProductModal(props) {
               value = {latitude}
             ></input>
           </div>
-          Longitude:
+          {lang.product.modal.titles.longitude}:
           <div class="md-form mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>            
@@ -295,7 +297,7 @@ function EditProductModal(props) {
         </div>
         {getComponent()}
         <div className="modal-footer d-flex justify-content-center">
-          <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>Update</button>
+          <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>{lang.product.modal.edit.update}</button>
         </div>
       </div>
     </div>

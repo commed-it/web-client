@@ -3,6 +3,7 @@ import "./Login.css";
 import configData from "../../config.json";
 import { sessionService } from 'redux-react-session';
 import { post } from '../../utils.js';
+import lang from "../../lang/eng.json"
 
 
 function Login(props) {
@@ -16,7 +17,7 @@ function Login(props) {
     }else{
       return (
         <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" role="alert">
-          Invalid Credentials.
+          {lang.login.invalid}.
           {msgError}
         </div>
       );
@@ -69,7 +70,7 @@ function Login(props) {
         <div className="window ">
           <div className="modal-header text-center">
             <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-              Welcome back!
+              {lang.login.title}
             </h4>
           </div>
           {getComponent()}
@@ -89,7 +90,7 @@ function Login(props) {
                 type="text"
                 id="username"
                 className="inputs form-control validate"
-                placeholder="Username"
+                placeholder={lang.login.username}
                 value={username}
                 onChange={handleUsername}
               />
@@ -115,7 +116,7 @@ function Login(props) {
                 type="password"
                 id="password"
                 className="inputs form-control validate"
-                placeholder="Password"
+                placeholder={lang.login.password}
                 value={password}
                 onChange={handlePassword}
                 onKeyDown={handleKeyDown}
@@ -128,7 +129,7 @@ function Login(props) {
             </div>
           </div>
           <div className="modal-footer d-flex justify-content-center">
-            <button className="loginButton btn btn-default" onClick={handleLogin}>Log in</button>
+            <button className="loginButton btn btn-default" onClick={handleLogin}>{lang.login.login}</button>
           </div>
         </div>
       </div>

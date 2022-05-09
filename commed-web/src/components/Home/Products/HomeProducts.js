@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { get, untilTherteeChars, post } from "../../../utils.js";
 import useGeolocation from "react-hook-geolocation";
 import { Carousel } from "react-bootstrap";
+import lang from "../../../lang/eng.json"
 
 function HomeProducts(props) {
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ function HomeProducts(props) {
                     class="buttonProduct mt-auto btn btn-primary"
                     onClick={() => handleVisitProduct(product.id)}
                   >
-                    Go to product
+                    {lang.home.products.btn}
                   </button>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { remove } from '../../../utils';
 import { useNavigate } from 'react-router-dom';
 import "./MailRedirectModal.css";
+import lang from "../../../lang/eng.json"
 
 
 function DeleteProductModal(props) {
@@ -12,7 +13,7 @@ function DeleteProductModal(props) {
                 <div className="window ">
                     <div className="modal-header text-center">
                         <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-                            Signature Email sent!
+                            {lang.chat.mail_redirect.title}
                         </h4>
                     </div>
                     <div className='iconModal d-flex justify-content-center'>
@@ -23,7 +24,7 @@ function DeleteProductModal(props) {
                     </div>
                     <div className='text-center'>
                         <p>
-                            To proceed with the signature go to your email account. You will recieve a mail with the next steps of the signature process.
+                            {lang.chat.mail_redirect.body}
                         </p>
                     </div>
                 </div>

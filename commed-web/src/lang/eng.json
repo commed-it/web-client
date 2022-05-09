@@ -1,0 +1,116 @@
+{
+    "chat" : {
+        "fo_card" : {
+            "signed" : "Signed",
+            "pending" : "Pending",
+            "cont_signed" : "Contract Signed",
+            "sign" : "Sign"
+        },
+        "title" : "My chats",
+        "fo_button": "Formal offer",
+        "send" : "Send",
+        "placeholder" : "Say something...",
+        "mail_redirect" : {
+            "title" : "Signature Email sent!",
+            "body" : "To proceed with the signature go to your email account. You will recieve a mail with the next steps of the signature process."
+        },
+        "send_fo" : {
+            "title" : "Send Formal Offer",
+            "btn" : "Send"
+        }
+    },
+    "fo" : {
+        "signed" : "Signed",
+        "pending" : "Pending",
+        "owner" : "Owner",
+        "client" : "Client",
+        "you" : "You",
+        "profile" : "Profile",
+        "chat" : "Chat",
+        "product" : "Product",
+        "product_btn" : "Go to Product",
+        "page" : "Page",
+        "of" : "of",
+        "previous" : "Previous",
+        "next" : "Next",
+        "download" : "Download File",
+        "sign" : "Sign"
+    },
+    "header" : {
+        "login" : "Log in",
+        "signup" : "Sign Up",
+        "chat" : "Chat",
+        "product" : "Product",
+        "search" : "Search",
+        "dropdown" : {
+            "hi" : "Hi",
+            "profile" : "Your Profile",
+            "products" : "Your Products",
+            "fo" : "Your Formal Offers",
+            "logout" : "Log out"
+        }
+    },
+    "home" : {
+        "categories" : {
+            "subtitle" : "« Commercial mediation platform for ergonomic business transactions »",
+            "title" : "What are you looking for today?",
+            "food" : "Food",
+            "safety" : "Safety",
+            "health" : "Health",
+            "music" : "Music",
+            "fun" : "Fun",
+            "drinks" : "Drinks",
+            "transport" : "Transport",
+            "culture" : "Culture"
+        },
+        "products" : {
+            "btn" : "Go to product"
+        }
+    },
+    "login" : {
+        "title" : "Welcome back!",
+        "invalid" : "Invalid Credentials",
+        "username" : "Username",
+        "password" : "Password",
+        "login" : "Log in"
+    },
+    "product" : {
+        "contact" : "Contact",
+        "edit" : "Edit",
+        "delete" : "Delete",
+        "modal" : {
+            "create" : {
+                "succesfull" : "Product Succesfully created! :)",
+                "error" : "Error Creating Product. Check the data is correct.",
+                "title" : "Create Product",
+                "btn" : "Create"
+            },
+            "edit" : {
+                "succesfull" : "Product Succesfully updated! :)",
+                "error" : "Error Updating Product. Check the data is correct.",
+                "title" : "Edit Product",
+                "delete" : "Delete",
+                "update" : "Update"
+            },
+            "delete" : {
+                "title" : "Delete Product",
+                "body" : "Are you sure you want to delete this product?",
+                "btn" : "Delete"
+            },
+            "titles" : {
+                "title" : "Title",
+                "description" : "Description",
+                "upload_img" : "Upload Images",
+                "upload" : "Upload",
+                "spaces" : "Separated by spaces",
+                "tags" : "Tags",
+                "latitude" : "Latitude",
+                "longitude" : "Longitude",
+                "images" : "Images"
+            }
+        }
+    },
+    "profile" : {
+        
+    } 
+}

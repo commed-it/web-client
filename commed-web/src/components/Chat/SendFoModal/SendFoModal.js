@@ -3,6 +3,7 @@ import "./SendFoModal.css";
 import configData from "../../../config.json";
 import { sessionService } from "redux-react-session";
 import { post, convertBase64 } from "../../../utils.js";
+import lang from "../../../lang/eng.json"
 
 function FoModal(props) {
   const [contract, setContract] = useState({});
@@ -32,7 +33,7 @@ function FoModal(props) {
         <div className="window ">
           <div className="modal-header text-center">
             <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-              Send Formal Offer
+              {lang.chat.send_fo.title}
             </h4>
           </div>
           <div className="modal-body mx-3 border-0">
@@ -56,7 +57,7 @@ function FoModal(props) {
               className="loginButton btn btn-default"
               onClick={handleSendFo}
             >
-              Send
+              {lang.chat.send_fo.btn}
             </button>
           </div>
         </div>

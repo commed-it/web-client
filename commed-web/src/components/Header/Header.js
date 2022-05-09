@@ -14,6 +14,8 @@ import "react-dropdown/style.css";
 import { get } from "../../utils.js";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import lang from "../../lang/eng.json"
+
 
 function Header(props) {
   const [show, setShow] = useState(false);
@@ -123,7 +125,7 @@ function Header(props) {
             <input
               className="inputField form-control form-control-sm col-xs-8 col-sm-8 col-md-8 col-lg-8 rounded-pill ml-auto mr-auto"
               type="search"
-              placeholder="Search"
+              placeholder={lang.header.search}
               aria-label="Search"
               padding-left="30px"
               onChange={handleSearchInput}
@@ -171,7 +173,7 @@ function Header(props) {
               data-toggle="modal"
               data-target="#modalLoginForm"
             >
-              Log in
+              {lang.header.login}
             </a>
           </button>
           <button
@@ -197,7 +199,7 @@ function Header(props) {
               data-toggle="modal"
               data-target="#modalRegisterForm"
             >
-              Sign Up
+              {lang.header.signup}
             </a>
           </button>
         </div>
@@ -220,7 +222,7 @@ function Header(props) {
               <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
               <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z" />
             </svg>
-            Chat
+            {lang.header.chat}
           </a>
           <button
             onClick={handleShowCreateProduct}
@@ -236,7 +238,7 @@ function Header(props) {
             >
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
             </svg>
-            <a style={{ color: "white", textDecoration: "none" }}>Product</a>
+            <a style={{ color: "white", textDecoration: "none" }}>{lang.header.product}</a>
           </button>
           <div className="dropdown2 button2 btn btn-sm col-xs-6 col-sm-6 col-md-5 col-lg-4 rounded-pill d-flex justify-content-center align-self-center">
             <img src={configData.SERVER_URL + enterprise.profileImage} />
@@ -246,13 +248,13 @@ function Header(props) {
               onSelect={handleSelect}
               className="dropdown3"
             >
-              <div class="dropdown-text">Hi, {logedUser.username}!</div>
-              <Dropdown.Item eventKey="profile">Your Profile</Dropdown.Item>
-              <Dropdown.Item eventKey="products">Your Products</Dropdown.Item>
+              <div class="dropdown-text">{lang.header.dropdown.hi}, {logedUser.username}!</div>
+              <Dropdown.Item eventKey="profile">{lang.header.dropdown.profile}</Dropdown.Item>
+              <Dropdown.Item eventKey="products">{lang.header.dropdown.products}</Dropdown.Item>
               <Dropdown.Item eventKey="formaloffers">
-                Your Formal Offers
+                {lang.header.dropdown.fo}
               </Dropdown.Item>
-              <Dropdown.Item eventKey="logout">Log out</Dropdown.Item>
+              <Dropdown.Item eventKey="logout">{lang.header.dropdown.logout}</Dropdown.Item>
             </DropdownButton>
           </div>
         </div>

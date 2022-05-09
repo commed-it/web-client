@@ -8,6 +8,8 @@ import DeleteProductModal from "./DeleteProductModal/DeleteProductModal";
 import { Modal } from "react-bootstrap";
 import { Carousel } from "react-bootstrap";
 import configData from "../../config.json";
+import lang from "../../lang/eng.json"
+
 
 function Product(props) {
   const navigate = useNavigate();
@@ -150,7 +152,7 @@ function Product(props) {
                       className="btn2 btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
                       onClick={handleContact}
                     >
-                      Contact
+                      {lang.product.contact}
                     </button>
                   </div>
                 )}
@@ -165,13 +167,13 @@ function Product(props) {
                 className="buttonProduct2 btn btn-danger mt-3"
                 onClick={handleShowEdit}
               >
-                Edit
+                {lang.product.edit}
               </button>
               <button
                 className="buttonProduct2 btn btn-danger mt-3"
                 onClick={handleShowDelete}
               >
-                Delete
+                {lang.product.delete}
               </button>
             </div>
           )}

@@ -8,6 +8,7 @@ import { Carousel } from "react-bootstrap";
 import './FormalOffer.css';
 import { Modal } from "react-bootstrap";
 import MailRedirectModal from "../Chat/MailRedirectModal/MailRedirectModal"
+import lang from "../../lang/eng.json"
 
 
 function FormalOffer(props) {
@@ -98,17 +99,17 @@ function FormalOffer(props) {
                                 </button>
                                 <h1>{formalOffers.formalOffer.contract}</h1>
                                 { (formalOffers.formalOffer.state === "SI")  &&
-                                    <span class="d-flex justify-content-between align-items-center rounded-pill badge bg-success">Signed</span>
+                                    <span class="d-flex justify-content-between align-items-center rounded-pill badge bg-success">{lang.fo.signed}</span>
                                 }
                                 { (formalOffers.formalOffer.state == "NS") &&
-                                    <span class="d-flex justify-content-between align-items-center badge rounded-pill bg-warning text-dark">Pending</span>
+                                    <span class="d-flex justify-content-between align-items-center badge rounded-pill bg-warning text-dark">{lang.fo.pending}</span>
                                 }
                             </div>
                             <div className='row'>
                                 <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6'>
                                     <div className="d-flex justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 cardTitle">
-                                        Owner: { logedUser.pk == formalOffers.owner.id && 
-                                            <label style={{ fontWeight: "bold" }}>(You)</label>
+                                        {lang.fo.owner} { logedUser.pk == formalOffers.owner.id && 
+                                            <label style={{ fontWeight: "bold" }}>({lang.fo.you})</label>
                                         }
                                     </div>
                                     <div className="d-flex justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -123,17 +124,17 @@ function FormalOffer(props) {
                                             { logedUser.pk != formalOffers.owner.id && 
                                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
                                                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
-                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.owner.id)}>Profile</button>
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.owner.id)}>{lang.fo.profile}</button>
                                                     </div>
                                                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
-                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToChat(formalOffers.formalOffer.encounterId)}>Chat</button>
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToChat(formalOffers.formalOffer.encounterId)}>{lang.fo.chat}</button>
                                                     </div>
                                                 </div>
                                             }
                                             { logedUser.pk == formalOffers.owner.id && 
                                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
                                                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
-                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.owner.id)}>Profile</button>
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.owner.id)}>{lang.fo.profile}</button>
                                                     </div>
                                                 </div>
                                             }
@@ -142,8 +143,8 @@ function FormalOffer(props) {
                                 </div>
                                 <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6'>
                                     <div className="d-flex justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 cardTitle">
-                                        Client: { logedUser.pk == formalOffers.client.id && 
-                                            <label style={{ fontWeight: "bold" }}> (You)</label>
+                                        {lang.fo.client} { logedUser.pk == formalOffers.client.id && 
+                                            <label style={{ fontWeight: "bold" }}>({lang.fo.you})</label>
                                         }
                                     </div>
                                     <div className="d-flex justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -158,17 +159,17 @@ function FormalOffer(props) {
                                             { logedUser.pk != formalOffers.client.id && 
                                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
                                                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
-                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12  buttonPages' onClick={() => handleMoveToProfile(formalOffers.client.id)}>Profile</button>
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12  buttonPages' onClick={() => handleMoveToProfile(formalOffers.client.id)}>{lang.fo.profile}</button>
                                                     </div>
                                                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center divPagesAndButtons">
-                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToChat(formalOffers.formalOffer.encounterId)}>Chat</button>
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToChat(formalOffers.formalOffer.encounterId)}>{lang.fo.chat}</button>
                                                     </div>
                                                 </div>
                                             }
                                             { logedUser.pk == formalOffers.client.id && 
                                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
                                                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center divPagesAndButtons">
-                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.client.id)}>Profile</button>
+                                                        <button className='btn col-xs-12 col-sm-12 col-md-12 col-lg-12 buttonPages' onClick={() => handleMoveToProfile(formalOffers.client.id)}>{lang.fo.profile}</button>
                                                     </div>
                                                 </div>
                                             }
@@ -179,7 +180,7 @@ function FormalOffer(props) {
                             <div className='row'>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 productCardFO">
                                     <div class="d-flex justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 cardTitle">
-                                        Product: 
+                                        {lang.fo.product}: 
                                     </div>
                                         <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <Carousel>
@@ -204,7 +205,7 @@ function FormalOffer(props) {
                                                 class="buttonPages mt-auto btn col-xs-12 col-sm-12 col-md-12 col-lg-12"
                                                 onClick={() => handleVisitProduct(formalOffers.product.id)}
                                             >
-                                                Go to product
+                                                {lang.fo.product_btn}
                                             </button>
                                             </div>
                                         </div>
@@ -213,11 +214,11 @@ function FormalOffer(props) {
                         </div>
                         <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 pdfViewer'>
                             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-items-center divPagesAndButtons'>
-                                <button className='btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2' onClick={handlePrevPage}>Previous</button>
+                                <button className='btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2' onClick={handlePrevPage}>{lang.fo.previous}</button>
                                 <div className='labelPages d-flex justify-content-center align-items-center'>
-                                    Page {pageNumber} of {numPages}
+                                    {lang.fo.page} {pageNumber} {lang.fo.of} {numPages}
                                 </div>
-                                <button className='btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2' onClick={handleNextPage} >Next</button>
+                                <button className='btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2' onClick={handleNextPage}>{lang.fo.next}</button>
                             </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
                                 <Document
@@ -229,13 +230,13 @@ function FormalOffer(props) {
                             </div>
                             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-items-center divPagesAndButtons'>
                                 <a href={configData.SERVER_URL + formalOffers.formalOffer.pdf} target="_blank" >
-                                    Download File
+                                    {lang.fo.download}
                                 </a>
                             </div>
                             { (formalOffers.formalOffer.state === "NS")  &&
                                 <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-items-center divPagesAndButtons'>
                                     <button class="btn buttonPages col-xs-4 col-sm-3 col-md-2 col-lg-2" onClick={handleSignature}>
-                                        Sign
+                                        {lang.fo.sign}
                                     </button>
                                 </div>
                             }

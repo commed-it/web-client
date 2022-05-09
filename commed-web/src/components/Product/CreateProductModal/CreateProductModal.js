@@ -3,6 +3,8 @@ import "./CreateProductModal.css";
 import { get, post, convertBase64 } from "../../../utils";
 import { map } from "jquery";
 import { useNavigate } from "react-router";
+import lang from "../../../lang/eng.json"
+
 
 
 function CreateProductModal(props) {
@@ -23,7 +25,7 @@ function CreateProductModal(props) {
           class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          Product Succesfully created! :)
+          {lang.product.modal.create.succesfull}
         </div>
       );
     } else {
@@ -32,7 +34,8 @@ function CreateProductModal(props) {
           class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          Error Creating Product. Check the data is correct.{msgError}
+          {lang.product.modal.create.error}
+          {msgError}
         </div>
       );
     }
@@ -139,7 +142,7 @@ function CreateProductModal(props) {
       <div className="window ">
         <div className="modal-header text-center">
           <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-            Create Product
+            {lang.product.modal.create.title}
           </h4>
         </div>
         {getComponent()}
@@ -161,7 +164,7 @@ function CreateProductModal(props) {
               class="inputs form-control validate"
               onChange={handleTitle}
               value={title}
-              placeholder="Title"
+              placeholder={lang.product.modal.titles.title}
             ></input>
           </div>
           <div class="md-form mb-5">
@@ -182,11 +185,11 @@ function CreateProductModal(props) {
               class="inputs form-control validate"
               onChange={handleDescription}
               value={description}
-              placeholder="Description"
+              placeholder={lang.product.modal.titles.title}
             ></textarea>
           </div>
           <div className="md-form mb-5">
-            <div className="imageProperties">Upload Images</div>
+            <div className="imageProperties">{lang.product.modal.titles.upload_img}</div>
             <div className="d-flex justify-content-center imageProperties">
               <input
                 type="file"
@@ -198,7 +201,7 @@ function CreateProductModal(props) {
                 className="registerButton btn btn-default"
                 onClick={handleNewImages}
               >
-                Upload
+                {lang.product.modal.titles.upload}
               </button>
             </div>
             <div className="justify-content-center imageProperties">
@@ -225,9 +228,9 @@ function CreateProductModal(props) {
               className="inputs form-control validate"
               onChange={handleTags}
               value={tags}
-              placeholder="Tags"
+              placeholder={lang.product.modal.titles.tags}
             />
-            <label style={{fontSize: 11, color: "grey"}}>(Separated by spaces)</label>
+            <label style={{fontSize: 11, color: "grey"}}>({lang.product.modal.titles.spaces})</label>
             <label
               data-error="wrong"
               data-success="right"
@@ -251,7 +254,7 @@ function CreateProductModal(props) {
               class="inputs form-control validate"
               onChange={handleLatitude}
               value={latitude}
-              placeholder="Latitude"
+              placeholder={lang.product.modal.titles.latitude}
             ></input>
           </div>
           <div class="md-form mb-5">
@@ -271,7 +274,7 @@ function CreateProductModal(props) {
               class="inputs form-control validate"
               onChange={handleLongitude}
               value={longitude}
-              placeholder="Longitude"
+              placeholder={lang.product.modal.titles.longitude}
             ></input>
           </div>
         </div>
@@ -282,7 +285,7 @@ function CreateProductModal(props) {
             type="submit"
             onClick={handleCreate}
           >
-            Create
+            {lang.product.modal.create.btn}
           </button>
         </div>
       </div>
