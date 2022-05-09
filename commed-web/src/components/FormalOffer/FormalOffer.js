@@ -8,7 +8,7 @@ import { Carousel } from "react-bootstrap";
 import './FormalOffer.css';
 import { Modal } from "react-bootstrap";
 import MailRedirectModal from "../Chat/MailRedirectModal/MailRedirectModal"
-import lang from "../../lang/eng.json"
+import lang from "../../lang/cat.json"
 
 
 function FormalOffer(props) {

@@ -9,6 +9,7 @@ import { Carousel } from "react-bootstrap";
 import configData from "../../../config.json";
 import { Modal } from "react-bootstrap";
 import CreateProductModal from "../../Product/CreateProductModal/CreateProductModal";
+import lang from "../../../lang/cat.json";
 
 
 function ProfileProduct(props) {
@@ -82,7 +83,7 @@ function ProfileProduct(props) {
                       class="buttonProduct mt-auto btn btn-primary"
                       onClick={() => handleVisitProduct(product.id)}
                     >
-                      Go to product
+                      {lang.profile.modals.product.btn}
                     </button>
                   </div>
                 );
@@ -105,7 +106,7 @@ function ProfileProduct(props) {
                 >
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
                 </svg>
-                <label style={{ color: "white", textDecoration: "none" , fontSize: 20}} className="d-flex justify-content-center align-self-center">Product</label>
+                <label style={{ color: "white", textDecoration: "none" , fontSize: 20}} className="d-flex justify-content-center align-self-center">{lang.profile.modals.product.product}</label>
               </button>
             </div>
           }

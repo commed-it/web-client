@@ -1,7 +1,7 @@
 import React from 'react';
 import { remove } from '../../../utils';
 import { useNavigate } from 'react-router-dom';
-import lang from "../../../lang/eng.json"
+import lang from "../../../lang/cat.json"
 
 
 function DeleteProductModal(props) {

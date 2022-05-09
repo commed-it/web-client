@@ -9,7 +9,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { Modal } from "react-bootstrap";
 import FoModal from "./SendFoModal/SendFoModal.js";
 import MailRedirectModal from "./MailRedirectModal/MailRedirectModal"
-import lang from "../../lang/eng.json"
+import lang from "../../lang/cat.json"
 
 function Chat(props) {
 

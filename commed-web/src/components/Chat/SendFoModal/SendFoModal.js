@@ -3,7 +3,7 @@ import "./SendFoModal.css";
 import configData from "../../../config.json";
 import { sessionService } from "redux-react-session";
 import { post, convertBase64 } from "../../../utils.js";
-import lang from "../../../lang/eng.json"
+import lang from "../../../lang/cat.json"
 
 function FoModal(props) {
   const [contract, setContract] = useState({});

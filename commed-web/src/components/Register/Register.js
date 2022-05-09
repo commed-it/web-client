@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Register.css";
 import configData from "../../config.json";
 import { post } from "../../utils.js";
+import lang from "../../lang/cat.json"
+
 
 function Register(props) {
   const [formResult, setFormResult] = useState(0);
@@ -16,8 +18,7 @@ function Register(props) {
           class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          You have registered successfully!! Go back to Login into the
-          application! :)
+          {lang.register.succesfull}
         </div>
       );
     } else {
@@ -26,7 +27,7 @@ function Register(props) {
           class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
           role="alert"
         >
-          Invalid registration.
+          {lang.register.error}
           {msgError}
         </div>
       );
@@ -125,12 +126,12 @@ function Register(props) {
         <div className="window ">
           <div className="modal-header text-center">
             <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-              Welcome!
+              {lang.register.title}
             </h4>
           </div>
           <div className="text-center">
             <p color="#007a6e" className="modal-title w-100 font-weight-bold">
-              Fill in all the requested information to register for Commed!
+              {lang.register.text}
             </p>
           </div>
           {getComponent()}
@@ -150,7 +151,7 @@ function Register(props) {
                 type="text"
                 id="defaultForm-username"
                 class="inputs form-control validate"
-                placeholder="Username"
+                placeholder={lang.register.fields.username}
                 onChange={handleUsername}
                 value={username}
               ></input>
@@ -173,7 +174,7 @@ function Register(props) {
                 type="text"
                 id="defaultForm-number"
                 class="inputs form-control validate"
-                placeholder="Phone number"
+                placeholder={lang.register.fields.phone}
                 onChange={handlePhone}
                 value={phoneNumber}
               ></input>
@@ -196,7 +197,7 @@ function Register(props) {
                 type="email"
                 id="defaultForm-email"
                 className="inputs form-control validate"
-                placeholder="Email"
+                placeholder={lang.register.fields.email}
                 onChange={handleEmail}
                 value={email}
               />
@@ -217,7 +218,7 @@ function Register(props) {
                 type="password"
                 id="defaultForm-pass"
                 className="inputs form-control validate"
-                placeholder="Password"
+                placeholder={lang.register.fields.password}
                 onChange={handlePassword}
                 value={password}
               />
@@ -242,7 +243,7 @@ function Register(props) {
                 type="password"
                 id="defaultForm-pass"
                 className="inputs form-control validate"
-                placeholder="Confirm password"
+                placeholder={lang.register.fields.conf_password}
                 onChange={handleRepeatPassword}
                 value={repeatPassword}
               />
@@ -267,7 +268,7 @@ function Register(props) {
                 type="text"
                 id="defaultForm-number"
                 class="inputs form-control validate"
-                placeholder="Enterprise Name"
+                placeholder={lang.register.fields.enterprise_name}
                 onChange={handleEnterpriseName}
                 value={enterpriseName}
               ></input>
@@ -287,7 +288,7 @@ function Register(props) {
                 type="text"
                 id="defaultForm-number"
                 class="inputs form-control validate"
-                placeholder="NIF"
+                placeholder={lang.register.fields.nif}
                 onChange={handleNIF}
                 value={NIF}
               ></input>
@@ -300,7 +301,7 @@ function Register(props) {
               type="submit"
               onClick={handleRegister}
             >
-              Sign up
+              {lang.register.signup}
             </button>
           </div>
         </div>

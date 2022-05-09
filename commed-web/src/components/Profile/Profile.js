@@ -7,6 +7,8 @@ import ProfileFormalOffer from "./ProfileFormalOffers/ProfileFormalOffer";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { Modal } from "react-bootstrap";
 import configData from "../../config.json";
+import lang from "../../lang/cat.json"
+
 
 function Profile(props) {
 
@@ -73,16 +75,16 @@ function Profile(props) {
     <div className="parent3">
       <div className="flapContainer">
         <button className="flaps" onClick={handleOpenProfile} style={{backgroundColor: profile ? "#007a6eb4" : "#007a6e"}}>
-          Profile
+          {lang.profile.profile}
         </button>
         <button className="flaps" onClick={handleOpenProducts} style={{backgroundColor: products ? "#007a6eb4" : "#007a6e"}}>
-          Products
+          {lang.profile.products}
         </button>
         {enterpriseDetails.owner == logedUser.pk &&
           enterpriseDetails.owner != undefined &&
           logedUser.pk != undefined && (
             <button className="flaps" onClick={handleOpenFormalOffers} style={{backgroundColor: formalOffers ? "#007a6eb4" : "#007a6e"}}>
-              Formal Offers
+              {lang.profile.fos}
             </button>
           )}
       </div>
@@ -105,7 +107,7 @@ function Profile(props) {
             </div>
           </div>
           <div className="decription3 centering">
-            <h5>Description</h5>
+            <h5>{lang.profile.description}</h5>
             <p>{enterpriseDetails.description}</p>
           </div>
           {enterpriseDetails.owner == logedUser.pk &&
@@ -116,7 +118,7 @@ function Profile(props) {
                   className="buttonEditProfile btn mt-3"
                   onClick={handleShowEdit}
                 >
-                  Edit
+                  {lang.profile.edit}
                 </button>
               </div>
             )}

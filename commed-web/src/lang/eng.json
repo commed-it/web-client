@@ -111,6 +111,62 @@
         }
     },
     "profile" : {
-        
-    } 
+        "profile" : "Profile",
+        "products" : "Products",
+        "fos" : "Formal Offers",
+        "description" : "Description",
+        "edit" : "Edit",
+        "modals" : {
+            "edit" : {
+                "succesfull" : "Profile Succesfully updated! :)",
+                "error" : "Error Updating Product. Check the data is correct.",
+                "title" : "Edit Profile",
+                "btn" : "Update"
+            },
+            "titles" : {
+                "name" : "Name",
+                "nif" : "NIF",
+                "contact" : "Contact Info",
+                "description" : "Description",
+                "prof_img" : "Profile Image",
+                "bann_img" : "Banner Image"
+            },
+            "fos" : {
+                "version" : "version",
+                "signed" : "Signed",
+                "pending" : "Pending"
+            },
+            "product" : {
+                "btn" : "Go to product",
+                "product" : "Product"
+            }
+        }
+    }, 
+    "register" : {
+        "succesfull" : "You have registered successfully!! Go back to Login into the application! :)",
+        "error" : "Invalid registration",
+        "title" : "Welcome!",
+        "text" : "Fill in all the requested information to register for Commed!",
+        "fields" : {
+            "username" : "Username",
+            "phone" : "Phone number",
+            "email" : "Email",
+            "password" : "Password",
+            "conf_password" : "Confirm password",
+            "enterprise_name" : "Enterprise Name",
+            "nif" : "NIF"
+        },
+        "signup" : "Sign up" 
+    },
+    "search" : {
+        "results" : "Results for",
+        "nothing" : "Nothing found for",
+        "product" : "Go to product"
+    },
+    "signature" : {
+        "btn" : "Sign",
+        "page" : "Page",
+        "of" : "of",
+        "download" : "Download File"
+    }
 }

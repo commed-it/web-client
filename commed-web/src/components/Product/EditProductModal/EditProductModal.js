@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './EditProductModal.css';
 import { get, put, convertBase64, remove } from '../../../utils';
-import lang from "../../../lang/eng.json"
+import lang from "../../../lang/cat.json"
 
 function EditProductModal(props) {
 

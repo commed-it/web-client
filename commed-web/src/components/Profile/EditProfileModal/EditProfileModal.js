@@ -3,6 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import './EditProfileModal.css';
 import { get, put, convertBase64 } from '../../../utils';
 import { useNavigate } from 'react-router';
+import lang from "../../../lang/cat.json";
 
 function EditProfileModal(props) {
 
@@ -28,7 +29,7 @@ function EditProfileModal(props) {
               class="alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12"
               role="alert"
             >
-              Product Succesfully updated! :)
+              {lang.profile.modals.succesfull}
             </div>
           );
         } else {
@@ -37,7 +38,8 @@ function EditProfileModal(props) {
               class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12"
               role="alert"
             >
-              Error Updating Product. Check the data is correct.{msgError}
+              {lang.profile.modals.error}
+              {msgError}
             </div>
           );
         }
@@ -120,12 +122,12 @@ function EditProfileModal(props) {
       <div className="window ">
             <div className="modal-header text-center">
                 <h4 color="#007a6e" className="modal-title w-100 font-weight-bold">
-                    Edit Profile
+                    {lang.profile.modals.edit.title}
                 </h4>
                 </div>
                 {getComponent()}
                 <div className="modal-body mx-3 border-0">
-                    Name:
+                    {lang.profile.modals.titles.name}:
                     <div className="md-form mb-4">
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +147,7 @@ function EditProfileModal(props) {
                         value = {name}
                         />
                     </div>
-                    NIF:
+                    {lang.profile.modals.titles.nif}:
                     <div className="md-form mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-credit-card icons" viewBox="0 0 16 16">
                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
@@ -159,7 +161,7 @@ function EditProfileModal(props) {
                         value = {nif}
                         />
                     </div>
-                    Contact Info:
+                    {lang.profile.modals.titles.contact}:
                     <div class="md-form mb-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ced4da" class="bi bi-sticky icons" viewBox="0 0 16 16">
                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>            
@@ -172,7 +174,7 @@ function EditProfileModal(props) {
                         value = {contactInfo}
                         ></input>
                     </div>
-                    Description:
+                    {lang.profile.modals.titles.description}:
                     <div class="md-form mb-5">
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +195,7 @@ function EditProfileModal(props) {
                         value = {description}
                         ></textarea>
                     </div>
-                    Profile Image:
+                    {lang.profile.modals.titles.prof_img}:
                     <div class="md-form mb-5">
                         <input
                         type="file"
@@ -202,7 +204,7 @@ function EditProfileModal(props) {
                         onChange={handleProfileImage}
                         ></input>
                     </div>
-                    Banner Image:
+                    {lang.profile.modals.titles.bann_img}:
                     <div class="md-form mb-5">
                         <input
                         type="file"
@@ -213,7 +215,7 @@ function EditProfileModal(props) {
                     </div>
                     {getComponent()}
                     <div className="modal-footer d-flex justify-content-center">
-                        <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>Update</button>
+                        <button className="registerButton btn btn-default" type="submit" onClick={handleEdit}>{lang.profile.modals.edit.btn}</button>
                     </div>
                 </div>
             </div>

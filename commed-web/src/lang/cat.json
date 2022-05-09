@@ -1,3 +1,172 @@
 {
-    
+    "chat" : {
+        "fo_card" : {
+            "signed" : "Signat",
+            "pending" : "Pendent",
+            "cont_signed" : "Contracte Signat",
+            "sign" : "Signar"
+        },
+        "title" : "Xats",
+        "fo_button": "Oferta formal",
+        "send" : "Enviar",
+        "placeholder" : "Digues alguna cosa...",
+        "mail_redirect" : {
+            "title" : "Mail de signatura enviat!",
+            "body" : "Per continuar amb la signatura aneu al vostre compte de correu electrònic. Recuperareu un correu amb els passos següents del procés de signatura."
+        },
+        "send_fo" : {
+            "title" : "Enviar Oferta Formal",
+            "btn" : "Enviar"
+        }
+    },
+    "fo" : {
+        "signed" : "Signat",
+        "pending" : "Pendent",
+        "owner" : "Propietari",
+        "client" : "Client",
+        "you" : "Tu",
+        "profile" : "Perfil",
+        "chat" : "Xat",
+        "product" : "Producte",
+        "product_btn" : "Anar a Producte",
+        "page" : "Pàgina",
+        "of" : "de",
+        "previous" : "Prèvia",
+        "next" : "Següent",
+        "download" : "Descarregar Fitxer",
+        "sign" : "Signar"
+    },
+    "header" : {
+        "login" : "Entrar",
+        "signup" : "Registrar-se",
+        "chat" : "Xat",
+        "product" : "Producte",
+        "search" : "Buscar",
+        "dropdown" : {
+            "hi" : "Hola",
+            "profile" : "El teu Perfil",
+            "products" : "Els teus Productes",
+            "fo" : "Les teves ofertes formals",
+            "logout" : "Tancar Sessió"
+        }
+    },
+    "home" : {
+        "categories" : {
+            "subtitle" : "« Plataforma de mediació comercial per a transaccions comercials ergonòmiques »",
+            "title" : "Què busques avui?",
+            "food" : "Menjar",
+            "safety" : "Seguretat",
+            "health" : "Salut",
+            "music" : "Música",
+            "fun" : "Diversió",
+            "drinks" : "Begudes",
+            "transport" : "Transport",
+            "culture" : "Cultura"
+        },
+        "products" : {
+            "btn" : "Anar a producte"
+        }
+    },
+    "login" : {
+        "title" : "Benvingut!",
+        "invalid" : "Credencials no vàlides",
+        "username" : "Nom d'usuari",
+        "password" : "Contrasenya",
+        "login" : "Entrar"
+    },
+    "product" : {
+        "contact" : "Contactar",
+        "edit" : "Editar",
+        "delete" : "Suprimir",
+        "modal" : {
+            "create" : {
+                "succesfull" : "Producte creat correctament! :)",
+                "error" : "Error en crear el producte. Comprova que les dades són correctes.",
+                "title" : "Crea un producte",
+                "btn" : "Crear"
+            },
+            "edit" : {
+                "succesfull" : "Producte actualitzat correctament! :)",
+                "error" : "Error en actualitzar el producte. Comprova que les dades són correctes.",
+                "title" : "Editar Producte",
+                "delete" : "Suprimeix",
+                "update" : "Actualitzar"
+            },
+            "delete" : {
+                "title" : "Suprimir Producte",
+                "body" : "Segur que voleu suprimir aquest producte?",
+                "btn" : "Suprimeix"
+            },
+            "titles" : {
+                "title" : "Títol",
+                "description" : "Descripció",
+                "upload_img" : "Pujar Imatges",
+                "upload" : "Penjar",
+                "spaces" : "Separat per espais",
+                "tags" : "Etiquetes",
+                "latitude" : "Latitud",
+                "longitude" : "Longitud",
+                "images" : "Imatges"
+            }
+        }
+    },
+    "profile" : {
+        "profile" : "Perfil",
+        "products" : "Productes",
+        "fos" : "Ofertes formals",
+        "description" : "Descripció",
+        "edit" : "Editar",
+        "modals" : {
+            "edit" : {
+                "succesfull" : "Perfil actualitzat correctament! :)",
+                "error" : "Error en actualitzar el producte. Comprova que les dades són correctes.",
+                "title" : "Editar Perfil",
+                "btn" : "Actualitzar"
+            },
+            "titles" : {
+                "name" : "Nom",
+                "nif" : "NIF",
+                "contact" : "Informació de contacte",
+                "description" : "Descripció",
+                "prof_img" : "Imatge de perfil",
+                "bann_img" : "Imatge de fons"
+            },
+            "fos" : {
+                "version" : "versió",
+                "signed" : "Signat",
+                "pending" : "Pendent"
+            },
+            "product" : {
+                "btn" : "Anar a producte",
+                "product" : "Producte"
+            }
+        }
+    }, 
+    "register" : {
+        "succesfull" : "Us heu registrat correctament! Torna a la pantalla d'inici per a iniciar la sessió :)",
+        "error" : "Registre no vàlid",
+        "title" : "Benvingut!",
+        "text" : "Empleneu tota la informació sol·licitada per registrar-vos a Commed!",
+        "fields" : {
+            "username" : "Nom d'usuari",
+            "phone" : "Número de telèfon",
+            "email" : "Correu",
+            "password" : "Contrasenya",
+            "conf_password" : "Confirmació contrasenya",
+            "enterprise_name" : "Nom de l'empresa",
+            "nif" : "NIF"
+        },
+        "signup" : "Registrar-se" 
+    },
+    "search" : {
+        "results" : "Resultats per",
+        "nothing" : "No s'ha trobat res per",
+        "product" : "Anar a producte"
+    },
+    "signature" : {
+        "btn" : "Signar",
+        "page" : "Pàgina",
+        "of" : "de",
+        "download" : "Descarregar fitxer"
+    }
 }

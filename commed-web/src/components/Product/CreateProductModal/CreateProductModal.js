@@ -3,7 +3,7 @@ import "./CreateProductModal.css";
 import { get, post, convertBase64 } from "../../../utils";
 import { map } from "jquery";
 import { useNavigate } from "react-router";
-import lang from "../../../lang/eng.json"
+import lang from "../../../lang/cat.json"
 
 
 

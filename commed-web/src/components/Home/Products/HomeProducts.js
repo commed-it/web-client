@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { get, untilTherteeChars, post } from "../../../utils.js";
 import useGeolocation from "react-hook-geolocation";
 import { Carousel } from "react-bootstrap";
-import lang from "../../../lang/eng.json"
+import lang from "../../../lang/cat.json"
 
 function HomeProducts(props) {
   const navigate = useNavigate();

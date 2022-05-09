@@ -8,7 +8,7 @@ import DeleteProductModal from "./DeleteProductModal/DeleteProductModal";
 import { Modal } from "react-bootstrap";
 import { Carousel } from "react-bootstrap";
 import configData from "../../config.json";
-import lang from "../../lang/eng.json"
+import lang from "../../lang/cat.json"
 
 
 function Product(props) {

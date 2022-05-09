@@ -14,7 +14,7 @@ import "react-dropdown/style.css";
 import { get } from "../../utils.js";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import lang from "../../lang/eng.json"
+import lang from "../../lang/cat.json"
 
 
 function Header(props) {

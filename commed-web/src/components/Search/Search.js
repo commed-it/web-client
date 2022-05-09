@@ -5,6 +5,8 @@ import { Carousel } from "react-bootstrap";
 import "./Search.css";
 import "../Home/Home.css";
 import configData from "../../config.json";
+import lang from "../../lang/cat.json"
+
 
 function Search(props) {
   const navigate = useNavigate();
@@ -46,12 +48,12 @@ function Search(props) {
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center align-self-center home-subtitle">
           { products.length != 0 &&
             <div>
-              Results for: "{param.search}"
+             {lang.search.results} {}: "{param.search}"
             </div>
           }
           { products.length === 0 &&
             <div>
-              Nothing found for: "{param.search}"
+              {lang.search.nothing}: "{param.search}"
             </div>
           }
         </div>
@@ -87,7 +89,7 @@ function Search(props) {
                       class="buttonProduct mt-auto btn btn-primary"
                       onClick={() => handleVisitProduct(product.id)}
                     >
-                      Go to product
+                      {lang.search.product}
                     </button>
                   </div>
                 </div>

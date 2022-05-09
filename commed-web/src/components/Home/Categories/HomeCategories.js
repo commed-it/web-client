@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomeCategories.css";
-import lang from "../../../lang/eng.json"
+import lang from "../../../lang/cat.json"
 
 
 function HomeCategories(props) {

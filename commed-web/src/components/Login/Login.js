@@ -3,7 +3,7 @@ import "./Login.css";
 import configData from "../../config.json";
 import { sessionService } from 'redux-react-session';
 import { post } from '../../utils.js';
-import lang from "../../lang/eng.json"
+import lang from "../../lang/cat.json"
 
 
 function Login(props) {
